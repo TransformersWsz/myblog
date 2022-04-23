@@ -19,33 +19,33 @@ tags:
 
 {% asset_img 1.png %}
 
-
+<!-- 
 
 ## 配置ODBC数据源
-1.打开管理工具（不知道在哪儿的话，可以问cortana），双击<font color=red>ODBC数据源(32位)</font>，如下图所示：
+1. 打开管理工具（不知道在哪儿的话，可以问cortana），双击<font color=red>ODBC数据源(32位)</font>，如下图所示：
 
 {% asset_img 2.png %}
 
-2.点击添加，选择<font color=red>MySQL ODBC 5.3 Unicode Driver</font>
+2. 点击添加，选择<font color=red>MySQL ODBC 5.3 Unicode Driver</font>
 
 {% asset_img 3.png %}
 
-3.点击完成，会弹出配置界面，前面两个随便填写，<font color=red>User和Password就填写你连接数据库的用户名和密码，Database选择你所要连接的数据库</font>，点击Test会弹出连接成功的提示框
+3. 点击完成，会弹出配置界面，前面两个随便填写，<font color=red>User和Password就填写你连接数据库的用户名和密码，Database选择你所要连接的数据库</font>，点击Test会弹出连接成功的提示框
 
 {% asset_img 4.png %}，点击OK就配置完成了
 
 ## 使用PowerDesigner逆向生成物理模型
-1.打开PowerDesigner新建模型，DBMS选择MySQL5.0
+1. 打开PowerDesigner新建模型，DBMS选择MySQL5.0
 
 {% asset_img 5.png %}
 
-2.菜单栏 Database -> Connect，点击弹出连接界面。从下拉菜单中选择刚刚配置的ODBC数据源，点击Connect即可连接成功。
+2. 菜单栏 Database -> Connect，点击弹出连接界面。从下拉菜单中选择刚刚配置的ODBC数据源，点击Connect即可连接成功。
 
 {% asset_img 6.png %}
 
 <font color=red>注意：现在来解释一下为什么选择32位的安装包，如果选择了64位的，此时点击Connect会弹出报错框：在指定的DSN中，驱动程序和应用程序的体系结构不匹配，SQLSTATE=IM014.具体原因我也不知道。</font>
 
-3.菜单栏 Database -> Update Model From Database...，弹出如下界面：
+3. 菜单栏 Database -> Update Model From Database...，弹出如下界面：
 
 {% asset_img 7.png %}
 
@@ -61,4 +61,4 @@ tags:
 
 {% asset_img 10.png %}
 
-我这个数据库里面的表结构比较单一，所以生成的物理模型很简单。
+我这个数据库里面的表结构比较单一，所以生成的物理模型很简单。 -->
