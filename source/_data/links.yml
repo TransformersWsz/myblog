@@ -1,0 +1,64 @@
+- name: heary
+  link: https://heary.cn/
+  avatar: https://heary.cn/images/avatar.jpg
+  description: "本科及研究生学长"
+
+- name: 知识就是力量
+  link: https://github.com/tricktreat
+  avatar: https://avatars.githubusercontent.com/u/25740077?v=4
+  description: "学长"
+
+- name: myths
+  link: https://blog.mythsman.com/
+  avatar: https://blog.mythsman.com/content/images/2019/07/----_20190713220203.jpg
+  description: "丁神"
+
+- name: mikito
+  link: https://mikito.mythsman.com/
+  avatar: https://mikito.mythsman.com/content/images/2019/07/2-1.jpg
+  description: "丁神女友"
+
+- name: 老猫轩仔
+  link: https://www.agedcat.com/
+  avatar: https://www.agedcat.com/wp-content/uploads/2021/03/1616508591-bg-47.jpg
+  description: "郭尔轩"
+
+- name: 韦阳
+  link: https://godweiyang.com/
+  avatar: https://godweiyang.com/medias/banner/4.jpg
+  description: "LightSeq作者"
+
+- name: x-hansong
+  link: https://blog.xiaohansong.com/index.html
+  avatar: https://avatars.githubusercontent.com/u/5747697?v=4
+  description: "支付宝工程师"
+
+- name: XPoet
+  link: https://xpoet.cn/
+  avatar: https://cdn.jsdelivr.net/gh/XPoet/image-hosting@master/common-use/avatar.jpg
+  description: "hexo-theme-keep和PicX的开发者"
+
+- name: Jerry Qu
+  link: https://imququ.com/
+  avatar: https://cdn.jsdelivr.net/gh/TransformersWsz/image_hosting@master/jerryqu.3yhp1au3nii0.webp
+  description: "前端开发大佬，现在转向偏管理"
+
+- name: Qian Liu
+  link: https://siviltaram.github.io/
+  avatar: https://siviltaram.github.io/images/profile.png
+  description: "北航博士，NLP论文高产，热衷于知识分享"
+
+- name: 浩然
+  link: https://ayanamirei1997.github.io/
+  avatar: https://avatars.githubusercontent.com/u/31766871?v=4
+  description: "本科舍友及同学"
+
+- name: 海鸥
+  link: https://hyrious.me/
+  avatar: https://avatars.githubusercontent.com/u/8097890?v=4
+  description: "本科舍友及同学"
+
+- name: 李长顺
+  link: https://zangailcs.github.io/
+  avatar: https://transformerswsz.github.io/2019/09/19/picture%20bed/lcs.jpeg
+  description: "研究生同学"
