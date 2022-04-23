@@ -13,9 +13,13 @@ asdfdf
 
 $dsa_1$ = dsf
 
+asd 
+asd 
+
 $$
-a_1 = \frac{12}{23^{2}}
+i\hbar\frac{\partial}{\partial t}\psi=-\frac{\hbar^2}{2m}\nabla^2\psi+V\psi
 $$
+
 
 
 666123213
