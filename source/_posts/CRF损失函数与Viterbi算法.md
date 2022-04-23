@@ -22,7 +22,7 @@ CRF考虑到了输出层面的关联性，如下图所示：
 
 - 发射分数：$ h(y_t;X) $
 <!-- - 转移分数：$ g(y_t;y_{t-1}) $ -->
-- 转移分数：$\frac{\partial t ; t_{ij}}{\partial t}$
+- 转移分数：$\frac{\partial t ; t_{ij}; y_{t-1}}{\partial t}$
 
 一条路径标识为 $y_1, y_2, \dots , y_n$ 的概率为：
 $$
