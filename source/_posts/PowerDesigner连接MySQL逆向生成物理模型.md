@@ -15,6 +15,9 @@ tags:
 
 系统环境：Win10 64位系统
 
+
+<font color=red>123423test 都算法</font> 这一点非常重要
+
 ## 下载安装ODBC
 到[MySQL官网](https://dev.mysql.com/downloads/connector/odbc/)上下载ODBC，选择<font color=red>mysql-connector-odbc-5.3.9-win32.msi</font> 这一点非常重要，下面会说明理由。安装就很简单了，一路next下去
 
