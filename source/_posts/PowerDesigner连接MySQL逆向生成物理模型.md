@@ -1,68 +1,155 @@
 ---
 title: PowerDesigner连接MySQL逆向生成物理模型
 mathjax: true
-date: 2017-09-17 22:40:33
+toc: true
+date: 2023-12-24 14:42:06
 categories:
-- Algorithm
+- pytorch学习笔记
 tags:
-- Viterbi
-- CRF
-- 面试
+- DataLoader
+- sampler
 ---
 
-CRF考虑到了输出层面的关联性，如下图所示：
-
-<!-- 根据MySQL现有的表格结构来反向生成含有依赖关系表格模型。
+`Sampler` 决定了 `Dataset` 的采样顺序。
 
 <!--more-->
 
-系统环境：Win10 64位系统
+ ## `DataLoader` | `Sampler` | `DataSet` 关系
 
-## 下载安装ODBC
-到[MySQL官网](https://dev.mysql.com/downloads/connector/odbc/)上下载ODBC，选择<font color=red>mysql-connector-odbc-5.3.9-win32.msi</font> 这一点非常重要，下面会说明理由。安装就很简单了，一路next下去
-
-{% asset_img 1.png %}
+{% asset_img relation.png %}
 
 
+- `Sampler` : 提供数据集中元素的索引
+- `DataSet` : 根据 `Sampler` 提供的索引来检索数据
+- `DataLoader` : 批量加载数据用于后续的训练和测试
 
-## 配置ODBC数据源
-1. 打开管理工具（不知道在哪儿的话，可以问cortana），双击<font color=red>ODBC数据源(32位)</font>，如下图所示：
+## `Sampler`
 
-{% asset_img 2.png %}
+```python
+class Sampler(object):
+    r"""Base class for all Samplers.
+    Every Sampler subclass has to provide an __iter__ method, providing a way
+    to iterate over indices of dataset elements, and a __len__ method that
+    returns the length of the returned iterators.
+    """
 
-2. 点击添加，选择<font color=red>MySQL ODBC 5.3 Unicode Driver</font>
+    def __init__(self, data_source):
+        pass
 
-{% asset_img 3.png %}
+    def __iter__(self):
+        raise NotImplementedError
 
-3. 点击完成，会弹出配置界面，前面两个随便填写，<font color=red>User和Password就填写你连接数据库的用户名和密码，Database选择你所要连接的数据库</font>，点击Test会弹出连接成功的提示框
+    def __len__(self):
+        raise NotImplementedError
+```
 
-{% asset_img 4.png %}，点击OK就配置完成了
+PyTorch官网已经实现了多种 `Sampler` :
 
-## 使用PowerDesigner逆向生成物理模型
-1. 打开PowerDesigner新建模型，DBMS选择MySQL5.0
+### `SequentialSampler`
 
-{% asset_img 5.png %}
+> 若 `shuffle=False` ，且未指定 `sampler` ，默认使用
 
-2. 菜单栏 Database -> Connect，点击弹出连接界面。从下拉菜单中选择刚刚配置的ODBC数据源，点击Connect即可连接成功。
+```python
+class SequentialSampler(Sampler):
+    r"""Samples elements sequentially, always in the same order.
+    Arguments:
+        data_source (Dataset): dataset to sample from
+    """
 
-{% asset_img 6.png %}
+    def __init__(self, data_source):
+        self.data_source = data_source
 
-<font color=red>注意：现在来解释一下为什么选择32位的安装包，如果选择了64位的，此时点击Connect会弹出报错框：在指定的DSN中，驱动程序和应用程序的体系结构不匹配，SQLSTATE=IM014.具体原因我也不知道。</font>
+    def __iter__(self):
+        return iter(range(len(self.data_source)))
 
-3. 菜单栏 Database -> Update Model From Database...，弹出如下界面：
+    def __len__(self):
+        return len(self.data_source)
+```
 
-{% asset_img 7.png %}
+### `RandomSampler`
 
-点击确定，PowerDesigner默认选中所有数据库的所有表，要想生成我们想要的数据库的物理模型，先反选一下Deselect All，
+> 若 `shuffle=True` ，且未指定 `sampler` ，默认使用
 
-{% asset_img 8.png %}
+```python
+class RandomSampler(Sampler):
+    r"""Samples elements randomly. If without replacement, then sample from a shuffled dataset.
+    If with replacement, then user can specify ``num_samples`` to draw.
+    Arguments:
+        data_source (Dataset): dataset to sample from
+        replacement (bool): samples are drawn with replacement if ``True``, default=``False``
+        num_samples (int): number of samples to draw, default=`len(dataset)`. This argument
+            is supposed to be specified only when `replacement` is ``True``.
+    """
 
-再选中partysystem数据库，Select All即选中该数据库中的所有表
+    def __init__(self, data_source):
+        self.data_source = data_source
 
-{% asset_img 9.png %}
 
-最后点击OK，即生成我们想要的物理模型。
+    def __iter__(self):
+        n = len(self.data_source)
+        return iter(torch.randperm(n).tolist())
 
-{% asset_img 10.png %}
+    def __len__(self):
+        return self.num_samples
+```
 
-我这个数据库里面的表结构比较单一，所以生成的物理模型很简单。 -->
+### `BatchSampler`
+
+> like `sampler`, but returns a batch of indices at a time. Mutually exclusive with `batch_size`, `shuffle`, `sampler`, and `drop_last`
+
+- 在 `DataLoader` 中设置 `batch_sampler=batch_sampler` 的时候，上面四个参数都必须是默认值。也很好理解，每次采样返回一个batch，那么 `batch_size` 肯定为 `1`
+
+```python
+class BatchSampler(Sampler):
+    r"""Wraps another sampler to yield a mini-batch of indices.
+    Args:
+        sampler (Sampler): Base sampler.
+        batch_size (int): Size of mini-batch.
+        drop_last (bool): If ``True``, the sampler will drop the last batch if
+            its size would be less than ``batch_size``
+    Example:
+        >>> list(BatchSampler(SequentialSampler(range(10)), batch_size=3, drop_last=False))
+        [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9]]
+        >>> list(BatchSampler(SequentialSampler(range(10)), batch_size=3, drop_last=True))
+        [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+    """
+
+    def __init__(self, sampler, batch_size, drop_last):
+        self.sampler = sampler
+        self.batch_size = batch_size
+        self.drop_last = drop_last
+
+    def __iter__(self):
+        batch = []
+        for idx in self.sampler:
+            batch.append(idx)
+            if len(batch) == self.batch_size:
+                yield batch
+                batch = []
+        if len(batch) > 0 and not self.drop_last:
+            yield batch
+
+    def __len__(self):
+        if self.drop_last:
+            return len(self.sampler) // self.batch_size
+        else:
+            return (len(self.sampler) + self.batch_size - 1) // self.batch_size
+```
+
+- 可以看到在构造 `BatchSampler` 实例的时候，需要传入一个sampler作为实参
+___
+
+## 最佳实践
+
+最近看到一篇推文，分享了一个使模型训练速度提升20%的Trick--[BlockShuffle](https://mp.weixin.qq.com/s/xGvaW87UQFjetc5xFmKxWg) 。fork了原作者的代码，并自定义了 `batch_sampler` ，源码见：[TransformersWsz/BlockShuffleTest](https://github.com/TransformersWsz/BlockShuffleTest)
+
+___
+
+## 参考
+
+- [一个使模型训练速度提升20%的Trick--BlockShuffle](https://mp.weixin.qq.com/s/xGvaW87UQFjetc5xFmKxWg)
+- [Pytorch DataLoader详解](https://www.zdaiot.com/MLFrameworks/Pytorch/Pytorch%20DataLoader%E8%AF%A6%E8%A7%A3/)
+- [torch.utils.data — PyTorch 1.10.1 documentation](https://pytorch.org/docs/stable/data.html?highlight=dataloader#torch.utils.data.DataLoader)
+- [pytorch中用Mnist数据集dataloader 自定义batchsampler - 代码先锋网 (codeleading.com)](https://www.codeleading.com/article/79575865698/)
+- [pytorch 实现一个自定义的dataloader，每个batch都可以实现类别数量均衡 (tqwba.com)](https://www.tqwba.com/x_d/jishu/415752.html)
+- [一文弄懂Pytorch的DataLoader, DataSet, Sampler之间的关系](https://zhuanlan.zhihu.com/p/76893455)
