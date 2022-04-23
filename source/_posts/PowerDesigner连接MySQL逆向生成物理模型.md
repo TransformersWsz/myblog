@@ -9,7 +9,7 @@ tags:
 - MySQL
 - PowerDesigner
 ---
-`Sampler` 决定了 `Dataset` 的采样顺序。
+根据MySQL现有的表格结构来反向生成含有依赖关系表格模型。
 
 <!--more-->
 
