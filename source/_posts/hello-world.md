@@ -16,10 +16,10 @@ $dsa_1$ = dsf
 asd 
 asd 
 
-$ i\hbar\frac{\partial}{\partial t}\psi=-\frac{\hbar^2}{2m}\nabla^2\psi+V\psi $ 测试贵一下
+- $ i\hbar\frac{\partial}{\partial t}\psi=-\frac{\hbar^2}{2m}\nabla^2\psi+V\psi $ 测试贵一下
 
 
-asdasdsad 
+呜呜呜
 
 
 This 
