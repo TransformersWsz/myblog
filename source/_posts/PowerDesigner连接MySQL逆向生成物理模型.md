@@ -25,7 +25,7 @@ tags:
 
 {% asset_img 2.png %}
 
-2. 点击添加，选择<font color=red>MySQL ODBC 5.3 Unicode Driver</font>
+2. 点击添加，选择<font color=red>MySQL-ODBC-5.3-Unicode-Driver</font>
 
 {% asset_img 3.png %}
 
