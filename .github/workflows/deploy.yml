@@ -69,6 +69,10 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-node-
     
+    - name: Replace mathjax.html
+      run: |
+        cp ./mathjax.html ./node_modules/hexo-renderer-mathjax/
+    
     - name: Setup Hexo Dependencies
       run: |
         npm install hexo-cli -g

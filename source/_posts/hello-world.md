@@ -19,7 +19,7 @@ asd
 - $ i\hbar\frac{\partial}{\partial t}\psi=-\frac{\hbar^2}{2m}\nabla^2\psi+V\psi $ 测试贵一下
 
 
-呜呜呜
+呜呜呜~~~~~~~~~~~~~~~~~~
 
 
 This 
