@@ -12,14 +12,14 @@ tags:
 
 <!--more-->
 
-系统环境：Win10 64位系统
+<!-- 系统环境：Win10 64位系统
 
 ## 下载安装ODBC
 到[MySQL官网](https://dev.mysql.com/downloads/connector/odbc/)上下载ODBC，选择<font color=red>mysql-connector-odbc-5.3.9-win32.msi</font> 这一点非常重要，下面会说明理由。安装就很简单了，一路next下去
 
 {% asset_img 1.png %}
 
-<!-- 
+
 
 ## 配置ODBC数据源
 1. 打开管理工具（不知道在哪儿的话，可以问cortana），双击<font color=red>ODBC数据源(32位)</font>，如下图所示：
