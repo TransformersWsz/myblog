@@ -21,14 +21,14 @@ tags:
 {% asset_img 1.png %}
 
 ## 配置ODBC数据源
-1.打开管理工具（不知道在哪儿的话，可以问cortana），双击<font color=red>ODBC数据源(32位)</font>，如下图所示：
+1. 打开管理工具（不知道在哪儿的话，可以问cortana），双击<font color=red>ODBC数据源(32位)</font>，如下图所示：
 
 {% asset_img 2.png %}
 
-2.点击添加，选择<font color=red>MySQL ODBC 5.3 Unicode Driver</font>
+<!-- 2. 点击添加，选择<font color=red>MySQL ODBC 5.3 Unicode Driver</font>
 
 {% asset_img 3.png %}
 
-3.点击完成，会弹出配置界面，前面两个随便填写，<font color=red>User和Password就填写你连接数据库的用户名和密码，Database选择你所要连接的数据库</font>，点击Test会弹出连接成功的提示框
+3. 点击完成，会弹出配置界面，前面两个随便填写，<font color=red>User和Password就填写你连接数据库的用户名和密码，Database选择你所要连接的数据库</font>，点击Test会弹出连接成功的提示框
 
-{% asset_img 4.png %}，点击OK就配置完成了
+{% asset_img 4.png %}，点击OK就配置完成了 -->
