@@ -2,14 +2,13 @@
 title: PowerDesigner连接MySQL逆向生成物理模型
 mathjax: true
 toc: true
-date: 2023-12-24 14:42:06
+date: 2017-09-17 22:40:33
 categories:
-- pytorch学习笔记
+- 软件工具
 tags:
-- DataLoader
-- sampler
+- MySQL
+- PowerDesigner
 ---
-
 `Sampler` 决定了 `Dataset` 的采样顺序。
 
 <!--more-->
