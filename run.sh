@@ -1,11 +1,13 @@
 #!/bin/sh
 
-# add\commit\push
+# echo ${1}
 
-git add .
-git commit -m ${1}
-git push -u origin main
+cd source/_posts/
+dir=${1}
+file=${1}.md
 
-cp correct/hexo-renderer-kramed/renderer.js node_modules/hexo-renderer-kramed/lib/
-cp correct/kramed/inline.js node_modules/kramed/lib/rules/ 
-cp correct/hexo-renderer-mathjax/mathjax.html node_modules/hexo-renderer-mathjax
+mkdir "${dir}"
+touch "${file}"
+
+echo ${dir} " directory has been create"
+echo ${file} " markdown has been create"

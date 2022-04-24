@@ -101,5 +101,5 @@ toc: true
 这样就无需每次手写了。
 ___
 
-# 参考
+## 参考
 - [Hexo博客中使用Latex](https://blog.csdn.net/weixin_44191286/article/details/102702479)
