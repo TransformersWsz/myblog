@@ -24,7 +24,6 @@
     "hexo-renderer-mathjax": "^0.6.0",
     "hexo-renderer-stylus": "^2.0.0",
     "hexo-server": "^2.0.0",
-    "hexo-theme-landscape": "^0.0.3",
-    "hexo-filter-mathjax": "^0.7.1"
+    "hexo-theme-landscape": "^0.0.3"
   }
 }
