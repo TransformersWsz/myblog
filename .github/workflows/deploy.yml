@@ -69,16 +69,16 @@ jobs:
     #     restore-keys: |
     #       ${{ runner.os }}-node-
     
+    - name: Setup Hexo Dependencies
+      run: |
+        npm install hexo-cli -g
+        npm install
+    
     - name: update mathjax
       run: |
         cp correct/hexo-renderer-kramed/renderer.js node_modules/hexo-renderer-kramed/lib/
         cp correct/kramed/inline.js node_modules/kramed/lib/rules/
         cp correct/hexo-renderer-mathjax/mathjax.html node_modules/hexo-renderer-mathjax
-    
-    - name: Setup Hexo Dependencies
-      run: |
-        npm install hexo-cli -g
-        npm install
 
     
     - name: Setup Deploy Private Key
