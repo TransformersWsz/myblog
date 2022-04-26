@@ -19,6 +19,8 @@ tags:
 
 ## 配置部署密钥
 
+{% asset_img tree.jpg %}
+
 
 
 ```yaml
