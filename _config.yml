@@ -113,10 +113,6 @@ search:
   content: true
   format: html
 
-mathjax:
-  enable: true
-  per_page: true
-
 # mathjax:
 #   tags: none               # or 'ams' or 'all'
 #   single_dollars: true     # enable single dollar signs as in-line math delimiters

@@ -114,3 +114,6 @@ ___
 
 ## 参考
 - [Github action自动部署Hexo Next](https://blog.csdn.net/liuhp123/article/details/114040409)
+- [利用 Github Actions 自动部署 Hexo 博客](https://sanonz.github.io/2020/deploy-a-hexo-blog-from-github-actions/)
+- [如何使用Github+Actions实现Hexo博客自动化部署](https://sujie-168.top/2021/05/24/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Github-Actions%E5%AE%9E%E7%8E%B0Hexo%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/)
+
