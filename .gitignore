@@ -19,6 +19,10 @@
 # nodejs modules
 node_modules/
 
+# static files
+db.json
+public/
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
