@@ -10,7 +10,12 @@ tags:
 - Dropout
 - Contrastive Learning
 ---
-SimCSE
+对比学习的思想是拉近同类样本的距离，增大不同类样本的距离，目标是要从样本中学习到一个好的语义表示空间。SimCSE是一种简单的无监督对比学习框架，它通过对同一句子两次Dropout得到一对正样例，将该句子与同一个batch内的其它句子作为一对负样例。模型结果如下所示：
+
+<!--more-->
+
+![simcse](https://cdn.jsdelivr.net/gh/TransformersWsz/image_hosting@master/simcse.ldig50thwww.jpg)
+
 
 ___
 
