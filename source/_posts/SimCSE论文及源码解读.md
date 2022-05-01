@@ -11,3 +11,10 @@ tags:
 - Contrastive Learning
 ---
 SimCSE
+
+___
+
+## 参考
+- [“被玩坏了”的Dropout](https://mp.weixin.qq.com/s/IDWih5h2rLNqr3g0s8Y9zQ)
+- [细节满满！理解对比学习和SimCSE，就看这6个知识点](https://mp.weixin.qq.com/s/12UvfXnaB4NTy54wWIFZdQ)
+- [SIMCSE算法源码分析](https://zhuanlan.zhihu.com/p/483453992)
