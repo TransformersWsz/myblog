@@ -9,4 +9,4 @@ tags:
 - Paper Reading
 - Relation Classification
 ---
-这是一篇ACL findings的论文，idea非常简单，但却非常奏效。
+这是一篇ACL findings的论文，idea很简单，但却非常奏效。
