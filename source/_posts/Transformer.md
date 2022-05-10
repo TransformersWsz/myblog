@@ -6,7 +6,7 @@ categories:
 - NLP
 tags:
 - Attention
-- 论文阅读
+- Paper Reading
 - Encoder-Decoder
 ---
 要点如下：

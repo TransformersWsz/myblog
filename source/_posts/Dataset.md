@@ -5,7 +5,7 @@ date: 2019-07-28 00:12:01
 categories:
 - NLP
 tags:
-- 论文阅读
+- Paper Reading
 - Data
 ---
 

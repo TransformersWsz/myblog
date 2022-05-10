@@ -6,7 +6,7 @@ date: 2022-05-01 16:46:40
 categories:
 - NLP
 tags:
-- 论文阅读
+- Paper Reading
 - Dropout
 - Contrastive Learning
 ---

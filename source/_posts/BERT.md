@@ -6,7 +6,7 @@ categories:
 - NLP
 tags:
 - Attention
-- 论文阅读
+- Paper Reading
 ---
 `BERT` 的两阶段如下所示：
 
