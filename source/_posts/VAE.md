@@ -36,9 +36,9 @@ VAE从概率的角度描述隐空间与输入样本，它将样本的隐变量�
 
 $$
 \begin{aligned}
-& L = L_{Recon} + L_{KL} \\
-=& \|x-\hat{x}\|^{2}+\mathrm{KL}[N(\mu_{x}, \sigma_{x}), N(0, 1)] \\
-=& \|x-d(z)\|^{2}+KL[N(\mu_{x}, \sigma_{x}), N(0, 1)]
+L &= L_{Recon} + L_{KL} \\
+&= \|x-\hat{x}\|^{2}+\mathrm{KL}[N(\mu_{x}, \sigma_{x}), N(0, 1)] \\
+&= \|x-d(z)\|^{2}+KL[N(\mu_{x}, \sigma_{x}), N(0, 1)]
 \end{aligned}
 $$
 
@@ -48,10 +48,10 @@ $$
 $$
 \begin{aligned}
 & KL\left(N\left(\mu, \sigma^{2}\right) \| N(0,1)\right) \\
-=& \int \frac{1}{\sqrt{2 \pi \sigma^{2}}} e^{\frac{-(x-\mu)^{2}}{2 \sigma^{2}} }\left(\log \frac{\frac{e^{ \frac{-(x-\mu)^{2}}{2 \sigma^{2}} }}{\sqrt{2 \pi \sigma^{2}}} }{\frac{e^{\frac{-x^{2}}{2}}}{\sqrt{2 \pi}} }\right) d x \\
-=& \int \frac{1}{\sqrt{2 \pi \sigma^{2}}} e^{\frac{-(x-\mu)^{2}}{2 \sigma^{2}} } \log \left\{\frac{1}{\sqrt{\sigma^{2}}} \exp \left\{\frac{1}{2}\left[x^{2}- \frac{(x-\mu)^{2}}{\sigma^{2}} \right]\right\}\right\} d x \\
-=& \frac{1}{2} \int \frac{1}{\sqrt{2 \pi \sigma^{2}}} e^{\frac{-(x-\mu)^{2}}{2 \sigma^{2}} }\left[-\log \sigma^{2}+x^{2}- \frac{(x-\mu)^{2}}{\sigma^{2}} \right] d x \\
-=& \frac{1}{2}\left(-\log \sigma^{2}+\mu^{2}+\sigma^{2}-1\right)
+&= \int \frac{1}{\sqrt{2 \pi \sigma^{2}}} e^{\frac{-(x-\mu)^{2}}{2 \sigma^{2}} }\left(\log \frac{\frac{e^{ \frac{-(x-\mu)^{2}}{2 \sigma^{2}} }}{\sqrt{2 \pi \sigma^{2}}} }{\frac{e^{\frac{-x^{2}}{2}}}{\sqrt{2 \pi}} }\right) d x \\
+&= \int \frac{1}{\sqrt{2 \pi \sigma^{2}}} e^{\frac{-(x-\mu)^{2}}{2 \sigma^{2}} } \log \left\{\frac{1}{\sqrt{\sigma^{2}}} \exp \left\{\frac{1}{2}\left[x^{2}- \frac{(x-\mu)^{2}}{\sigma^{2}} \right]\right\}\right\} d x \\
+&= \frac{1}{2} \int \frac{1}{\sqrt{2 \pi \sigma^{2}}} e^{\frac{-(x-\mu)^{2}}{2 \sigma^{2}} }\left[-\log \sigma^{2}+x^{2}- \frac{(x-\mu)^{2}}{\sigma^{2}} \right] d x \\
+&= \frac{1}{2}\left(-\log \sigma^{2}+\mu^{2}+\sigma^{2}-1\right)
 \end{aligned}
 $$
 
