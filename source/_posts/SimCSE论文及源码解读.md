@@ -188,6 +188,9 @@ def simcse_loss(batch_emb):
     return loss
 ```
 
+## FAQ
+- 如果同一个batch里有其它语义相似的正样本，但在这里被当作了负样例处理，不是也拉远了同类样本的距离吗？
+
 ___
 
 ## 参考
