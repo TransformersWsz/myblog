@@ -9,11 +9,12 @@ tags:
 - Swift
 - 可选类型
 ---
-## Optional(可选类型)
 Swift的可选(Optional)类型，用于处理值缺失的情况。可选表示<font color="red">“那儿有一个值，并且它等于x”或者“那儿没有值，为nil”</font>。它的定义通过在类型声明后加一个 `?` 操作符来完成的:
 ```swift
 var str = String?
 ```
+<!--more-->
+
 `Optional` 其实是个 `enum` ，里面有 `None` 和 `Some` 两种类型。其实所谓的 `nil` 就是 `Optional.None` ，当你声明一个可选变量的时候没有提供初始值，它的值默认为 `nil` 。 `非nil` 就是 `Optional.Some` ，然后会通过 `Some(T)` 包装(`wrap`)原始值，这也是为什么在使用 `Optional` 的时候要拆包(`unwrap` : 从 `enum` 中取出来原始值)的原因。下面是 `enum Optional`  的定义:
 
 ```swift
@@ -75,10 +76,9 @@ let length = str?.count
 ### 拆包(unwrap)
 上文提到 `Optional` 值需要拆包才能得到原来值，并判断其值是否为空才能对其操作。下面介绍两种拆包方法：
 
-1. 可选绑定(optional binding)
+- 可选绑定(optional binding)
 
-使用可选绑定（optional binding）来判断可选类型是否包含值，如果包含就把值赋给一个临时常量或者变量。可选绑定可以用在if和while语句中来对可选类型的值进行判断并把值赋给一个常量或者变量。
-举例如下：
+使用可选绑定（optional binding）来判断可选类型是否包含值，如果包含就把值赋给一个临时常量或者变量。可选绑定可以用在if和while语句中来对可选类型的值进行判断并把值赋给一个常量或者变量。举例如下：
 ```swift
 import Cocoa
 
@@ -91,9 +91,8 @@ else {
     print("str is nil")
 }
 ```
-2. 硬解包
-即直接在可选类型后面加一个 `!` 来表示它肯定有值。
-举例如下：
+- 硬解包
+即直接在可选类型后面加一个 `!` 来表示它肯定有值。举例如下：
 ```swift
 import Cocoa
 

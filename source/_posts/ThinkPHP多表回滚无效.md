@@ -4,9 +4,17 @@ mathjax: true
 toc: true
 date: 2018-04-15 16:57:34
 categories:
+- Software Engineering
 tags:
+- PHP
+- ThinkPHP
+- 多表回滚
 ---
-今天首次用到了多表回滚，遇到了一个坑。<font color="red">错误代码如下：</font>
+今天首次用到了多表回滚，遇到了一个坑，记录一下。
+
+<!--more-->
+
+<font color="red">错误代码如下：</font>
 ```php
 try{
     $Member = D("Member");
