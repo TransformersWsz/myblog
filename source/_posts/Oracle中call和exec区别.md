@@ -38,6 +38,6 @@ tags:
 	- 无参数：`var counts number;call myfunc() into :counts;`
 
 ## 其他注意事项
-- oracle 中字符串应该是<font color="red"> '' 而不应该是 ""</font>
+- oracle 中字符串应该是单引号而不是双引号
 - 每写完一条sql语句应加上 <font color="red">;</font>
 - 为了防止call 和 exec 无参数的存储过程或函数的错误，建议全部加上<font color="red">()</font>
