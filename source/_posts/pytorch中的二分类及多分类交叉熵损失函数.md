@@ -108,9 +108,9 @@ print(l_output)
 
 ### Note
 
+- 二分类交叉熵损失函数的input和target的shape是一致的
 - `nn.BCELoss()` 与 `F.binary_cross_entropy` 计算结果是等价的，具体两者差距可见[PyTorch 中，nn 与 nn.functional 有什么区别？](https://www.zhihu.com/question/66782101)
 - > `nn.BCEWithLogitsLoss`: combines a Sigmoid layer and the BCELoss in one single class. This version is more numerically stable than using a plain Sigmoid followed by a BCELoss as, by combining the operations into one layer, we take advantage of the log-sum-exp trick for numerical stability. 至于为什么更稳定，见 https://blog.csdn.net/u010630669/article/details/105599067
-- 二分类交叉熵损失函数的input和target的shape是一致的
 
 ## 多分类交叉熵损失函数
 #### Single
@@ -147,10 +147,18 @@ print(f_output)
     tensor(2.7944, grad_fn=<NllLoss2DBackward>)
 
 
+
+
 ### Note
 
 - `nn.CrossEntropyLoss` 与 `F.cross_entropy` 计算结果是等价的。两个函数都结合了 `LogSoftmax` and `NLLLoss` 运算
-- [`nn.CrossEntropyLoss`](https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html?highlight=crossentropyloss#torch.nn.CrossEntropyLoss) 的公式为：$\operatorname{loss}(\mathrm{x}, \text { class })=-\log \left(\frac{\exp (\mathrm{x}[\mathrm{class}])}{\sum_{\mathrm{j}} \exp (\mathrm{x}[\mathrm{j}])}\right)=-\mathrm{x}[\mathrm{class}]+\log \left(\sum_{\mathrm{j}} \exp (\mathrm{x}[\mathrm{j}])\right)$,这与我们平时见到的多分类交叉熵损失函数有点不同，具体的推导过程见[Pytorch里的CrossEntropyLoss详解](https://www.cnblogs.com/marsggbo/p/10401215.html)
+- [`nn.CrossEntropyLoss`](https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html?highlight=crossentropyloss#torch.nn.CrossEntropyLoss) 的公式为：
+  $$
+  \operatorname{loss}(\mathrm{x}, \text { class })=-\log \left(\frac{\exp (\mathrm{x}[\mathrm{class}])}{\sum_{\mathrm{j}} \exp (\mathrm{x}[\mathrm{j}])}\right)=-\mathrm{x}[\mathrm{class}]+\log \left(\sum_{\mathrm{j}} \exp (\mathrm{x}[\mathrm{j}])\right)
+  $$
+  这与我们平时见到的多分类交叉熵损失函数有点不同，具体的推导过程见[Pytorch里的CrossEntropyLoss详解](https://www.cnblogs.com/marsggbo/p/10401215.html)
+
+
 
 ___
 ## 参考
