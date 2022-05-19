@@ -39,10 +39,10 @@ public enum Optional<Wrapped> : ExpressibleByNilLiteral {
 var str = String?
 //我声明了一个Optional类型的变量，它可能包含一个String值，也可能什么都不包含，即nil
 ```
-<font color="red">也就是说我们实际上声明的是一个 `Optional` 类型，而不是 `String` 类型。</font>
+也就是说我们实际上声明的是一个 `Optional` 类型，而不是 `String` 类型。
 
 ## ? 和 ! 的比较
-### 举例 :
+### 举例
 ```swift
 import Cocoa
 var str : String?
@@ -58,7 +58,7 @@ else {
 输出结果为: <font color="green">Hello World</font>
 
 #### 注意
-- <font color="red">如果是执行 `print(str)` 这句话，那么输出为 `Optional("Hello World")`。</font>
+- 如果是执行 `print(str)` 这句话，那么输出为 `Optional("Hello World")`。
 - 使用 `!` 来获取一个不存在的可选值会导致运行时错误。使用 `!` 来强制解析值之前，一定要确定可选包含一个 `非nil` 的值。
 
 怎么使用 `Optional` 值呢？在苹果文档中也有提到说，在使用 `Optional` 值的时候需要在具体的操作，比如调用方法、属性、下标索引等前面需要加上一个?，如果是 `nil` 值，也就是 `Optional.None` ，会跳过后面的操作不执行，如果有值，就是 `Optional.Some` ，可能就会拆包(`unwrap`)，然后对拆包后的值执行后面的操作，来保证执行这个操作的安全性。
