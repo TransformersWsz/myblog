@@ -135,7 +135,7 @@ Type: Boolean
 By default, all requests are sent asynchronously (i.e. this is set to true by default). If you need synchronous requests, set this option to false. Cross-domain requests and dataType: "jsonp" requests do not support synchronous operation. Note that synchronous requests may temporarily lock the browser, disabling any actions while the request is active. As of jQuery 1.8, the use of async: false with jqXHR ($.Deferred) is deprecated; you must use the success/error/complete callback options instead of the corresponding methods of the jqXHR object such as jqXHR.done().
 
 也就是说设置 `async: false` 会锁住浏览器，禁止浏览器的任何行为。比如用户点击按钮、下拉滚动条等行为浏览器都不会有响应，直到该同步请求完成。所以发送同步请求期间，模态框不会出现。但在请求完成后，会执行：
-```html
+```js
 complete: function () {
     $("#loadingModal").modal("hide");
     window.location.href = "/in";
