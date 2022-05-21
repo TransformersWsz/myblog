@@ -9,7 +9,6 @@ tags:
 - Paper Reading
 - Relation Classification
 ---
-<<<<<<< HEAD
 这是一篇ACL Findings的论文，idea很简单，但却非常奏效。
 
 <!--more-->
@@ -18,10 +17,45 @@ tags:
 
 {% asset_img example.jpg %}
 
-整体的模型结构如下（个人感觉画的不是很清晰）：
+## 模型结构
 
 {% asset_img model.jpg %}
 
-算法流程如下：
+## 算法流程
 
 {% asset_img algorithm.jpg %}
+
+$$
+\begin{aligned}
+R_{(t s, t o)} &=\left\{r \in R \mid(s, o) \in D_{r}\right\} \\
+&=\{r \in R \mid t s \in S(r) \text { and } \text { to } \in O(r)\}
+\end{aligned}
+$$
+
+1. 首先根据句子中实体的类型将句子归好组
+2. 对于每一组，收集所有关系组成一个集合 $R_{(t s, t o)}$
+3. 针对该关系集合学习一个分类器 $f_g$
+
+## 实验结果
+由于该方法是模型无关的，所以作者在两个代表性模型上做了实验：
+
+{% asset_img result.png %}
+
+`RECENT` 分别比 `GCN` 和 `SpanBERT` 高了6.9和4.4，提升还是非常明显的。
+
+___
+## Cite
+```bib
+@inproceedings{lyu-chen-2021-relation,
+    title = "Relation Classification with Entity Type Restriction",
+    author = "Lyu, Shengfei and Chen, Huanhuan",
+    booktitle = "Findings of the Association for Computational Linguistics: ACL-IJCNLP 2021",
+    month = aug,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.findings-acl.34",
+    doi = "10.18653/v1/2021.findings-acl.34",
+    pages = "390--395",
+}
+```
