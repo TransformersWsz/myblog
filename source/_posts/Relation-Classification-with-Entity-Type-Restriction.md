@@ -9,6 +9,7 @@ tags:
 - Paper Reading
 - Relation Classification
 ---
+<<<<<<< HEAD
 这是一篇ACL Findings的论文，idea很简单，但却非常奏效。
 
 <!--more-->
