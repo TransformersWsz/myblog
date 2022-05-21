@@ -3,9 +3,10 @@ title: 四种常见的POST提交数据方式
 mathjax: true
 date: 2017-12-15 22:39:53
 categories:
-- 前端
+- Software Engineering
 tags:
 - POST
+- 前端
 - HTTP
 ---
 

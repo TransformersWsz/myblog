@@ -3,9 +3,10 @@ title: v-model & v-bind
 mathjax: true
 date: 2018-05-08 22:24:56
 categories:
-- 前端
+- Software Engineering
 tags:
 - Vue
+- 前端
 - JavaScript
 ---
 记录一下两种指令的用法。

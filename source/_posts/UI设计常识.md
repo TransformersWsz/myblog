@@ -2,9 +2,10 @@
 title: UI设计常识
 date: 2018-12-18 12:15:02
 categories:
-- 前端
+- Software Engineering
 tags:
 - UI设计
+- 前端
 - 分辨率
 ---
 前端的一个基础知识：
