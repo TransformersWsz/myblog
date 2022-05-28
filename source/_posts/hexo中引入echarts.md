@@ -74,3 +74,41 @@ npm install hexo-tag-echarts --sav
 {% endecharts %}
 
 ## 原理
+`index.js`文件内容如下：
+```js
+var fs = require('fs'),
+  path = require('path'),
+  _ = require('underscore');
+
+var filePath = path.join(__dirname, 'echarts-template.html');
+
+function echartsMaps(args, content) {
+
+  var template = fs.readFileSync(filePath).toString(),
+    options = {};
+
+  if (content.length) {
+    var options = content;
+  }
+
+  // Output into 
+  return _.template(template)({
+    id: 'echarts' + ((Math.random() * 9999) | 0),
+    option: options,
+    height: args[0] || 400,
+    width: args[1] || '81%'
+  });
+}
+
+
+hexo.extend.tag.register('echarts', echartsMaps, {
+  async: true,
+  ends: true
+});
+```
+- `args` 接收参数 `{% echarts 400 '90%' %}`
+- `content` 接收具体的数据信息
+
+详细的数据流是这样的：
+
+`index.js`拿到markdown里的参数和数据，进行一些处理，然后将对应的字段渲染到`echarts-template.html`中。
