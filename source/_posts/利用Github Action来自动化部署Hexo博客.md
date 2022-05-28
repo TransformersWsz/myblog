@@ -6,7 +6,7 @@ date: 2022-04-24 23:19:04
 categories:
 - 软件工具
 tags:
-- hexo
+- Hexo
 - CI
 ---
 这两天尝试了使用Github Action来自动化部署博客，踩了一些坑，在此记录一下。

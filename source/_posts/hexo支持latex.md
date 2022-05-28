@@ -6,7 +6,7 @@ date: 2022-03-08 00:12:04
 categories:
 - 软件工具
 tags:
-- hexo
+- Hexo
 - latex
 ---
 最近在新电脑上重新搭了个博客，为了使hexo开启latex支持又踩了一次坑，在此记录一下。
