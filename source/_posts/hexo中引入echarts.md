@@ -19,7 +19,7 @@ tags:
 1. npm安装
 
 ```sh
-npm install hexo-tag-echarts --sav
+npm install hexo-tag-echarts --save
 ```
 2. 添加cdn外链
    
