@@ -15,7 +15,7 @@ tags:
 
 ## 新建仓库
 - 存放博客源文章的仓库（Source Repo），命名随意
-- 存放编译后生成的静态文件的仓库（Page Repo），命名`username.github.io`
+- 存放编译后生成的静态文件的仓库（Page Repo），命名 `username.github.io`
 
 ## 配置部署密钥
 利用 `ssh-keygen` 来生成公钥和私钥：
