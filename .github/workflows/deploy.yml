@@ -43,6 +43,7 @@ jobs:
         cp correct/kramed/inline.js node_modules/kramed/lib/rules/
         cp correct/hexo-renderer-mathjax/mathjax.html node_modules/hexo-renderer-mathjax
         cp correct/hexo-tag-echarts/echarts-template.html node_modules/hexo-tag-echarts
+        cp correct/hexo-asset/index.js node_modules/hexo-asset/lib/
 
     
     - name: Setup Deploy Private Key
