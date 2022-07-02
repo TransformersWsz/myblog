@@ -20,15 +20,15 @@ tags:
 ## 配置部署密钥
 利用 `ssh-keygen` 来生成公钥和私钥：
 - 私钥放于Source仓库的 `Settings -> Secrets -> Actions` ，新建一个secret，命名为 `HEXO_DEPLOY_PRI`：
-![pri](https://cdn.jsdelivr.net/gh/TransformersWsz/image_hosting@master/pri.614aag5in440.png)
+![pri](https://cdn.staticaly.com/gh/TransformersWsz/image_hosting@master/pri.614aag5in440.png)
 
 - 公钥放于Page仓库的 `Settings -> Deploy Keys` ，新建一个deploy key，命名随意：
-![pub](https://cdn.jsdelivr.net/gh/TransformersWsz/image_hosting@master/pub.17ltsxgf236k.jpg)
+![pub](https://cdn.staticaly.com/gh/TransformersWsz/image_hosting@master/pub.17ltsxgf236k.jpg)
 
 
 ## 编写Action
 整个Source仓库的结构如下所示：
-![tree](https://cdn.jsdelivr.net/gh/TransformersWsz/image_hosting@master/tree.72dyffzppe00.jpg)
+![tree](https://cdn.staticaly.com/gh/TransformersWsz/image_hosting@master/tree.72dyffzppe00.jpg)
 只需要保留源文件就行了，其它的依赖交给Action来安装。
 
 
