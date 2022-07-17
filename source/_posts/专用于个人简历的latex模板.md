@@ -19,7 +19,7 @@ tags:
 
 ## 预览
 
-![resume_preview](https://cdn.jsdelivr.net/gh/TransformersWsz/image_hosting@master/resume_preview.2ykrizc4yiu0.png)
+![resume_preview](https://cdn.staticaly.com/gh/TransformersWsz/image_hosting@master/resume_preview.2ykrizc4yiu0.png)
 
 
 ## FontAwesome
