@@ -1,5 +1,5 @@
 ---
-title: python2字典循环遍历性能
+title: python2字典遍历方法性能对比
 mathjax: true
 toc: true
 date: 2022-07-21 22:54:28
