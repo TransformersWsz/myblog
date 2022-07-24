@@ -55,11 +55,7 @@ print("test list time: {} seconds".format(end_l-start_l))
     test list time: 172.42421102523804 seconds
 
 
-​    
-
-
 #### 测试 `set`
-
 
 ```python
 start_s = time.time()
@@ -76,6 +72,5 @@ print("test set time: {} seconds".format(end_s-start_s))
     test set time: 0.03251051902770996 seconds
 
 
-​    
 
 可以看到，`set` 的速度实在比 `list` 快很多。毕竟 `set` 底层用hash散列实现，查找一个元素理论上只需 `O(1)` 时间，而 `list` 则是遍历，需要 `O(n)` 时间。数据量小的时候，两者看不出差距，数据量稍微大点，差距非常明显。
