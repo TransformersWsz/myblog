@@ -21,6 +21,8 @@ tags:
 ## `runlevel`
 
 `/etc/rc.d/init.d/` 这个目录下的脚本就类似与windows中的注册表，在系统启动的时候执行。程序运行到这里(init进程读取了运行级别)， 是该运行init.d里的脚本了，但是并不是直接运行，而是有选择的。因为系统并不需要启动所有的服务。系统是如何选择哪些需要启动哪些不要呢？这时 `runlevel` 就起作用了。在RH9和FC7的源码中它都是一开始就 `check_runlevel()` ，知道了运行级别之后，对于每一个运行级别，在 `/etc/rc.d/` 下都有一个子目录分别是 `rc0.d, rc1.d ... rc6.d` 。每个目录下都是到 `/etc/rc.d/init.d/` 目录的一部分脚本一些软链接。每个级别要执行哪些服务就在相对应的目录下，比如级别6要启动的服务就都放在rc6.d下，但是放在这个rc6.d下的都是一些软链接文件，链接到 `/etc/rc.d/init.d/` 中相对应的文件，真正干活的是 `/etc/rc.d/init.d/` 里的脚本。
+![1](./Linux开机自启动/1.png)
+
 {% asset_img 1.png %}(`/etc/` 下的 `rc0.d, rc1.d ... rc6.d` 是指向 `/etc/rc.d/` 下的 `rc0.d, rc1.d ... rc6.d` 的软链接。)
 
 ## `KS`
@@ -44,7 +46,7 @@ tags:
 # `/etc/rc.local`
 
 这是指向 `/etc/rc.d/rc.local` 的软链接。这是使用者自订开机启动程序,把需要开机自动运行的程序写在这个脚本里。也就是说，我有任何想要在开机时就进行的工作时，直接将他写入 `/etc/rc.d/rc.local` ， 那么该工作就会在开机的时候自动被载入。这一点和windows里面的“启动”菜单有点像。该脚本是在系统初始化级别脚本运行之后再执行的，因此可以安全地在里面添加你想在系统启动之后执行的脚本。常见的情况是开机自启动 `mongod` 服务：
-{% asset_img 2.png %}
+![2](./Linux开机自启动/2.png)
 
 # 开机自启动
 
@@ -52,7 +54,7 @@ tags:
 - 通过将 shell script写入到 `/etc/rc.d/rc.local`
 - 通过 `/etc/rc.d/init.d/`。假设 `/etc/rc.d/init.d/radisd` 已存在，文件内容有两行注释如下：
 
-{% asset_img 3.png %}
+![3](./Linux开机自启动/3.png)
 
 表示 `redisd` 的运行级别是 `2 3 4 5`，各级别 ***S(2 3 4 5)*** 分数为90，***K(0 6)*** 分数为10。`chkconfig redisd on` 即可将 `redisd` 添加到系统服务中。这样我们以后就可以通过 `systemctl start redisd || systemctl stop redisd` 来启动和关闭 `redisd` 服务。同样的，在 `/etc/rc.d/rc(2\3\4\5).d` 文件夹下就会有 `S90redisd` 软链接到 `/etc/rc.d/init.d/redisd` ，在 `/etc/rc.d/rc(0\6).d` 文件夹下就会有 `K10redisd` 软链接到 `/etc/rc.d/init.d/redisd` 。
 ___
