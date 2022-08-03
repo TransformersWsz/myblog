@@ -118,13 +118,13 @@ o=\left(f *_{G} g\right)_{\theta}=U g_{\theta} U^{T} f
 $$
 ##### 推导
 
-频域卷积即是在 $g_\theta$ 上做文章。类比 $L$ 的分解公式，我们将 $g_\theta$ 看作是 $\Lambda$ 的函数 $g_\theta(\Lambda)$ 。由于特征分解计算量是非常巨大的，使用Chebyshev对 $g_\theta(\Lambda)$ 继续宁近似估计：
+频域卷积即是在 $g_\theta$ 上做文章。类比 $L$ 的分解公式，我们将 $g_\theta$ 看作是 $\Lambda$ 的函数 $g_\theta(\Lambda)$ 。由于特征分解计算量是非常巨大的，使用Chebyshev对 $g_\theta(\Lambda)$ 做近似估计：
 $$
 g_{\theta^{\prime}}(\Lambda) \approx \sum_{k=0}^{K} \theta_{k}^{\prime} T_{k}(\tilde{\Lambda})
 $$
 $\tilde{\Lambda}=\frac{2}{\lambda_{\max }} \Lambda-I_{N}$ ，$\theta^{\prime} \in \mathbb{R}^{K}$ 是Chebyshev系数。切比雪夫多项式是递归定义的：$T_k(x) = 2xT_{k-1}(x) - T_{k-2}(x), T_0(x) = 1, T_1(x) = x$ 。
 
-基于上述假设吗，图上卷积公式近似为：
+基于上述假设，图上卷积公式近似为：
 $$
 o \approx  \sum_{k=0}^{K} \theta_{k}^{\prime} T_{k}(\tilde{\Lambda}) f =  \sum_{k=0}^{K} \theta_{k}^{\prime} T_{k}(\tilde{L}) f
 $$
