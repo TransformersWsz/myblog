@@ -9,6 +9,9 @@ tags:
 - Linux
 ---
 在shell脚本中经常遇到这样的条件判断：
+
+<!--more-->
+
 ```bash
 if [[ "X"${var} == "X" ]]
 then
