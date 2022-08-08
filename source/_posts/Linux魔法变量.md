@@ -7,6 +7,7 @@ categories:
 - OS
 tags:
 - Shell
+- Linux
 ---
 在shell编程中经常遇到一些魔法变量，这里列举一下：
 
