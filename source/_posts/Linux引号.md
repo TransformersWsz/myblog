@@ -3,6 +3,7 @@ title: Linux引号
 mathjax: true
 toc: true
 date: 2022-08-08 23:47:06
+categories:
 - OS
 tags:
 - Shell
