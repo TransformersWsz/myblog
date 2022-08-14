@@ -33,3 +33,6 @@ echo "/user/wl_0/sdf/wl_1/gf" | awk -v FS="/" '{ for (i = 1; i <= NF; ++i) {if (
 wl_0
 wl_1
 ```
+
+### 关于 `BEGIN` 和 `END` 使用
+[如何使用 awk 的特殊模式 BEGIN 与 END](https://www.linuxprobe.com/awk-begin-end.html)
