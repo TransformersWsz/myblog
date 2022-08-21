@@ -14,6 +14,7 @@ tags:
 <!--more-->
 
 有数据文件如下：
+
 ```bash
 cat fruit.txt
 ```
@@ -24,9 +25,11 @@ cat fruit.txt
     orange;20;3.4
 
 三列信息为水果名称、销售数量、单价。现要求以单价来降序输出这些水果信息：
+
 ```bash
 sort -t ";" -k 3 -n -r fruit.txt
 ```
+
     banana;30;5.5
     orange;20;3.4
     apple;10;2.5
