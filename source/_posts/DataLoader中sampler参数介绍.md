@@ -4,7 +4,7 @@ mathjax: true
 toc: true
 date: 2021-12-24 14:42:06
 categories:
-- pytorch学习笔记
+- PyTorch学习笔记
 tags:
 - DataLoader
 - sampler
@@ -149,7 +149,7 @@ ___
 
 - [一个使模型训练速度提升20%的Trick--BlockShuffle](https://mp.weixin.qq.com/s/xGvaW87UQFjetc5xFmKxWg)
 - [Pytorch DataLoader详解](https://www.zdaiot.com/MLFrameworks/Pytorch/Pytorch%20DataLoader%E8%AF%A6%E8%A7%A3/)
-- [torch.utils.data — PyTorch 1.10.1 documentation](https://pytorch.org/docs/stable/data.html?highlight=dataloader#torch.utils.data.DataLoader)
-- [pytorch中用Mnist数据集dataloader 自定义batchsampler - 代码先锋网 (codeleading.com)](https://www.codeleading.com/article/79575865698/)
-- [pytorch 实现一个自定义的dataloader，每个batch都可以实现类别数量均衡 (tqwba.com)](https://www.tqwba.com/x_d/jishu/415752.html)
+- [torch.utils.data — PyTorch 1.10.1 documentation](https://PyTorch.org/docs/stable/data.html?highlight=dataloader#torch.utils.data.DataLoader)
+- [PyTorch中用Mnist数据集dataloader 自定义batchsampler - 代码先锋网 (codeleading.com)](https://www.codeleading.com/article/79575865698/)
+- [PyTorch 实现一个自定义的dataloader，每个batch都可以实现类别数量均衡 (tqwba.com)](https://www.tqwba.com/x_d/jishu/415752.html)
 - [一文弄懂Pytorch的DataLoader, DataSet, Sampler之间的关系](https://zhuanlan.zhihu.com/p/76893455)

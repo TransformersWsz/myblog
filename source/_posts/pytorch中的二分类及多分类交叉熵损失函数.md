@@ -1,15 +1,15 @@
 ---
-title: pytorch中的二分类及多分类交叉熵损失函数
+title: PyTorch中的二分类及多分类交叉熵损失函数
 mathjax: true
 date: 2020-12-08 21:55:51
 categories:
-- pytorch学习笔记
+- PyTorch学习笔记
 tags:
 - 损失函数
-- pytorch
+- PyTorch
 ---
 
-本文主要记录一下pytorch里面的二分类及多分类交叉熵损失函数的使用。
+本文主要记录一下PyTorch里面的二分类及多分类交叉熵损失函数的使用。
 
 <!--more-->
 ___
@@ -155,7 +155,7 @@ print(f_output)
 ### Note
 
 - `nn.CrossEntropyLoss` 与 `F.cross_entropy` 计算结果是等价的。两个函数都结合了 `LogSoftmax` and `NLLLoss` 运算
-- [`nn.CrossEntropyLoss`](https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html?highlight=crossentropyloss#torch.nn.CrossEntropyLoss) 的公式为：
+- [`nn.CrossEntropyLoss`](https://PyTorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html?highlight=crossentropyloss#torch.nn.CrossEntropyLoss) 的公式为：
   $$
   \operatorname{loss}(\mathrm{x}, \text { class })=-\log \left(\frac{\exp (\mathrm{x}[\mathrm{class}])}{\sum_{\mathrm{j}} \exp (\mathrm{x}[\mathrm{j}])}\right)=-\mathrm{x}[\mathrm{class}]+\log \left(\sum_{\mathrm{j}} \exp (\mathrm{x}[\mathrm{j}])\right)
   $$
@@ -166,7 +166,7 @@ print(f_output)
 ___
 ## 参考
 
-- [Docs > torch.nn > CrossEntropyLoss](https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html?highlight=crossentropyloss#torch.nn.CrossEntropyLoss)
-- [Docs > torch.nn > BCELoss](https://pytorch.org/docs/stable/generated/torch.nn.BCELoss.html?highlight=bceloss#torch.nn.BCELoss)
+- [Docs > torch.nn > CrossEntropyLoss](https://PyTorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html?highlight=crossentropyloss#torch.nn.CrossEntropyLoss)
+- [Docs > torch.nn > BCELoss](https://PyTorch.org/docs/stable/generated/torch.nn.BCELoss.html?highlight=bceloss#torch.nn.BCELoss)
 - [Pytorch里的CrossEntropyLoss详解](https://www.cnblogs.com/marsggbo/p/10401215.html)
 
