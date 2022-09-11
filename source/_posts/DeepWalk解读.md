@@ -42,7 +42,7 @@ $P(k) \sim k^{-\gamma}$ where $k=2,3$ etc.
 
 The network of global banking activity with nodes representing the absolute size of assets booked in the respective jurisdiction and the edges between them the exchange of financial assets, with data taken from the IMF is a scale free network and follows Power Law. We can then see clearly how a very few core nodes dominate this network, there are approximately 200 countries in the world but these 19 largest jurisdictions in terms of capital together are responsible for over 90% of the assets.
 
-<img src="DeepWalk解读/Power_Law_Example.jpg" alt="Input Graph to Embdeddings" width="600"/>
+![Input Graph to Embdeddings](./DeepWalk解读/Power_Law_Example.jpg)
 
 These highly centralized networks are more formally called scale free or power law networks, that describe a power or exponential relationship between the degree of connectivity a node has and the frequency of its occurrence. [More](https://www.youtube.com/watch?v=qmCrtuS9vtU) about centralized networks and power law.
 
@@ -52,7 +52,7 @@ Social networks, including collaboration networks, computer networks, financial 
 
 According to the authors, "If the degree distribution of a connected graph follows a power law (i.e. scale-free), we observe that the frequency which vertices appear in the short random walks will also follow a power-law distribution. Word frequency in natural language follows a similar distribution, and techniques from language modeling account for this distributional behavior."
 
-![NLP vs Graph Random Walks Power Law D](DeepWalk解读/NLP_vs_Graph.jpg)
+![NLP vs Graph Random Walks Power Law D](./DeepWalk解读/NLP_vs_Graph.jpg)
 *$(a)$ comes from a series of short random walks on a scale-free graph, and $(b)$ comes from the text of 100,000 articles from the English Wikipedia.*
 
 
@@ -89,7 +89,7 @@ In case you guessed 'Neural Network', you are correct. In this blog we'll be usi
 
 It is not necesary to use neural nets to estimate the probability funciton but it works and looks cool :P, frankly, the authors used it, so we'll follow them.
 
-The input layer will have |V| neurons, where |V| is the number of words that are interesting to us. We will be using only one hidden layer for simplicity. It can have as many neurons as you want, but it is suggested to keep a number that is less than the number of words in the vocabulary. The output layer will also have the |V| neurons.
+The input layer will have $|V|$ neurons, where $|V|$ is the number of words that are interesting to us. We will be using only one hidden layer for simplicity. It can have as many neurons as you want, but it is suggested to keep a number that is less than the number of words in the vocabulary. The output layer will also have the $|V|$ neurons.
 
 Now let's move on to the interpretation of input and output layers (don't care about the hidden layer).
 Lets suppose the words in the vocabulary are $V_1$, $V_2$, $...$ $V_i$, $....$ $V_n$. Assume that out of these V4,V7, V9 appears along with the word whose probability we are tying to maximise. so the input layers will have the 4th, 7th, and the 9th neuron with value 1 and all other will have the value 0. The hidden layer will then have some function of these values. The hidden layer have no non linear acitvation. The |V| neuron in the output layer will have a score, the higher it is ,the higher the chances of that word appearning along with the surrounding words. Apply Sigmoid, boom! we got the probabilities. 
@@ -109,7 +109,7 @@ In simple words *DeepWalk* algorithm uses the notion of Random Walks to get the 
 
 Mathematically the Deep Walk algorithm is defined as follows,
 
-![Deep Walk Algorithm](DeepWalk解读/DeepWalk_Algo.jpg)
+![Deep Walk Algorithm](./DeepWalk解读/DeepWalk_Algo.jpg)
 
 ## PyTorch Implementation of DeepWalk
 
@@ -171,7 +171,7 @@ def RandomWalk(node,t):
 The skipgram model is closely related to the CBOW model that we just covered. In the CBOW model we have to maximise the probability of the word given its surrounding word using a neural network. And when the probability is maximised, the weights learnt from the input to hidden layer are the word vectors of the given words. In the skipgram word we will be using a using single word to maximise the probability of the surrounding words. This can be done by using a neural network that looks like the mirror image of the network that we used for the CBOW. And in the end the weights of the input to hidden layer will be the corresponding word vectors.
 
 Now let's analyze the complexity.
-There are |V| words in the vocabulary so for each iteration we will be modifying a total of |V| vectors. This is very complex, usually the vocabulary size is in million and since we usually need millions of iteration before convergence, this can take a long long time to run.
+There are $|V|$ words in the vocabulary so for each iteration we will be modifying a total of $|V|$ vectors. This is very complex, usually the vocabulary size is in million and since we usually need millions of iteration before convergence, this can take a long long time to run.
 
 We will soon be discussing some methods like Hierarchical Softmax or negative sampling to reduce this complexity. But, first we'll code for a simple skipgram model. The class defines the model, whereas the function 'skip_gram' takes care of the training loop.
 
@@ -280,7 +280,7 @@ probability distribution from $O(V)$ to $O(log(V))$
 
 Let us understand the process with an example.
 
-![binary tree](DeepWalk解读/tree.png)
+![binary tree](./DeepWalk解读/tree.png)
 
 In this example, leaf nodes represent the original nodes of our graph. The highlighted nodes and edges make a path from root to an example leaf node $w_2$.
 
