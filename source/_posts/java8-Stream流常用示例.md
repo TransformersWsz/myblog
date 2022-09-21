@@ -15,7 +15,7 @@ Java8推出了Stream Api，开发者能够以声明的方式来流式处理数�
 
 <!--more-->
 
-下面列举了Api的常用示例：
+下面列举了该Api的常用示例：
 ```java
 package org.example;
 
