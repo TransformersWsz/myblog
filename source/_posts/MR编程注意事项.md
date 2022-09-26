@@ -28,3 +28,6 @@ while (iterator.hasNext()) {
 - 不同的key太多，有千万个
 
 上述两种情况不一定会触发异常报错，但如果出现了，请从这两个方面排查。
+
+## 程序没报异常，但是failed with code 137
+这是因为reduce阶段iterator内的元素个数太多，导致内存溢出，解决方法是设置更大的内存或者设置多个key来均匀分布value。
