@@ -21,6 +21,8 @@ tags:
 - 新volume可以被容器预填充
 - volume性能比mount更高
 
+![volume](https://docs.docker.com/storage/images/types-of-mounts-volume.png)
+
 下面是volume的一些基础命令：
 
 ## 创建volume
