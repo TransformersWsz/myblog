@@ -109,6 +109,9 @@ df.to_csv("./final.txt", sep="\t", index=False, header=None)
     563	456	0.8099467140319716
     345	345	1.0
 
+
+## 列过滤并求和
+
 ```python
 !cat stu.csv
 ```
@@ -118,8 +121,6 @@ df.to_csv("./final.txt", sep="\t", index=False, header=None)
     Jack,NULL
     Node,13
     Node,NULL
-
-## 列过滤并求和
 
 ```python
 df = pd.read_csv("./stu.csv")
