@@ -15,7 +15,12 @@ tags:
 
 ![example](./An-Embarrassingly-Easy-but-Strong-Baseline-for-Nested-Named-Entity-Recognition/example.png)
 
-作者将评分矩阵抽象成了一张图像，维度为 $n \times n \times r$ ，$r$ 相当于通道数。然后利用CNN来建模空间依赖关系。该方法十分简单有效，在三个数据集上都略胜sota一筹：
+作者将评分矩阵抽象成了一张图像，维度为 $n \times n \times r$ ，$r$ 相当于通道数。然后利用CNN来建模空间依赖关系：
+
+![model](./An-Embarrassingly-Easy-but-Strong-Baseline-for-Nested-Named-Entity-Recognition/model.jpg)
+
+
+该方法十分简单有效，在三个数据集上都略胜sota一筹：
 
 ![table1](./An-Embarrassingly-Easy-but-Strong-Baseline-for-Nested-Named-Entity-Recognition/table1.png)
 
