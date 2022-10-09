@@ -3,7 +3,7 @@ title: expand和repeat区别
 mathjax: true
 date: 2020-12-08 22:06:34
 categories:
-- PyTorch学习笔记
+- PyTorch
 tags:
 - tensor
 ---

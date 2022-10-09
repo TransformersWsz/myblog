@@ -4,7 +4,7 @@ mathjax: true
 toc: true
 date: 2021-12-24 14:42:06
 categories:
-- PyTorch学习笔记
+- PyTorch
 tags:
 - DataLoader
 - sampler
