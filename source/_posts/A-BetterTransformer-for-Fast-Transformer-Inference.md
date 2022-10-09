@@ -8,7 +8,7 @@ categories:
 tags:
 - Transformer
 ---
-PyTorch 1.12版本对 `torch.nn.TransformerEncoder` 进行了专项优化，用户无须调整模型结构即可大幅提升Transformer推理性能。具体介绍如下
+PyTorch 1.12版本对 `torch.nn.TransformerEncoder` 进行了专项优化，用户无须调整模型结构即可大幅提升Transformer推理性能。具体介绍如下：
 
 <!--more-->
 
