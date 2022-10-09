@@ -42,3 +42,8 @@ BetterTransformer在CPU和GPU上都能获得加速，官方主要实现了两种
 - 将推理优化扩展到训练优化
 - 将编码器优化扩展到解码器优化
 - 将BetterTransformer应用到FairSeq、HuggingFace等库
+
+___
+
+## 参考
+- [A BetterTransformer for Fast Transformer Inference](https://pytorch.org/blog/a-better-transformer-for-fast-transformer-encoder-inference//)
