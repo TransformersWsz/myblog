@@ -9,6 +9,10 @@ tags:
 - tag
 ---
 
+git tag主要用来标记某个提交，用法非常简单。
+
+<!--more-->
+
 ## 创建tag
 ```bash
 git tag <tagname> -m <message> <commit-id>
@@ -17,7 +21,7 @@ git tag <tagname> -m <message> <commit-id>
 - message（可选）：具体描述，类似于 `git commit -m <message>`
 - commit-id（可选）：默认为当前commit
 
-<!--more-->
+
 
 ## 列出tag
 ```bash
