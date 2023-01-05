@@ -34,6 +34,11 @@ wl_0
 wl_1
 ```
 
+### 显示一行有多少列
+```bash
+head -n 1 filename | awk -F '\t' '{print NF}'
+```
+
 ### 对某列求和
 ```bash
 # 第一列
