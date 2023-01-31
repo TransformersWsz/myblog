@@ -23,7 +23,7 @@ tags:
 
 
 ## FontAwesome
-`resume-zh_CN.tex` 已经导入了 `fontawesome` 包，但只有 [v4.5](https://fontawesome.com/v4/icons/) 的图标（不支持 `alias` 别名）。在网站中查找想使用的图标，然后在 `fontawesome.sty` 中找到相应的宏, 将其作为普通文本一样使用：
+`resume-zh_CN.tex` 已经导入了 `fontawesome` 包（需要注意的是，只有[v4.5](https://fontawesome.com/v4/icons/)的图标（不支持 `alias` 别名）），在网站中查找想使用的图标，然后在 `fontawesome.sty` 中找到相应的宏, 将其作为普通文本一样使用：
 ```latex
 \faGithub  \; GitHub @hijiangtao
 ```
