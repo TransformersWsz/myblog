@@ -51,3 +51,9 @@ awk '{sum += $1};END {print sum}' filename
 ## find
 - 查找指定目录及子目录下特定文件名的位置：`find ./ -name db.json`
   - 模糊匹配：`find ./ -name "*.json"`
+
+## shuf
+- 随机抽取文件的10行
+```bash
+shuf -n10 filename
+```
