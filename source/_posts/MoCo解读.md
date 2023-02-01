@@ -46,7 +46,7 @@ $$
 - 图(c)则是采样了动量更新key编码器的方式，解决了字典大小受限和特征不一致性问题：
 
 $$
-\theta_{\mathrm{k}} \leftarrow m \theta_{\mathrm{k}}+(1-m) \theta_{\mathrm{q}} .
+\theta_{\mathrm{k}} \leftarrow m \theta_{\mathrm{k}}+(1-m) \theta_{\mathrm{q}}
 $$
 
 ## 伪代码解读
