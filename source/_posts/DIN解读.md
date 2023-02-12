@@ -28,7 +28,7 @@ tags:
 $$
 \boldsymbol{v}_U(A)=f\left(\boldsymbol{v}_A, \boldsymbol{e}_1, \boldsymbol{e}_2, \ldots, \boldsymbol{e}_H\right)=\sum_{j=1}^H a\left(\boldsymbol{e}_j, \boldsymbol{v}_A\right) \boldsymbol{e}_j=\sum_{j=1}^H \boldsymbol{w}_j \boldsymbol{e}_j
 $$
-需要注意的是，DIN舍弃了 $\sum_{i}w_i = 1$ 这个限制。主要是为了突出用户对历史兴趣的强烈程度，比如用户对电子产品很感兴趣，那么他这类兴趣的得分就很高，其它兴趣得分则很小，兴趣差异得到放大。
+需要注意的是，DIN舍弃了 $\sum_{i}w_i = 1$ 这个限制。主要是为了突出用户对历史兴趣的强烈程度，比如用户历史中对电子产品很感兴趣，那么他这类兴趣的得分就很高，其它兴趣得分则很小，兴趣差异得到放大。
 
 #### 两种训练技巧
 
@@ -37,5 +37,14 @@ $$
 L_2(\mathbf{W}) \approx \sum_{j=1}^K \sum_{m=1}^B \frac{\alpha_{m j}}{n_j}\left\|\boldsymbol{w}_j\right\|_2^2 
 $$
 
-- 自适应激活函数
+- 自适应激活函数：传统的激活函数在特定点处会出现突变，泛化性不好。DIN团队进行了改进：
+  
 ![Dice](./DIN解读/dice.png)
+
+$$
+f(s)=p(s) \cdot s+(1-p(s)) \cdot \alpha s, \quad p(s)=\frac{1}{1+e^{-\frac{s-E[s]}{\sqrt{\operatorname{Var}[s]+\epsilon}}}}
+$$
+
+## 实验结果
+
+![result](./DIN解读/result.png)
