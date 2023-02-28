@@ -11,7 +11,7 @@ tags:
 - Transductive Learning
 - Inductive Learning
 ---
-传统的图方法都是直推式(transductive)的，学习到的是结构固定的图模型，一旦有新的节点加入，便需要重新训练整个图网络，泛化性不强。GraphSAGE是归纳式(inductive)的，它学习一种映射：通过采样和聚合邻居节点信息来生成当前节点的表征。GraphSAGE可扩展性更强，对于节点分类和链接预测问题的表现也比较突出。
+传统的图方法都是直推式(transductive)的，学习到的是结构固定的图模型，一旦有新的节点加入，便需要重新训练整个图网络，泛化性不强。GraphSAGE是归纳式(inductive)的，它学习一种映射：通过采样和聚合邻居节点信息来生成当前节点的表征。GraphSAGE可扩展性更强，对于节点分类和链接预测问题的表现也十分突出。
 
 <!--more-->
 
@@ -38,13 +38,13 @@ $$
 J_{\mathcal{G}}\left(\mathbf{z}_u\right)=-\log \left(\sigma\left(\mathbf{z}_u^{\top} \mathbf{z}_v\right)\right)-Q \cdot \mathbb{E}_{v_n \sim P_n(v)} \log \left(\sigma\left(-\mathbf{z}_u^{\top} \mathbf{z}_{v_n}\right)\right)
 $$
 
-- $u$ 表示当前节点，而 $v$ 是跟它在一条随机路径上共现的节点，两者相似，内积很大，则 $-\log \left(\sigma\left(\mathbf{z}_u^{\top} \mathbf{z}_v\right)\right)$ 接近0
+- $u$ 表示当前节点，而 $v$ 是跟它在一条随机路径上共现的节点，两者相似，内积很大，则 $-\log \left(\sigma\left(\mathbf{z}_u^{\top} \mathbf{z}_v\right)\right)$ 接近 0
 - $P_n(v)$ 表示负采样分布，$Q$ 为负样本个数，$u$ 与 $v_n$ 负内积很大，则 $-Q \cdot \mathbb{E}_{v_n \sim P_n(v)} \log \left(\sigma\left(-\mathbf{z}_u^{\top} \mathbf{z}_{v_n}\right)\right)$ 接近 0
 
 ## 实验结果
 ![result](./graphsage解读/3.png)
 
-在三个数据集上大幅领先baseline。
+可以看到，在三个数据集上大幅领先baseline。
 
 ___
 
