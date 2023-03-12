@@ -8,7 +8,6 @@ categories:
 tags:
 - Multi-Task
 - CVR
-- Locality Sensitive Hashing
 ---
 
 介绍一下阿里巴巴在CVR领域多任务学习的三篇论文：
