@@ -10,10 +10,13 @@ tags:
 - Bash
 - Linux
 ---
-在公司运行shell脚本（暂命名为A）的时候，由于要跑多个应用，所以其依赖的其它shell脚本（暂命名为B）都要经过不同的处理。当A运行的时候（命令还没有走到运行B），这个时候修改B（暂名为C）就会引发问题，A输出的就是C而不是B的结果。
+在公司运行shell脚本（暂命名为A.sh）的时候，由于要跑多个应用，所以其依赖的其它shell脚本（暂命名为B.sh）都要经过不同的处理。当A.sh运行的时候（命令还没有走到运行B.sh）：
+
+- 修改A.sh里的任一命令时，会报错
+- 修改B.sh里的任一命令时，不会影响A.sh的执行。当执行B.sh的时候，输出的就是更新后的B.sh对应的结果
+
 
 <!--more-->
-
 
 在编程语言中，不管是动态语言还是静态语言，程序运行前都会经过编译或者解释生成可执行文件，运行起来后修改源代码，都不会影响程序的正常运行。但shell脚本不同，它只是纯粹文本，有系统一行行读取命令执行。下面举例讨论：
 
@@ -31,11 +34,8 @@ sleep 30s
 echo "sleep end"
 echo "end running"
 ```
-这个时候程序的输出不会受到影响，仍然为：
-```bash
-start running
-end running
-```
+这个时候程序会报错！
+![error](https://img-blog.csdnimg.cn/img_convert/819c68fdc6a719f382725b790d8d002a.webp?x-oss-process=image/format,png)
 
 ## 例2
 `A.sh` 依赖其它脚本：
