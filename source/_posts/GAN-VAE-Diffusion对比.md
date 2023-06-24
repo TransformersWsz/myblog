@@ -42,6 +42,6 @@ tags:
 ___
 
 ## 参考
-- [DALLE2](https://www.bilibili.com/video/BV17r4y1u77B/?spm_id_from=333.999.0.0&vd_source=3f2411263f367ccf993c28b58688c0e7)
+- [DALL·E 2（内含扩散模型介绍）](https://www.bilibili.com/video/BV17r4y1u77B?t=1709.5)
   - 该视频讲到了GAN、VAE、DVAE、VQ-VAE、Diffusion、DDPM、Improved DDPM、classifier-(free) guidance
 - [从VAE到扩散模型：一文解读以文生图新范式](https://www.51cto.com/article/709837.html)
