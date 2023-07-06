@@ -87,3 +87,8 @@
   link: https://lilianweng.github.io/
   avatar: https://pbs.twimg.com/profile_images/1052456981838086150/JcK3h5I1_400x400.jpg
   description: "OpenAI工程师"
+
+- name: Hugging Face
+  link: https://huggingface.co/blog
+  avatar: https://huggingface.co/front/assets/huggingface_logo-noborder.svg
+  description: "Hugging Face官方博客"
