@@ -46,7 +46,13 @@ $$
 
 可以看到，在三个数据集上大幅领先baseline。
 
+## FAQ
+
+1. 与GAT的区别？
+
+GraphSAGE为每一个节点都抽取一个固定尺寸的节点，在计算的时候不是所有的节点都能参与其中。GAT不需要显式的采样，所有邻居节点都参与到当前节点的注意力计算中。
 ___
 
 ## 参考
 - [图神经网络10-GraphSAGE论文全面解读](https://zhuanlan.zhihu.com/p/367741877)
+- [Graph neural network综述:从deepwalk到GraphSAGE，GCN，GAT](https://zhuanlan.zhihu.com/p/288322305)
