@@ -4,7 +4,7 @@ mathjax: true
 toc: true
 date: 2023-07-09 02:46:42
 categories:
-- NLP
+- Machine Learning
 tags:
 - LLM
 - Reinforcement Learning
