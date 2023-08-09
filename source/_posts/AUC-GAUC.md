@@ -22,6 +22,9 @@ $$
 AUC=\frac{\sum_{i \in \text { 正样本集合 }} \operatorname{rank}_i-\frac{M(1+M)}{2}}{M \times N}
 $$
 
+#### 注意点
+如果有多个正样本得分相等，那么rank就取它们的平均值。具体示例见：[AUC的两种计算方式](https://blog.csdn.net/pearl8899/article/details/126129148)
+
 ## GAUC
 AUC反应了模型整体的排序能力，但在搜广推领域，例如CTR是以用户维度，衡量单个用户对广告的点击预测。用户之间差异大，比如网赚用户点击率高，高价值人群点击率低。
 
