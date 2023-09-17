@@ -18,7 +18,7 @@ Multi Query Attention(MQA)在2019年就被提出来了，用于推理加速，�
 
 Multi Query Attention(MQA)跟Multi Head Attention(MHA)只有一词之差，但其思路非常简单，几乎跟MHA一致：
 
-![model](https://cdn.staticaly.com/gh/TransformersWsz/image_hosting@master/image.59qyg8p1zrw0.png)
+![model](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.670koriphig0.webp)
 
 
 MHA的Query、Key、Value分拆成8个头，每个头进行self-attention运算，而MQA是Query分成8个头，每个头共享一组Key和Value
