@@ -20,6 +20,8 @@ tags:
 
 由于生成式模型推理过程是单向的，即已经输出的token的embedding是不会再变化的，所以上述步骤可以优化。将Key和Value缓存起来，不用再经历前向传播算出embedding，只需要将上一轮输出的token前向传播算出embedding，然后与KV拼接，来预测出下一个token。这样模型的计算量大大减少，推理大幅加速。
 
+![model](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.42k0hefccxy0.webp)
+
 伪代码如下：
 ```python
 query = self._split_heads(query, self.num_heads, self.head_dim)
