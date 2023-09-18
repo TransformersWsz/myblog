@@ -18,7 +18,7 @@ tags:
 
 ## 蒸馏过程示意图
 
-![procedure](https://cdn.staticaly.com/gh/TransformersWsz/image_hosting@master/v2-d01f5142d06aa27bc5e207831b5131d9_720w.3ji7m6t6c440.webp)
+![procedure](https://raw.githubusercontent.com/TransformersWsz/image_hosting/master/v2-d01f5142d06aa27bc5e207831b5131d9_720w.3ji7m6t6c440.webp)
 
 ## 总损失函数
 $$

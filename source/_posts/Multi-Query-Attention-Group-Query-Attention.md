@@ -67,7 +67,7 @@ self.Wqkv = nn.Linear(
 ## 实验结果
 实验指标略微降低，但推理加速非常明显。
 
-![result](https://cdn.staticaly.com/gh/TransformersWsz/image_hosting@master/image.194dl27xykcg.webp)
+![result](https://raw.githubusercontent.com/TransformersWsz/image_hosting/master/image.194dl27xykcg.webp)
 
 
 ## Group Query Attention

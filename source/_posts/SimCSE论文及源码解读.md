@@ -14,7 +14,7 @@ tags:
 
 <!--more-->
 
-![simcse](https://cdn.staticaly.com/gh/TransformersWsz/image_hosting@master/simcse.ldig50thwww.jpg)
+![simcse](https://raw.githubusercontent.com/TransformersWsz/image_hosting/master/simcse.ldig50thwww.jpg)
 
 损失函数为：
 $$

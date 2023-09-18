@@ -19,7 +19,7 @@ https://api.github.com/repos/{username}/{reponame}
 ## 最佳实践
 
 - 确定 `username` 和 `reponame` ：
-![1](https://cdn.staticaly.com/gh/TransformersWsz/image_hosting@master/1.5wtegw7m1ow0.webp)
+![1](https://raw.githubusercontent.com/TransformersWsz/image_hosting/master/1.5wtegw7m1ow0.webp)
 - 在终端中输入：
 
 ```bash
@@ -27,7 +27,7 @@ curl -k  https://api.github.com/repos/bojone/bert4keras | jq . | grep created_at
 ```
 
 - 结果如下：
-![2](https://cdn.staticaly.com/gh/TransformersWsz/image_hosting@master/case.2krf83ywy1g0.webp)
+![2](https://raw.githubusercontent.com/TransformersWsz/image_hosting/master/case.2krf83ywy1g0.webp)
 ___
 
 ## 参考
