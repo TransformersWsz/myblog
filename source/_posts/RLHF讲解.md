@@ -38,10 +38,10 @@ policy_model = load_model()
 ref_policy_model = policy_model.copy()
 
 for k in range(20000):
-    # 采样（老的actor模型和critic模型）
+    # 采样（上一个epoch的actor模型和critic模型）
     prompts = sample_prompt()
-    # old_log_probs是actor模型的对数概率
-    # old_values是critic模型的预估期望收益
+    # old_log_probs是上一个epoch的actor模型的对数概率
+    # old_values是上一个epoch的critic模型的预估期望收益
     responses, old_log_probs, old_values = respond(policy_model, prompts)
 
     # 反馈
@@ -51,7 +51,7 @@ for k in range(20000):
     ref_log_probs, _ = analyze_responses(ref_policy_model, prompts, responses)
     rewards = reward_func(reward_model, scores, old_log_probs, ref_log_probs)
     
-    # 学习
+    # 学习，为了更新actor和critic模型
     for epoch in range(4):
         # 这里的values用于更新critic模型
         log_probs, values = analyze_responses(policy_model, prompts, responses)
