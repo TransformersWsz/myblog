@@ -16,7 +16,7 @@ PPO算法的pipeline冗长，涉及模型多，资源消耗大，且训练极其
 
 <!--more-->
 
-损失函数如下：
+损失函数如下(顿时清爽简洁了不少)：
 $$
 \mathcal{L}_{\mathrm{DPO}}\left(\pi_\theta ; \pi_{\mathrm{ref}}\right)=-\mathbb{E}_{\left(x, y_w, y_l\right) \sim \mathcal{D}}\left[\log \sigma\left(\beta \log \frac{\pi_\theta\left(y_w \mid x\right)}{\pi_{\mathrm{ref}}\left(y_w \mid x\right)}-\beta \log \frac{\pi_\theta\left(y_l \mid x\right)}{\pi_{\mathrm{ref}}\left(y_l \mid x\right)}\right)\right]
 $$
