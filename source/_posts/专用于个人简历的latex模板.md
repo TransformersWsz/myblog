@@ -4,7 +4,7 @@ mathjax: true
 toc: true
 date: 2022-04-29 17:05:33
 categories:
-- 软件工具
+- tools
 tags:
 - 简历
 - latex

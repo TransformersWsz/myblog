@@ -3,7 +3,7 @@ title: PowerDesigner连接MySQL逆向生成物理模型
 mathjax: true
 date: 2017-09-17 22:40:33
 categories:
-- 软件工具
+- tools
 tags:
 - MySQL
 - PowerDesigner

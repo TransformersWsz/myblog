@@ -4,7 +4,7 @@ mathjax: true
 toc: true
 date: 2022-05-27 20:45:12
 categories:
-- 软件工具
+- tools
 tags:
 - Hexo
 - Echarts

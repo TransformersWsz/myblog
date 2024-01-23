@@ -4,7 +4,7 @@ mathjax: true
 toc: true
 date: 2022-04-24 23:19:04
 categories:
-- 软件工具
+- tools
 tags:
 - Hexo
 - CI

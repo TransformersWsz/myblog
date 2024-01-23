@@ -4,7 +4,7 @@ mathjax: true
 toc: true
 date: 2021-10-10 13:36:58
 categories:
-- 软件工具
+- tools
 tags:
 - Mac
 - Outlook

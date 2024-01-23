@@ -4,7 +4,7 @@ mathjax: true
 toc: true
 date: 2022-03-17 20:13:17
 categories:
-- 软件工具
+- tools
 tags:
 - github
 ---
