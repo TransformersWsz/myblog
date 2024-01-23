@@ -12,6 +12,8 @@ tags:
 
 ![top](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/04eb5801268567e6bf9c714fc114282d7d3d36f8/image.4kkhwptk8tg0.png)
 
+## 字段介绍
+
 - 时间：
     - 当前时间
     - 系统运行时间
@@ -47,9 +49,10 @@ tags:
     - 空闲交换区总量
     - 缓冲的交换区总量,内存中的内容被换出到交换区，而后又被换入到内存，但使用过的交换区尚未被覆盖，该数值即为这些内容已存在于内存中的交换区的大小,相应的内存再次被换出时可不必再对交换区写入
 
+## 指定字段排序查看
 
-- 按照内存占用大小倒序查看：Shift+M
-- 按照CPU占用大小倒序查看：Shift+P
+- 按照内存占用大小倒序：Shift+M
+- 按照CPU占用大小倒序：Shift+P
 
 ___
 
