@@ -18,6 +18,9 @@ tags:
     t_{n+1} = f(h_n)
   $$
   无须冗余attention计算 $h_1, \dots, h_{n-1}$ 以及 qkv映射 $q_1=W_q(t_1), k_1=W_k(t_1), k_1=W_v(t_1), \dots, q_{n-1}=W_q(t_{n-1}), k_1=W_k(t_{n-1}), k_1=W_v(t_{n-1})$
+
+<!--more-->
+
 - int量化
 - PagedAttention
 - GQA
