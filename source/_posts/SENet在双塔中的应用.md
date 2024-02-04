@@ -16,7 +16,7 @@ SENet思想非常简单，模型结构如下：
 
 ![SENet](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/96cf35a3f9d6db7affd5bca632a35891f42f9f91/image.4a55hw1xznq0.webp)
 
-以user侧特征 $v_i$ 为例：
+对比推荐系统，将CV图像的通道数 $channel_{num}$ 看作是user侧或ad侧的 $feature_{num}$ 。以user侧特征 $v_i$ 为例：
 
 ## Squeeze
 
@@ -41,3 +41,4 @@ ___
 
 ## 参考
 - [SENet双塔模型：在推荐领域召回粗排的应用及其它](https://zhuanlan.zhihu.com/p/358779957)
+- [解读Squeeze-and-Excitation Networks（SENet）](https://zhuanlan.zhihu.com/p/32702350)
