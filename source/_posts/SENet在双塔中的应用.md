@@ -12,7 +12,11 @@ tags:
 - 粗排负例
 ---
 
-以user侧特征为例， $v_i^{}$
+SENet思想非常简单，模型结构如下：
+
+![SENet](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/96cf35a3f9d6db7affd5bca632a35891f42f9f91/image.4a55hw1xznq0.webp)
+
+以user侧特征 $v_i$ 为例：
 
 ## Squeeze
 
