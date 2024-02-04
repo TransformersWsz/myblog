@@ -11,13 +11,17 @@ tags:
 ---
 
 metapath2vec在用在工业界的召回通路中比较多，非常适用于**异构的K部图**。
+
 元路径 $P$ 定义形式如： $V_1 \rightarrow^{R_1} V_2 \rightarrow^{R_2} A_3 \ldots \rightarrow^{R_l} A_{l+1}$ 表示了从 $A_1$ 到 $A_{l+1}$ 的复杂关系。
 其中 $V_i$ 表示节点类型，$R_i$ 表示节点间的关系。 $R=R_1 \circ R_2 \circ R_3 \circ R_l$，元路径 $P$ 的长度即为关系 $R$ 的个数。
 
 <!--more-->
 ## 示例
+
 `APA` 就表示两位作者是论文的共同作者：
-![example](https://img-blog.csdnimg.cn/img_convert/3077b859a4190c1c39e9d7e81ab59b83.webp?x-oss-process=image/format,png)
+
+![example](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/a63833f2687f592ccad30d090fab8a88ce76a9c0/image.2squ8k783uy0.png)
+
 ## 不同类型的节点间的转移概率
 $$
 p\left(v^{i+1} \mid v_t^i, \mathcal{P}\right)=\left\{\begin{array}{cl}
