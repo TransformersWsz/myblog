@@ -14,6 +14,8 @@ tags:
 
 SENet思想非常简单，模型结构如下：
 
+<!--more-->
+
 ![SENet](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/96cf35a3f9d6db7affd5bca632a35891f42f9f91/image.4a55hw1xznq0.webp)
 
 对比推荐系统，将CV图像的通道数 $channel_{num}$ 看作是user侧或ad侧的 $feature_{num}$ 。以user侧特征 $v_i$ 为例：
