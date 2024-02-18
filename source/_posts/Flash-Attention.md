@@ -64,3 +64,4 @@ ___
 
 ## 参考
 - [FlashAttention:加速计算,节省显存, IO感知的精确注意力](https://zhuanlan.zhihu.com/p/639228219)
+- [图解大模型计算加速系列：Flash Attention V1，从硬件到计算逻辑](https://mp.weixin.qq.com/s?__biz=Mzg2NjcwNjcxNQ==&mid=2247485453&idx=1&sn=beb642f06f3501bd235a8f42973e39fb&chksm=ce47fc79f930756f991d93f69cad36409e3dcb58e517f41f583d29609b360e9b46f6777a42b4&scene=21#wechat_redirect)
