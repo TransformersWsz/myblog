@@ -56,10 +56,15 @@ for 1 <= j <= Tc:
 ![gpu memory](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.2ysn4gh16f80.webp)
 
 ## IO复杂度分析
+1. 标准attention
 
-![IO](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.68jimy8oo9s0.webp)
+![standard](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.68jimy8oo9s0.webp)
 
-- 标准attention需要加载 $Q \in R^{N \times d}, K \in R^{N \times d}$ 以及 $S \in R^{N \times N}$，所以是 $O(Nd + N^2)$
+2. flash-attention
+
+![flash](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.4qzzibsf9vy0.webp)
+
+可以看到，flash-attention通过算子融合、分块计算减少了IO，内存墙问题得以缓解。
 ___
 
 ## 参考
