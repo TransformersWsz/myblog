@@ -25,17 +25,17 @@ SENet思想非常简单，模型结构如下：
 $$
 z_i = \frac{\sum_{t=1}^k v_i^t}{k}
 $$
-将特征 $v_i$ 的embeeding平均池化成 $z_i$
+将特征 $v_i$ 的embeeding平均池化成 $z_i$，embedding size为 $k$
 
 ## Excitation
 
 $$
-S = \phi(W_2 \phi(W_1 Z))
+S = \phi(W_2 \phi(W_1 Z)), Z \in R^{feature_{num}}
 $$
 
-- $W_1$ 用于将压缩后的特征进行特征交互
+- $W_1$ 用于降维，从而实现将池化后的特征进行特征交互，生成中间向量
 - $\phi$ 是激活函数
-- $W_2$ 用于升维，将该特征维度恢复成embedding size
+- $W_2$ 用于升维，将中间向量恢复成 $feature_{num}$ 个权重值，得到每个特征的重要性
 
 ## 总结
 SENet并不能将user侧和item侧的特征交互提前或者使其获得更深层次的交互，user侧和item侧的特征交互仍然只发生在最后的内积那一步，这是由其双塔结构导致的。SENet的作用是提前将各侧的重要特征升权，不重要特征降权。
