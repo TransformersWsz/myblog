@@ -9,5 +9,4 @@ then
 
 else
     echo -e "\033[31mpush to github.com failed!\033[0m"
-
 fi
