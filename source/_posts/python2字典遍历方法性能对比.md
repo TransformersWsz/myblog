@@ -54,7 +54,8 @@ if __name__ == "__main__":
   
 ```
 结果如下：
-![result](https://img-blog.csdnimg.cn/f46032bc64a54ec5aaec5c08a9969b46.png)
+![result](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.1zhzwi7qjc.webp)
+
 因此在遍历大字典时，推荐使用第一种或者第三种方式，进度条展示的时候也更人性化。
 
 > 在python3中，已经用 `d.items()` 代替了 `d.iteritems()` ，因此无需再担心性能问题。
