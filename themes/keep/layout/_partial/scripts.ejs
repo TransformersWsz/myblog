@@ -1,33 +1,67 @@
+<!-- common -->
 <%- __js([
     'js/utils.js',
-    'js/main.js',
     'js/header-shrink.js',
     'js/back2top.js',
-    'js/dark-light-toggle.js'
+    'js/toggle-theme.js',
+    'js/code-block.js',
+    'js/main.js',
+    'js/libs/anime.min.js'
 ]) %>
 
-<% if (theme.local_search.enable) { %>
+<!-- local-search -->
+<% if (theme?.local_search?.enable === true) { %>
     <%- __js('js/local-search.js') %>
 <% } %>
 
-<% if (theme.code_copy.enable) { %>
-    <%- __js('js/code-copy.js') %>
-<% } %>
-
-<% if (theme.lazyload.enable) { %>
+<!-- lazyload -->
+<% if (theme?.lazyload?.enable === true) { %>
     <%- __js('js/lazyload.js') %>
 <% } %>
 
-<div class="post-scripts<%= theme.pjax.enable === true ? ' pjax' : '' %>">
-    <% if (theme.toc.enable && is_post()) { %>
-        <%- __js([
-            'js/left-side-toggle.js',
-            'js/libs/anime.min.js',
-            'js/toc.js'
-        ]) %>
+<div class="<%= theme?.pjax?.enable === true ? 'pjax' : '' %>">
+    <% if (is_post()) { %>
+        <!-- post-helper -->
+        <%- __js('js/post/post-helper.js') %>
+
+        <!-- toc -->
+        <% if (theme?.toc?.enable === true) { %>
+            <%- __js('js/post/toc.js') %>
+        <% } %>
+
+        <!-- copyright-info -->
+        <% if (theme?.post?.copyright_info === true) { %>
+            <%- __js('js/post/copyright-info.js') %>
+        <% } %>
+
+        <!-- share -->
+        <% if (theme?.post?.share === true) { %>
+            <%- __js('js/post/share.js') %>
+        <% } %>
+    <% } %>
+
+    <!-- category-page -->
+    <% if (is_current('/categories') || is_current('/category')) { %>
+        <%- __js('js/page/category-page.js') %>
+    <% } %>
+
+    <!-- links-page -->
+    <% if (is_current('/links') || is_current('/link')) { %>
+        <%- __js('js/page/links-page.js') %>
+    <% } %>
+
+    <!-- photos-page -->
+    <% if (is_current('/photos') || is_current('/photo')) { %>
+        <%- __js('js/page/photos-page.js') %>
     <% } %>
 </div>
 
-<% if (theme.pjax.enable === true) { %>
+<!-- mermaid -->
+<% if (config?.mermaid?.enable === true) { %>
+    <%- partial('common/mermaid') %>
+<% } %>
+
+<!-- pjax -->
+<% if (theme?.pjax?.enable === true) { %>
     <%- partial('pjax/pjax') %>
 <% } %>

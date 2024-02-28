@@ -1,241 +1,299 @@
 /* global KEEP */
 
 KEEP.initUtils = () => {
-
   KEEP.utils = {
-
-    html_root_dom: document.querySelector('html'),
-    pageContainer_dom: document.querySelector('.page-container'),
-    pageTop_dom: document.querySelector('.page-main-content-top'),
-    firstScreen_dom: document.querySelector('.first-screen-container'),
-    scrollProgressBar_dom: document.querySelector('.scroll-progress-bar'),
-    pjaxProgressBar_dom: document.querySelector('.pjax-progress-bar'),
-    pjaxProgressIcon_dom: document.querySelector('.pjax-progress-icon'),
-    back2TopButton_dom: document.querySelector('.tool-scroll-to-top'),
+    rootHtmlDom: document.querySelector('html'),
+    pageTopDom: document.querySelector('.page-main-content-top'),
+    scrollProgressBarDom: document.querySelector('.scroll-progress-bar'),
+    pjaxProgressBarDom: document.querySelector('.pjax-progress-bar'),
+    pjaxProgressIcon: document.querySelector('.pjax-progress-icon'),
+    back2TopBtn: document.querySelector('.tool-scroll-to-top'),
+    headerWrapperDom: document.querySelector('.header-wrapper'),
 
     innerHeight: window.innerHeight,
     pjaxProgressBarTimer: null,
     prevScrollValue: 0,
     fontSizeLevel: 0,
+    isHasScrollProgressBar: false,
+    isHasScrollPercent: false,
+    isHeaderTransparent: false,
+    isHideHeader: true,
+    hasToc: false,
 
-    isHasScrollProgressBar: KEEP.theme_config.style.scroll.progress_bar.enable === true,
-    isHasScrollPercent: KEEP.theme_config.style.scroll.percent.enable === true,
+    // initialization data
+    initData() {
+      const scroll = KEEP.theme_config?.scroll || {}
+      const first_screen = KEEP.theme_config?.first_screen || {}
+      this.isHasScrollProgressBar = scroll?.progress_bar === true
+      this.isHasScrollPercent = scroll?.percent === true
+      this.isHeaderTransparent =
+        first_screen?.enable === true && !window.location.pathname.includes('/page/')
+      if (!this.isHeaderTransparent) {
+        this.headerWrapperDom.classList.remove('transparent-1', 'transparent-2')
+      }
+      this.isHideHeader = scroll?.hide_header !== false
+    },
 
-    // Scroll Style Handle
+    // scroll Style Handle
     styleHandleWhenScroll() {
-      const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-      const scrollHeight = document.body.scrollHeight || document.documentElement.scrollHeight;
-      const clientHeight = window.innerHeight || document.documentElement.clientHeight;
+      const scrollTop = document.body.scrollTop || document.documentElement.scrollTop
+      const scrollHeight = document.body.scrollHeight || document.documentElement.scrollHeight
+      const clientHeight = window.innerHeight || document.documentElement.clientHeight
 
-      const percent = Math.round(scrollTop / (scrollHeight - clientHeight) * 100);
+      const percent = Math.round((scrollTop / (scrollHeight - clientHeight)) * 100) || 0
 
-      if (this.isHasScrollProgressBar) {
-        const ProgressPercent = (scrollTop / (scrollHeight - clientHeight) * 100).toFixed(3);
-        this.scrollProgressBar_dom.style.visibility = percent === 0 ? 'hidden' : 'visible';
-        this.scrollProgressBar_dom.style.width = `${ProgressPercent}%`;
+      // back to top
+      if (scrollTop > 10) {
+        this.back2TopBtn.classList.add('show')
+      } else {
+        this.back2TopBtn.classList.remove('show')
       }
 
-      if (this.isHasScrollPercent) {
-        const percent_dom = this.back2TopButton_dom.querySelector('.percent');
-        if (percent === 0 || percent === undefined) {
-          this.back2TopButton_dom.classList.remove('show');
+      // scroll progress bar
+      if (this.isHasScrollProgressBar && this.scrollProgressBarDom) {
+        const progressPercent = ((scrollTop / (scrollHeight - clientHeight)) * 100).toFixed(3)
+        this.scrollProgressBarDom.style.visibility = percent === 0 ? 'hidden' : 'visible'
+        this.scrollProgressBarDom.style.width = `${progressPercent}%`
+      }
 
+      // scroll percent
+      if (this.isHasScrollPercent && this.back2TopBtn) {
+        this.back2TopBtn.classList.add('show-percent')
+        const percentDom = this.back2TopBtn.querySelector('.percent')
+        if (percent === 0 || percent === undefined) {
+          this.back2TopBtn.classList.remove('show')
         } else {
-          this.back2TopButton_dom.classList.add('show');
-          percent_dom.innerHTML = percent.toFixed(0);
+          this.back2TopBtn.classList.add('show')
+          percentDom.innerHTML = percent.toFixed(0)
+          if (percent > 99) {
+            this.back2TopBtn.classList.add('show-arrow')
+          } else {
+            this.back2TopBtn.classList.remove('show-arrow')
+          }
         }
       }
 
       // hide header handle
       if (scrollTop > this.prevScrollValue && scrollTop > this.innerHeight) {
-        this.pageTop_dom.classList.add('hide');
+        if (this.isHideHeader) {
+          this.pageTopDom.classList.add('hide')
+        }
+        if (this.isHeaderTransparent) {
+          this.headerWrapperDom.classList.remove('transparent-1', 'transparent-2')
+        }
       } else {
-        this.pageTop_dom.classList.remove('hide');
+        if (this.isHideHeader) {
+          this.pageTopDom.classList.remove('hide')
+        }
+        if (this.isHeaderTransparent) {
+          if (scrollTop <= this.headerWrapperDom.getBoundingClientRect().height) {
+            this.headerWrapperDom.classList.remove('transparent-2')
+            this.headerWrapperDom.classList.add('transparent-1')
+          } else if (scrollTop < this.innerHeight) {
+            this.headerWrapperDom.classList.add('transparent-2')
+          }
+        }
       }
-      this.prevScrollValue = scrollTop;
+
+      // header font color handle
+      if (KEEP.theme_config?.first_screen?.enable === true) {
+        if (scrollTop > this.innerHeight - this.pageTopDom.getBoundingClientRect().height) {
+          this.pageTopDom.classList.add('reset-color')
+        } else {
+          this.pageTopDom.classList.remove('reset-color')
+        }
+      }
+
+      this.prevScrollValue = scrollTop
     },
 
     // register window scroll event
     registerWindowScroll() {
       window.addEventListener('scroll', () => {
         // style handle when scroll
-        if (this.isHasScrollPercent || this.isHasScrollProgressBar) {
-          this.styleHandleWhenScroll();
-        }
+        this.styleHandleWhenScroll()
 
         // TOC scroll handle
-        if (KEEP.theme_config.toc.enable && KEEP.utils.hasOwnProperty('findActiveIndexByTOC')) {
-          KEEP.utils.findActiveIndexByTOC();
+        if (KEEP.theme_config?.toc?.enable === true && KEEP.utils?.tocHelper) {
+          KEEP.utils.tocHelper.activeNav()
         }
 
         // header shrink
-        KEEP.utils.headerShrink.headerShrink();
-      });
+        KEEP.utils.headerShrink.headerShrink()
+
+        // side tools bar show handle
+        KEEP.utils.headerShrink.sideToolsBarShowHandle()
+      })
     },
 
     // toggle show tools list
     toggleShowToolsList() {
-      document.querySelector('.tool-toggle-show').addEventListener('click', () => {
-        document.querySelector('.side-tools-list').classList.toggle('show');
-      });
+      const sideToolsListDom = document.querySelector('.side-tools-list')
+      const toggleShowToolsDom = document.querySelector('.tool-toggle-show')
+      toggleShowToolsDom.addEventListener('click', (e) => {
+        sideToolsListDom.classList.toggle('show')
+        e.stopPropagation()
+      })
+      sideToolsListDom.querySelectorAll('.tools-item').forEach((item) => {
+        item.addEventListener('click', (e) => {
+          e.stopPropagation()
+        })
+      })
+      document.addEventListener('click', () => {
+        sideToolsListDom.classList.contains('show') && sideToolsListDom.classList.remove('show')
+      })
     },
 
     // global font adjust
     globalFontAdjust() {
-      const fontSize = document.defaultView.getComputedStyle(document.body).fontSize;
-      const fs = parseFloat(fontSize);
+      const fontSize = document.defaultView.getComputedStyle(document.body).fontSize
+      const fs = parseFloat(fontSize)
 
       const initFontSize = () => {
-        const styleStatus = KEEP.getStyleStatus();
+        const styleStatus = KEEP.getStyleStatus()
         if (styleStatus) {
-          this.fontSizeLevel = styleStatus.fontSizeLevel;
-          setFontSize(this.fontSizeLevel);
+          this.fontSizeLevel = styleStatus.fontSizeLevel
+          setFontSize(this.fontSizeLevel)
         }
       }
 
       const setFontSize = (fontSizeLevel) => {
-        this.html_root_dom.style.fontSize = `${fs * (1 + fontSizeLevel * 0.05)}px`;
-        KEEP.styleStatus.fontSizeLevel = fontSizeLevel;
-        KEEP.setStyleStatus();
+        this.rootHtmlDom.style.setProperty(
+          'font-size',
+          `${fs * (1 + fontSizeLevel * 0.05)}px`,
+          'important'
+        )
+        KEEP.themeInfo.styleStatus.fontSizeLevel = fontSizeLevel
+        KEEP.setStyleStatus()
       }
 
-      initFontSize();
+      initFontSize()
 
       document.querySelector('.tool-font-adjust-plus').addEventListener('click', () => {
-        if (this.fontSizeLevel === 5) return;
-        this.fontSizeLevel++;
-        setFontSize(this.fontSizeLevel);
-      });
+        if (this.fontSizeLevel === 5) return
+        this.fontSizeLevel++
+        setFontSize(this.fontSizeLevel)
+      })
 
       document.querySelector('.tool-font-adjust-minus').addEventListener('click', () => {
-        if (this.fontSizeLevel <= 0) return;
-        this.fontSizeLevel--;
-        setFontSize(this.fontSizeLevel);
-      });
+        if (this.fontSizeLevel <= 0) return
+        this.fontSizeLevel--
+        setFontSize(this.fontSizeLevel)
+      })
     },
 
-    // toggle content area width
-    contentAreaWidthAdjust() {
-      const toolExpandDom = document.querySelector('.tool-expand-width');
-      const headerContentDom = document.querySelector('.header-content');
-      const mainContentDom = document.querySelector('.main-content');
-      const iconDom = toolExpandDom.querySelector('i');
-
-      const defaultMaxWidth = KEEP.theme_config.style.content_max_width || '1000px';
-      const expandMaxWidth = '90%';
-      let headerMaxWidth = defaultMaxWidth;
-
-      let isExpand = false;
-
-      if (KEEP.theme_config.style.first_screen.enable === true && window.location.pathname === '/') {
-        headerMaxWidth = parseInt(defaultMaxWidth) * 1.2 + 'px';
-      }
-
-      const setPageWidth = (isExpand) => {
-        KEEP.styleStatus.isExpandPageWidth = isExpand;
-        KEEP.setStyleStatus();
-        if (isExpand) {
-          iconDom.classList.remove('fa-arrows-alt-h');
-          iconDom.classList.add('fa-compress-arrows-alt');
-          headerContentDom.style.maxWidth = expandMaxWidth;
-          mainContentDom.style.maxWidth = expandMaxWidth;
-        } else {
-          iconDom.classList.remove('fa-compress-arrows-alt');
-          iconDom.classList.add('fa-arrows-alt-h');
-          headerContentDom.style.maxWidth = headerMaxWidth;
-          mainContentDom.style.maxWidth = defaultMaxWidth;
-        }
-      }
-
-      const initPageWidth = () => {
-        const styleStatus = KEEP.getStyleStatus();
-        if (styleStatus) {
-          isExpand = styleStatus.isExpandPageWidth;
-          setPageWidth(isExpand);
-        }
-      }
-
-      initPageWidth();
-
-      toolExpandDom.addEventListener('click', () => {
-        isExpand = !isExpand;
-        setPageWidth(isExpand)
-      });
-
-
-    },
-
-    // go comment anchor
-    goComment() {
-      this.goComment_dom = document.querySelector('.go-comment');
-      if (this.goComment_dom) {
-        this.goComment_dom.addEventListener('click', () => {
-          document.querySelector('#comment-anchor').scrollIntoView();
-        });
-      }
-
-    },
-
-    // get dom element height
-    getElementHeight(selectors) {
-      const dom = document.querySelector(selectors);
-      return dom ? dom.getBoundingClientRect().height : 0;
-    },
-
-    // init first screen height
-    initFirstScreenHeight() {
-      this.firstScreen_dom && (this.firstScreen_dom.style.height = this.innerHeight + 'px');
-    },
-
-    // init page height handle
-    initPageHeightHandle() {
-      if (this.firstScreen_dom) return;
-      const temp_h1 = this.getElementHeight('.page-main-content-top');
-      const temp_h2 = this.getElementHeight('.page-main-content-middle');
-      const temp_h3 = this.getElementHeight('.page-main-content-bottom');
-      const allDomHeight = temp_h1 + temp_h2 + temp_h3;
-      const innerHeight = window.innerHeight;
-      const pb_dom = document.querySelector('.page-main-content-bottom');
-      if (allDomHeight < innerHeight) {
-        const marginTopValue = Math.floor(innerHeight - allDomHeight);
-        if (marginTopValue > 0) {
-          pb_dom.style.marginTop = `${marginTopValue - 2}px`;
-        }
-      }
-    },
-
-    // big image viewer
-    imageViewer() {
-      let isBigImage = false;
-
-      const showHandle = (maskDom, isShow) => {
-        document.body.style.overflow = isShow ? 'hidden' : 'auto';
-        if (isShow) {
-          maskDom.classList.add('active');
-        } else {
-          maskDom.classList.remove('active');
-        }
-      }
-
-      const imageViewerDom = document.querySelector('.image-viewer-container');
-      const targetImg = document.querySelector('.image-viewer-container img');
-      imageViewerDom && imageViewerDom.addEventListener('click', () => {
-        isBigImage = false;
-        showHandle(imageViewerDom, isBigImage);
-      });
-
-      const imgDoms = document.querySelectorAll('.markdown-body img');
-
-      if (imgDoms.length) {
-        imgDoms.forEach(img => {
-          img.addEventListener('click', () => {
-            isBigImage = true;
-            showHandle(imageViewerDom, isBigImage);
-            targetImg.setAttribute('src', img.getAttribute('src'));
-          });
-        });
+    // init has TOC
+    initHasToc() {
+      const tocNavDoms = document.querySelectorAll('.post-toc-wrap .post-toc li')
+      if (tocNavDoms.length > 0) {
+        this.hasToc = true
+        document.body.classList.add('has-toc')
       } else {
-        this.pageContainer_dom.removeChild(imageViewerDom);
+        this.hasToc = false
+        document.body.classList.remove('has-toc')
+      }
+    },
+
+    // get dom zoom value
+    getZoomValueOfDom(dom) {
+      const tmp = Number((dom.style?.zoom || '1').replace('%', ''))
+      return tmp > 1 ? tmp / 100 : tmp
+    },
+
+    // zoom in image
+    zoomInImage() {
+      let SIDE_GAP = 40
+      let isZoomIn = false
+      let curWinScrollY = 0
+      let selectedImgDom = null
+      const zoomInImgMask = document.querySelector('.zoom-in-image-mask')
+      const zoomInImg = zoomInImgMask?.querySelector('.zoom-in-image')
+      const imgDomList = [
+        ...document.querySelectorAll('.keep-markdown-body img'),
+        ...document.querySelectorAll('.photo-album-box img')
+      ]
+
+      const zoomOut = () => {
+        if (isZoomIn) {
+          isZoomIn = false
+          curWinScrollY = 0
+          zoomInImg && (zoomInImg.style.transform = `scale(1)`)
+          zoomInImgMask && zoomInImgMask.classList.remove('show')
+          setTimeout(() => {
+            selectedImgDom && selectedImgDom.classList.remove('hide')
+          }, 300)
+        }
+      }
+
+      const zoomOutHandle = () => {
+        zoomInImgMask &&
+          zoomInImgMask.addEventListener('click', () => {
+            zoomOut()
+          })
+
+        document.addEventListener('scroll', () => {
+          if (isZoomIn && Math.abs(curWinScrollY - window.scrollY) >= 50) {
+            zoomOut()
+          }
+        })
+      }
+
+      const setSideGap = () => {
+        const w = document.body.offsetWidth
+        if (w <= 500) {
+          SIDE_GAP = 10
+        } else if (w <= 800) {
+          SIDE_GAP = 20
+        } else {
+          SIDE_GAP = 40
+        }
+      }
+
+      if (imgDomList.length) {
+        // Register zoom out events
+        zoomOutHandle()
+
+        imgDomList.forEach((img) => {
+          // Zoom in handle
+          img.addEventListener('click', () => {
+            curWinScrollY = window.scrollY
+            isZoomIn = !isZoomIn
+            setSideGap()
+            zoomInImg.setAttribute('src', img.getAttribute('src'))
+            selectedImgDom = img
+
+            if (isZoomIn) {
+              const imgRect = selectedImgDom.getBoundingClientRect()
+
+              const zoom = this.getZoomValueOfDom(selectedImgDom)
+
+              for (let key in imgRect) {
+                imgRect[key] = imgRect[key] * zoom
+              }
+
+              const imgW = imgRect.width
+              const imgH = imgRect.height
+              const imgL = imgRect.left
+              const imgT = imgRect.top
+              const winW = document.body.offsetWidth - SIDE_GAP * 2
+              const winH = document.body.offsetHeight - SIDE_GAP * 2
+              const scaleX = winW / imgW
+              const scaleY = winH / imgH
+              const scale = (scaleX < scaleY ? scaleX : scaleY) || 1
+              const translateX = winW / 2 - (imgRect.x + imgW / 2) + SIDE_GAP
+              const translateY = winH / 2 - (imgRect.y + imgH / 2) + SIDE_GAP
+
+              selectedImgDom.classList.add('hide')
+              zoomInImgMask.classList.add('show')
+
+              zoomInImg.style.top = imgT + 'px'
+              zoomInImg.style.left = imgL + 'px'
+              zoomInImg.style.width = imgW + 'px'
+              zoomInImg.style.height = imgH + 'px'
+              zoomInImg.style.transform = `translateX(${translateX}px) translateY(${translateY}px) scale(${scale}) `
+            }
+          })
+        })
       }
     },
 
@@ -244,119 +302,466 @@ KEEP.initUtils = () => {
       return p2.replace(/%s/g, p1)
     },
 
+    // get how long ago
     getHowLongAgo(timestamp) {
-      const l = KEEP.language_ago;
-
-      const __Y = Math.floor(timestamp / (60 * 60 * 24 * 30) / 12);
-      const __M = Math.floor(timestamp / (60 * 60 * 24 * 30));
-      const __W = Math.floor(timestamp / (60 * 60 * 24) / 7);
-      const __d = Math.floor(timestamp / (60 * 60 * 24));
-      const __h = Math.floor(timestamp / (60 * 60) % 24);
-      const __m = Math.floor(timestamp / 60 % 60);
-      const __s = Math.floor(timestamp % 60);
+      const lang = KEEP.language_ago
+      const __Y = Math.floor(timestamp / (60 * 60 * 24 * 30) / 12)
+      const __M = Math.floor(timestamp / (60 * 60 * 24 * 30))
+      const __W = Math.floor(timestamp / (60 * 60 * 24) / 7)
+      const __d = Math.floor(timestamp / (60 * 60 * 24))
+      const __h = Math.floor((timestamp / (60 * 60)) % 24)
+      const __m = Math.floor((timestamp / 60) % 60)
+      const __s = Math.floor(timestamp % 60)
 
       if (__Y > 0) {
-        return this.setHowLongAgoLanguage(__Y, l.year);
-
+        return this.setHowLongAgoLanguage(__Y, lang.year)
       } else if (__M > 0) {
-        return this.setHowLongAgoLanguage(__M, l.month);
-
+        return this.setHowLongAgoLanguage(__M, lang.month)
       } else if (__W > 0) {
-        return this.setHowLongAgoLanguage(__W, l.week);
-
+        return this.setHowLongAgoLanguage(__W, lang.week)
       } else if (__d > 0) {
-        return this.setHowLongAgoLanguage(__d, l.day);
-
+        return this.setHowLongAgoLanguage(__d, lang.day)
       } else if (__h > 0) {
-        return this.setHowLongAgoLanguage(__h, l.hour);
-
+        return this.setHowLongAgoLanguage(__h, lang.hour)
       } else if (__m > 0) {
-        return this.setHowLongAgoLanguage(__m, l.minute);
-
+        return this.setHowLongAgoLanguage(__m, lang.minute)
       } else if (__s > 0) {
-        return this.setHowLongAgoLanguage(__s, l.second);
+        return this.setHowLongAgoLanguage(__s, lang.second)
       }
     },
 
+    // set how long age in home post block
     setHowLongAgoInHome() {
-      const post = document.querySelectorAll('.home-article-meta-info .home-article-date');
-      post && post.forEach(v => {
-        const nowDate = Date.now();
-        const postDate = new Date(v.dataset.date.split(' GMT')[0]).getTime();
-        v.innerHTML = this.getHowLongAgo(Math.floor((nowDate - postDate) / 1000));
-      });
+      const post = document.querySelectorAll('.post-meta-info .home-post-history')
+      post &&
+        post.forEach((v) => {
+          const nowTimestamp = Date.now()
+          const updatedTimestamp = new Date(v.dataset.updated).getTime()
+          v.innerHTML = this.getHowLongAgo(Math.floor((nowTimestamp - updatedTimestamp) / 1000))
+        })
     },
 
     // loading progress bar start
     pjaxProgressBarStart() {
-      this.pjaxProgressBarTimer && clearInterval(this.pjaxProgressBarTimer);
+      this.pjaxProgressBarTimer && clearInterval(this.pjaxProgressBarTimer)
       if (this.isHasScrollProgressBar) {
-        this.scrollProgressBar_dom.classList.add('hide');
+        this.scrollProgressBarDom.classList.add('hide')
       }
 
-      this.pjaxProgressBar_dom.style.width = '0';
-      this.pjaxProgressIcon_dom.classList.add('show');
+      this.pjaxProgressBarDom.style.width = '0'
+      this.pjaxProgressIcon.classList.add('show')
 
-      let width = 1;
-      const maxWidth = 99;
+      let width = 1
+      const maxWidth = 99
 
-      this.pjaxProgressBar_dom.classList.add('show');
-      this.pjaxProgressBar_dom.style.width = width + '%';
+      this.pjaxProgressBarDom.classList.add('show')
+      this.pjaxProgressBarDom.style.width = width + '%'
 
       this.pjaxProgressBarTimer = setInterval(() => {
-        width += 5;
-        if (width > maxWidth) width = maxWidth;
-        this.pjaxProgressBar_dom.style.width = width + '%';
-      }, 100);
+        width += 5
+        if (width > maxWidth) width = maxWidth
+        this.pjaxProgressBarDom.style.width = width + '%'
+      }, 100)
     },
 
     // loading progress bar end
     pjaxProgressBarEnd() {
-      this.pjaxProgressBarTimer && clearInterval(this.pjaxProgressBarTimer);
-      this.pjaxProgressBar_dom.style.width = '100%';
+      this.pjaxProgressBarTimer && clearInterval(this.pjaxProgressBarTimer)
+      this.pjaxProgressBarDom.style.width = '100%'
 
       const temp_1 = setTimeout(() => {
-        this.pjaxProgressBar_dom.classList.remove('show');
-        this.pjaxProgressIcon_dom.classList.remove('show');
+        this.pjaxProgressBarDom.classList.remove('show')
+        this.pjaxProgressIcon.classList.remove('show')
 
         if (this.isHasScrollProgressBar) {
-          this.scrollProgressBar_dom.classList.remove('hide');
+          this.scrollProgressBarDom.classList.remove('hide')
         }
 
         const temp_2 = setTimeout(() => {
-          this.pjaxProgressBar_dom.style.width = '0';
-          clearTimeout(temp_1), clearTimeout(temp_2);
-        }, 200);
+          this.pjaxProgressBarDom.style.width = '0'
+          clearTimeout(temp_1), clearTimeout(temp_2)
+        }, 200)
+      }, 200)
+    },
 
-      }, 200);
+    // insert tooltip content dom
+    insertTooltipContent() {
+      const { root } = KEEP.theme_config
+      const isLazyLoadImg = KEEP.theme_config?.lazyload?.enable === true
+
+      const init = () => {
+        // tooltip
+        document.querySelectorAll('.tooltip').forEach((element) => {
+          const { tooltipContent, tooltipOffsetX, tooltipOffsetY } = element.dataset
+
+          let styleCss = ''
+
+          if (tooltipOffsetX) {
+            styleCss += `left: ${tooltipOffsetX};`
+          }
+
+          if (tooltipOffsetY) {
+            styleCss += `top: ${tooltipOffsetY};`
+          }
+
+          if (styleCss) {
+            styleCss = `style="${styleCss}"`
+          }
+
+          if (tooltipContent) {
+            element.insertAdjacentHTML(
+              'afterbegin',
+              `<span class="tooltip-content" ${styleCss}>${tooltipContent}</span>`
+            )
+          }
+        })
+
+        // tooltip-img
+        const imgsSet = {}
+
+        const hideTooltipImg = (dom, nameIdx, trigger = 'click') => {
+          if (trigger === 'hover') {
+            trigger = 'mouseout'
+          }
+
+          document.addEventListener(trigger, () => {
+            if (imgsSet[nameIdx].isShowImg) {
+              dom.classList.remove('show-img')
+              imgsSet[nameIdx].isShowImg = false
+            }
+          })
+        }
+
+        const loadImg = (img, imgLoaded) => {
+          const temp = new Image()
+          const { src } = img.dataset
+          temp.src = src
+          temp.onload = () => {
+            img.src = src
+            img.removeAttribute('lazyload')
+            imgLoaded = true
+          }
+        }
+
+        // tooltip-img
+        document.querySelectorAll('.tooltip-img').forEach((dom, idx) => {
+          const {
+            tooltipImgName,
+            tooltipImgUrl,
+            tooltipImgTip,
+            tooltipImgTrigger = 'click',
+            tooltipImgStyle
+          } = dom.dataset
+
+          let styleCss = ''
+
+          if (tooltipImgStyle) {
+            styleCss = `style="${tooltipImgStyle}"`
+          }
+
+          let tipDom = ''
+          if (tooltipImgTip) {
+            tipDom = `<div class="tip">${tooltipImgTip}</div>`
+          }
+
+          if (tooltipImgUrl) {
+            const imgDomClass = `tooltip-img-${idx}-${tooltipImgName ? tooltipImgName : Date.now()}`
+            const nameIdx = `${tooltipImgName}-${idx}`
+            const tmpSrc = (/^(https?:\/\/)/.test(tooltipImgUrl) ? '' : root) + tooltipImgUrl
+
+            const imgDom = `<img class="${imgDomClass}"
+                              ${isLazyLoadImg ? 'lazyload' : ''}
+                              ${isLazyLoadImg ? 'data-' : ''}src="${tmpSrc}"
+                              alt="${imgDomClass}"
+                            >`
+
+            const imgTooltipBox = `<div ${styleCss} class="tooltip-img-box ${
+              tipDom ? 'has-tip' : ''
+            }">${imgDom}${tipDom}</div>`
+
+            imgsSet[nameIdx] = {
+              imgLoaded: false,
+              isShowImg: false
+            }
+
+            dom.insertAdjacentHTML('afterbegin', imgTooltipBox)
+
+            let eventTrigger = 'click'
+
+            if (tooltipImgTrigger === 'hover') {
+              eventTrigger = 'mouseover'
+            }
+
+            dom.addEventListener(eventTrigger, (e) => {
+              if (isLazyLoadImg && !imgsSet[nameIdx].imgLoaded) {
+                loadImg(
+                  document.querySelector(`.tooltip-img-box img.${imgDomClass}`),
+                  imgsSet[nameIdx].imgLoaded
+                )
+              }
+              imgsSet[nameIdx].isShowImg = !imgsSet[nameIdx].isShowImg
+              dom.classList.toggle('show-img')
+              e.stopPropagation()
+            })
+
+            hideTooltipImg(dom, nameIdx, tooltipImgTrigger)
+          }
+        })
+      }
+      setTimeout(() => {
+        init()
+      }, 1000)
+    },
+
+    // busuanzi initialize handle
+    siteCountInitialize() {
+      if (KEEP.theme_config?.website_count?.busuanzi_count?.enable === true) {
+        const tmpId = 'busuanzi-js'
+        let script = document.body.querySelector(`#${tmpId}`)
+
+        if (!script) {
+          script = document.createElement('script')
+          script.setAttribute('data-pjax', '')
+          script.setAttribute('id', tmpId)
+          script.async = true
+          script.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
+          document.body.appendChild(script)
+        }
+
+        const getText = (selector) => {
+          return document.querySelector(selector)?.innerText
+        }
+
+        script.onload = () => {
+          setTimeout(() => {
+            if (
+              getText('#busuanzi_value_site_uv') ||
+              getText('#busuanzi_value_site_pv') ||
+              getText('#busuanzi_value_page_pv')
+            ) {
+              const tmpDom1 = document.querySelector('.footer .count-item .uv')
+              const tmpDom2 = document.querySelector('.footer .count-item .pv')
+              const tmpDom3 = document.querySelector('.post-meta-info .post-pv')
+              tmpDom1 && (tmpDom1.style.display = 'flex')
+              tmpDom2 && (tmpDom2.style.display = 'flex')
+              tmpDom3 && (tmpDom3.style.display = 'inline-block')
+            }
+          }, 1000)
+        }
+      }
+    },
+
+    // page number jump handle
+    pageNumberJump() {
+      const inputDom = document.querySelector('.paginator .page-number-input')
+      inputDom &&
+        inputDom.addEventListener('change', (e) => {
+          const min = 1
+          const max = Number(e.target.max)
+          let current = Number(e.target.value)
+
+          if (current <= 0) {
+            inputDom.value = min
+            current = min
+          }
+
+          if (current > max) {
+            inputDom.value = max
+            current = max
+          }
+
+          const tempHref = window.location.href.replace(/\/$/, '').split('/page/')[0]
+
+          if (current === 1) {
+            window.location.href = tempHref
+          } else {
+            window.location.href = tempHref + '/page/' + current
+          }
+        })
+    },
+
+    // custom tabs tag active handle
+    tabsActiveHandle() {
+      const activeHandle = (navList, paneList, tab) => {
+        navList.forEach((nav) => {
+          if (tab.dataset.href === nav.dataset.href) {
+            nav.classList.add('active')
+          } else {
+            nav.classList.remove('active')
+          }
+        })
+
+        paneList.forEach((pane) => {
+          if (tab.dataset.href === pane.id) {
+            pane.classList.add('active')
+          } else {
+            pane.classList.remove('active')
+          }
+        })
+      }
+
+      const tabsList = document.querySelectorAll('.keep-tabs')
+      tabsList.length &&
+        tabsList.forEach((tabs) => {
+          const tabNavList = tabs.querySelectorAll('.tabs-nav .tab')
+          const tabPaneList = tabs.querySelectorAll('.tabs-content .tab-pane')
+          tabNavList.forEach((tabNav) => {
+            tabNav.addEventListener('click', () => {
+              activeHandle(tabNavList, tabPaneList, tabNav)
+            })
+          })
+        })
+    },
+
+    // first screen typewriter
+    initTypewriter() {
+      const fsc = KEEP.theme_config?.first_screen || {}
+      const isHitokoto = fsc?.hitokoto === true
+
+      if (fsc?.enable !== true) {
+        return
+      }
+
+      if (fsc?.enable === true && !isHitokoto && !fsc?.description) {
+        return
+      }
+
+      const descBox = document.querySelector('.first-screen-content .description')
+      if (descBox) {
+        descBox.style.opacity = '0'
+
+        setTimeout(
+          () => {
+            descBox.style.opacity = '1'
+            const descItemList = descBox.querySelectorAll('.desc-item')
+            descItemList.forEach((descItem) => {
+              const desc = descItem.querySelector('.desc')
+              const cursor = descItem.querySelector('.cursor')
+              const text = desc.innerHTML
+              desc.innerHTML = ''
+              let charIndex = 0
+
+              if (text) {
+                const typewriter = () => {
+                  if (charIndex < text.length) {
+                    desc.textContent += text.charAt(charIndex)
+                    charIndex++
+                    setTimeout(typewriter, 100)
+                  } else {
+                    cursor.style.display = 'none'
+                  }
+                }
+
+                typewriter()
+              }
+            })
+          },
+          isHitokoto ? 400 : 300
+        )
+      }
+    },
+
+    // remove white space between children
+    removeWhitespace(container) {
+      if (!container) {
+        return
+      }
+
+      const childNodes = container.childNodes
+      const whitespaceNodes = []
+
+      for (let i = 0; i < childNodes.length; i++) {
+        const node = childNodes[i]
+
+        if (node.nodeType === 3 && /^\s*$/.test(node.nodeValue)) {
+          whitespaceNodes.push(node)
+        }
+      }
+
+      for (const whitespaceNode of whitespaceNodes) {
+        container.removeChild(whitespaceNode)
+      }
+    },
+    trimPostMetaInfoBar() {
+      this.removeWhitespace(document.querySelector('.post-meta-info-container .post-category-ul'))
+      this.removeWhitespace(document.querySelector('.post-meta-info-container .post-tag-ul'))
+    },
+
+    // close website announcement
+    closeWebsiteAnnouncement() {
+      if (KEEP.theme_config?.home?.announcement) {
+        const waDom = document.querySelector('.home-content-container .website-announcement')
+        if (waDom) {
+          const closeDom = waDom.querySelector('.close')
+          closeDom.addEventListener('click', () => {
+            waDom.style.display = 'none'
+          })
+        }
+      }
+    },
+
+    // wrap table dom with div
+    wrapTableWithBox() {
+      document.querySelectorAll('table').forEach((element) => {
+        const box = document.createElement('div')
+        box.className = 'table-container'
+        element.wrap(box)
+      })
+    },
+
+    // H tag title to top
+    title2Top4HTag(a, h, isHideHeader, duration = 200) {
+      if (a && h) {
+        a.addEventListener('click', (e) => {
+          e.preventDefault()
+          let winScrollY = window.scrollY
+          winScrollY = winScrollY <= 1 ? -19 : winScrollY
+          let offset = h.getBoundingClientRect().top + winScrollY
+
+          if (!isHideHeader) {
+            offset = offset - 60
+          }
+
+          window.anime({
+            targets: document.scrollingElement,
+            duration,
+            easing: 'linear',
+            scrollTop: offset,
+            complete: () => {
+              history.pushState(null, document.title, a.href)
+              if (isHideHeader) {
+                setTimeout(() => {
+                  KEEP.utils.pageTopDom.classList.add('hide')
+                }, 160)
+              }
+            }
+          })
+        })
+      }
+    },
+
+    // A tag anchor jump handle
+    aAnchorJump() {
+      document.querySelectorAll('a.headerlink').forEach((a) => {
+        this.title2Top4HTag(a, a.parentNode, this.isHideHeader, 10)
+      })
     }
   }
 
-  // init scroll
-  KEEP.utils.registerWindowScroll();
-
-  // toggle show tools list
-  KEEP.utils.toggleShowToolsList();
-
-  // global font adjust
-  KEEP.utils.globalFontAdjust();
-
-  // adjust content area width
-  KEEP.utils.contentAreaWidthAdjust();
-
-  // go comment
-  KEEP.utils.goComment();
-
-  // init page height handle
-  KEEP.utils.initPageHeightHandle();
-
-  // init first screen height
-  KEEP.utils.initFirstScreenHeight();
-
-  // big image viewer handle
-  KEEP.utils.imageViewer();
-
-  // set how long age in home article block
-  KEEP.utils.setHowLongAgoInHome();
-
+  KEEP.utils.initData()
+  KEEP.utils.registerWindowScroll()
+  KEEP.utils.toggleShowToolsList()
+  KEEP.utils.globalFontAdjust()
+  KEEP.utils.initHasToc()
+  KEEP.utils.zoomInImage()
+  KEEP.utils.setHowLongAgoInHome()
+  KEEP.utils.insertTooltipContent()
+  KEEP.utils.siteCountInitialize()
+  KEEP.utils.pageNumberJump()
+  KEEP.utils.tabsActiveHandle()
+  KEEP.utils.initTypewriter()
+  KEEP.utils.trimPostMetaInfoBar()
+  KEEP.utils.closeWebsiteAnnouncement()
+  KEEP.utils.wrapTableWithBox()
+  KEEP.utils.aAnchorJump()
 }

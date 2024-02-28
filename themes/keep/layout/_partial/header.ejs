@@ -1,38 +1,50 @@
-<header class="header-wrapper">
+<%
+const { title: bi_title, logo: bi_logo } = theme?.base_info || {}
+const { enable: s_fs_enable } = theme?.first_screen || {}
+const { enable: local_search_enable } = theme?.local_search || {}
+const h_menu_nav_object = theme?.menu || { Archives: '/archives' }
+delete h_menu_nav_object['home']
+delete h_menu_nav_object['Home']
+delete h_menu_nav_object['HOME']
+%>
+<header class="header-wrapper<%= s_fs_enable === true && is_home() ? ' transparent-1' : '' %>">
 
-    <div class="header-content<%- (theme.style.first_screen.enable === true && is_home() && !page.prev) ? ' has-first-screen' : '' %>">
-        <div class="left">
-            <% if (theme.base_info.hasOwnProperty('logo_img') && theme.base_info.logo_img) { %>
-                <a class="logo-image" href="/">
-                    <%- image_tag(theme.base_info.logo_img) %>
+    <div class="border-box header-content<%- (s_fs_enable === true && is_home() && !page.prev) ? ' has-first-screen' : '' %>">
+        <div class="left border-box">
+            <% if (bi_logo) { %>
+                <a class="logo-image border-box" href="<%- url_for('/') %>">
+                    <%- image_tag(bi_logo) %>
                 </a>
             <% } %>
-            <a class="logo-title" href="/">
-                <%= theme.base_info.title || config.title || 'Keep Theme' %>
+            <a class="site-name border-box" href="<%- url_for('/') %>">
+               <%= bi_title || config?.title || 'Keep Theme' %>
             </a>
         </div>
 
-        <div class="right">
+        <div class="right border-box">
             <div class="pc">
                 <ul class="menu-list">
-                    <% for (let i in theme.menu) { %>
+                    <li class="menu-item">
+                        <a class="<%- is_home() ? 'active' : '' %>"
+                           href="<%- url_for('/') %>"
+                        ><%= __('home').toUpperCase() %></a>
+                    </li>
+                    <% for (const i in h_menu_nav_object) { %>
                         <li class="menu-item">
-                            <a class="<%- isInHomePaging(page.path, theme.menu[i]) ? 'active' : is_current(theme.menu[i]) ? 'active' : '' %>"
-                               href="<%- url_for(theme.menu[i]) %>"
-                            >
-                                <%= __(i.toLowerCase()).toUpperCase() %>
-                            </a>
+                            <a class="<%- is_current(h_menu_nav_object[i]) ? 'active' : '' %>"
+                               href="<%- url_for(h_menu_nav_object[i]) %>"
+                            ><%= __(i.toLowerCase()).toUpperCase() %></a>
                         </li>
                     <% } %>
-                    <% if (theme.local_search.enable === true) { %>
+                    <% if (local_search_enable === true) { %>
                         <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
+                            <i class="fas search fa-search"></i>
                         </li>
                     <% } %>
                 </ul>
             </div>
             <div class="mobile">
-                <% if (theme.local_search.enable === true) { %>
+                <% if (local_search_enable === true) { %>
                     <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
                 <% } %>
                 <div class="icon-item menu-bar">
@@ -44,10 +56,16 @@
 
     <div class="header-drawer">
         <ul class="drawer-menu-list">
-            <% for (let i in theme.menu) { %>
+            <li class="drawer-menu-item flex-center">
+                <a class="<%- is_home() ? 'active' : '' %>"
+                   href="<%- url_for('/') %>"
+                ><%= __('home').toUpperCase() %></a>
+            </li>
+            <% for (let i in h_menu_nav_object) { %>
                 <li class="drawer-menu-item flex-center">
-                    <a class="<%- isInHomePaging(page.path, theme.menu[i]) ? 'active' : is_current(theme.menu[i]) ? 'active' : '' %>"
-                       href="<%- url_for(theme.menu[i]) %>"><%= __(i.toLowerCase()).toUpperCase() %></a>
+                    <a class="<%- is_current(h_menu_nav_object[i]) ? 'active' : '' %>"
+                       href="<%- url_for(h_menu_nav_object[i]) %>"
+                    ><%= __(i.toLowerCase()).toUpperCase() %></a>
                 </li>
             <% } %>
         </ul>

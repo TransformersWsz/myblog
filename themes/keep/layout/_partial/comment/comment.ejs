@@ -1,19 +1,33 @@
-<div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;<%- __('comments') %></i>
-    </div>
-    <% if (theme.comment.enable === true && theme.comment.hasOwnProperty(theme.comment.use)) { %>
+<%
+const {
+    enable: theme_comment_enable,
+    use: theme_comment_use
+} = theme?.comment || {}
+%>
 
-        <% if  (theme.comment.use === 'valine') { %>
-            <%- partial('valine') %>
-
-        <% } else if (theme.comment.use === 'gitalk') { %>
-            <%- partial('gitalk') %>
-
-        <% } else if (theme.comment.use === 'twikoo') { %>
-            <%- partial('twikoo') %>
-
+<% if (theme_comment_enable === true && theme_comment_use) { %>
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;<%- __('comment.comments') %>
+        </div>
+        <%- partial('load-handler') %>
+        <% if  (theme_comment_use === 'valine') { %>
+            <%- partial('./plugins/valine') %>
+        <% } else if (theme_comment_use === 'gitalk') { %>
+            <%- partial('./plugins/gitalk') %>
+        <% } else if (theme_comment_use === 'twikoo') { %>
+            <%- partial('./plugins/twikoo') %>
+        <% } else if (theme_comment_use === 'waline') { %>
+            <%- partial('./plugins/waline') %>
+        <% } else if (theme_comment_use === 'giscus') { %>
+            <%- partial('./plugins/giscus') %>
+        <% } else if (theme_comment_use === 'artalk') { %>
+            <%- partial('./plugins/artalk') %>
+        <% } else if (theme_comment_use === 'disqus') { %>
+            <%- partial('./plugins/disqus') %>
         <% } %>
-    <% } %>
-</div>
+    </div>
+<% } %>
+
+
+
