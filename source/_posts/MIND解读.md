@@ -17,14 +17,14 @@ tags:
 ## 前置知识-胶囊网络
 本质上就是个聚类网络，将输入的多个向量聚类输出多个向量：
 
-![capsule](https://cdn.jsdelivr.net/gh/TransformersWsz/picx-images-hosting@master/20240228/image.4666l530vwo0.png)
+![capsule](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/20240228/image.4666l530vwo0.png)
 
 算法迭代流程：
 
-![algo](https://cdn.jsdelivr.net/gh/TransformersWsz/picx-images-hosting@master/image.7w6k34geqa.webp)
+![algo](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.7w6k34geqa.webp)
 
 ## MIND模型
-![MIND](https://cdn.jsdelivr.net/gh/TransformersWsz/picx-images-hosting@master/image.syonic1kc.webp)
+![MIND](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.syonic1kc.webp)
 
 #### 训练
 

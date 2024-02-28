@@ -15,7 +15,7 @@ tags:
 
 ## 1. 新建空的workflow，填写基本信息
 
-![blank workflow](https://cdn.jsdelivr.net/gh/TransformersWsz/picx-images-hosting@master/image.2bpwgci5ntes.webp)
+![blank workflow](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.2bpwgci5ntes.webp)
 
 ## 2. 开发python脚本
 打开该workflow所在目录，进行下面步骤：
@@ -71,7 +71,7 @@ if __name__ == "__main__":
 ## 3. 编辑工作流
 1. 新建script filter：
 
-![new scipt filter](https://cdn.jsdelivr.net/gh/TransformersWsz/picx-images-hosting@master/image.4s7zzod45jc0.webp)
+![new scipt filter](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.4s7zzod45jc0.webp)
 
 配置信息说明:
 - 触发谷歌翻译关键词：`tr`
@@ -79,19 +79,19 @@ if __name__ == "__main__":
 - 调用python脚本进行翻译：`python ./translate.py "{query}"`
 - 避免一些转义符
 
-![config](https://cdn.jsdelivr.net/gh/TransformersWsz/picx-images-hosting@master/image.2bw7bcg882m8.webp)
+![config](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.2bw7bcg882m8.webp)
 
 2. 新增剪贴板
 
 在filter后面接一个clipboard：
 
-![clipboard](https://cdn.jsdelivr.net/gh/TransformersWsz/picx-images-hosting@master/image.723f5xy7w2o0.webp)
+![clipboard](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.723f5xy7w2o0.webp)
 
 ## 4. 调试工作流
 
 右侧有个虫子标记，点击。然后调起alfred，输入命令测试，下面的控制台会打印日志信息：
 
-![debug](https://cdn.jsdelivr.net/gh/TransformersWsz/picx-images-hosting@master/image.5cwhhyuhgmg0.webp)
+![debug](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.5cwhhyuhgmg0.webp)
 
 如果上述步骤一切顺利的话，你的工作流就实现了。
 ___

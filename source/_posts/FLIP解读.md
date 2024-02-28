@@ -17,13 +17,13 @@ FLIP由CLIP改进而来，其思想非常简单，通过在图片侧mask掉相�
 
 ## 模型结构
 
-![model](https://cdn.jsdelivr.net/gh/TransformersWsz/picx-images-hosting@master/image.k290d3y8ylc.webp)
+![model](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.k290d3y8ylc.webp)
 
 受MAE启发，FLIP对图像进行了mask来预训练。该方法有两方面收益：
 - 速度：ViT对图像编码的计算量大幅减少，训练速度更快
 - 准确性：相同的显存可以存放更多的batch，从而构造更多的图文对进行对比学习，准确性得以提高
 
-![speed](https://cdn.jsdelivr.net/gh/TransformersWsz/picx-images-hosting@master/image.2vrg1obvy7i0.png)
+![speed](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.2vrg1obvy7i0.png)
 
 值得注意的是，该预训练任务没有重构patch，个人理解：
 - 图片本身就包含了大量的冗余信息，mask掉部分patch不影响图片理解
@@ -33,7 +33,7 @@ FLIP由CLIP改进而来，其思想非常简单，通过在图片侧mask掉相�
 
 FLIP在下游实验的结果一片绿：
 
-![experiment](https://cdn.jsdelivr.net/gh/TransformersWsz/picx-images-hosting@master/image.2vmbpzmm3540.webp)
+![experiment](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.2vmbpzmm3540.webp)
 
 #### 消融实验
 ![ablation](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.751rg20p7vg0.webp)
