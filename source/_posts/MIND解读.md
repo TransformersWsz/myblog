@@ -17,25 +17,38 @@ tags:
 ## 前置知识-胶囊网络
 本质上就是个聚类网络，将输入的多个向量聚类输出多个向量：
 
-![capsule](https://img-blog.csdnimg.cn/c189e1258de64e42b576884844e718a4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA57-75rua55qE5bCPQOW8ug==,size_1,color_FFFFFF,t_70,g_se,x_16#pic_center)
+![capsule](https://cdn.jsdelivr.net/gh/TransformersWsz/picx-images-hosting@master/20240228/image.4666l530vwo0.png)
 
 算法迭代流程：
 
-![algo](https://img-blog.csdnimg.cn/82746b6ff8ac47fab6a89788d8d50f9e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA57-75rua55qE5bCPQOW8ug==,size_1,color_FFFFFF,t_70,g_se,x_16#pic_center)
+![algo](https://cdn.jsdelivr.net/gh/TransformersWsz/picx-images-hosting@master/image.7w6k34geqa.webp)
 
 ## MIND模型
-![MIND](https://img-blog.csdnimg.cn/33b251f8dcb242ad82b2ed0313f6df73.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA57-75rua55qE5bCPQOW8ug==,size_2,color_FFFFFF,t_70,g_se,x_16#pic_center)
+![MIND](https://cdn.jsdelivr.net/gh/TransformersWsz/picx-images-hosting@master/image.syonic1kc.webp)
 
 #### 训练
 
 用户向量（item向量对用户多个兴趣向量的weighted sum）：
 
-![user vec](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.2h81jn319s.webp)
+$$
+\begin{aligned}
+\overrightarrow{\boldsymbol{v}}_u & =\text { Attention }\left(\overrightarrow{\boldsymbol{e}}_i, \mathrm{~V}_u, \mathrm{~V}_u\right) \\
+& =\mathrm{V}_u \operatorname{softmax}\left(\operatorname{pow}\left(\mathrm{V}_u^{\mathrm{T}} \overrightarrow{\boldsymbol{e}}_i, p\right)\right)
+\end{aligned}
+$$
 
 loss：
 
-![loss](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.3raypyjygs.webp)
-由于$D$数量太大，团队采用了负采样技术
+$$
+\operatorname{Pr}(i \mid u)=\operatorname{Pr}\left(\overrightarrow{\boldsymbol{e}}_i \mid \overrightarrow{\boldsymbol{v}}_u\right)=\frac{\exp \left(\overrightarrow{\boldsymbol{v}}_u^{\mathrm{T}} \overrightarrow{\boldsymbol{e}}_i\right)}{\sum_{j \in I} \exp \left(\overrightarrow{\boldsymbol{v}}_u^{\mathrm{T}} \overrightarrow{\boldsymbol{e}}_j\right)}
+$$
+
+Then, the overall objective function for training MIND is
+$$
+L=\sum_{(u, i) \in \mathcal{D}} \log \operatorname{Pr}(i \mid u)
+$$
+
+由于$\mathcal{D}$数量太大，团队采用了负采样技术
 
 #### 在线服务
 同时利用MIND模型产出的多个兴趣向量进行ann检索召回，最终排序得到topK个商品
