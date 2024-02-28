@@ -16,6 +16,8 @@ tags:
 对于CUDA编程模型，本质上还是要掌握并行编程思想。每一个矩阵元素运算，都是由一条线程执行。我们要做的就是找到线程坐标位置及其对应的矩阵元素，然后执行计算逻辑。
 
 下面是一个二维矩阵相加示例：
+
+`cudastart.h`
 ```c
 #ifndef CUDASTART_H
 #define CUDASTART_H
@@ -83,6 +85,7 @@ void checkResult(float * hostRef,float * gpuRef,const int N)
 #endif
 ```
 
+`sum_martix.cu`
 ```c
 #include <cuda_runtime.h>
 #include <stdio.h>
@@ -188,7 +191,7 @@ int main(int argc, char **argv)
 }
 ```
 
-编译`sum_martix.cu`文件并执行程序：
+编译 `sum_martix.cu` 文件并执行程序：
 ```shell
 nvcc -o sum_matrix sum_martix.cu && ./sum_matrix 
 ```
