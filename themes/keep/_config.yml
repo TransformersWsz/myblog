@@ -19,10 +19,10 @@ base_info:
 
   # Author avatar, You can use local image path or image link
   # avatar: /images/atom.svg
-  avatar: /images/huoyin.png
+  avatar: /images/atom.svg
 
   # Website LOGO, You can use local image path or image link
-  logo: /images/huoyin.png
+  logo: /images/atom.svg
 
   # Website favicon, You can use local image path or image link
   favicon: /images/huoyin.png

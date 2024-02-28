@@ -13,7 +13,7 @@ tags:
 参照数学坐标系，grid的规格是 $(4,3)$ ，block的规格是 $(3,2)$
 
 <!--more-->
-对于CUDA编程模型，本质上还是要掌握并行编程思想。每一个矩阵元素运算，都是由一条线程执行。我们要做的就是找到线程id及其对应的矩阵元素位置，然后执行计算逻辑。
+对于CUDA编程模型，本质上还是要掌握并行编程思想。每一个矩阵元素运算，都是由一条线程执行。我们要做的就是找到线程坐标位置及其对应的矩阵元素，然后执行计算逻辑。
 
 下面是一个二维矩阵相加示例：
 ```c
@@ -111,6 +111,7 @@ __global__ void sumMatrix(float *MatA, float *MatB, float *MatC, int nx, int ny)
 {
     int ix = threadIdx.x + blockDim.x * blockIdx.x;
     int iy = threadIdx.y + blockDim.y * blockIdx.y;
+    // 找到该线程的坐标位置
     int idx = ix + iy * nx;
     if (ix < nx && iy < ny)
     {
