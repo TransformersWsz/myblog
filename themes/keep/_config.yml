@@ -175,7 +175,7 @@ toc:
   expand_all: true  # Option values: true | false
 
   # If true, auto open TOC every time when you enter post page
-  init_open: true    # Option values: true | false
+  init_open: false    # Option values: true | false
 
   # TOC layout on post page
   layout: left      # Option values: left | right
