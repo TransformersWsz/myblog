@@ -9,6 +9,7 @@ tags:
 - Hexo
 - CI
 - theme-keep
+- Github Action
 ---
 keep主题4.x新增了很多功能配置，在升级的过程中遇到了一些问题，在此记录一下：
 
