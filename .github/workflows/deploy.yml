@@ -17,7 +17,7 @@ jobs:
       uses: theme-keep/hexo-deploy-github-pages-action@master
       env:
         # Your GitHub Token
-        PERSONAL_TOKEN: ${{ secrets.picx_image_hosting }}
+        PERSONAL_TOKEN: ${{ secrets.MYBLOG_TOKEN }}
 
         # The repository the action should deploy to
         PUBLISH_REPOSITORY: TransformersWsz/TransformersWsz.github.io

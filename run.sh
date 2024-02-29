@@ -18,9 +18,9 @@ git push -u origin main
 echo "----------------------------------------------------------------------------"
 if [[ $? -eq 0 ]]
 then
-    echo -e "\033[32m\033]8;;https://github.com/TransformersWsz/myblog\apush to https://github.com/TransformersWsz/myblog success~\033]8;;\a\033[0m"
+    echo -e "\033[32m\033]8;;https://github.com/TransformersWsz/myblog\apush to https://github.com/TransformersWsz/myblog success~\U0001F680\033]8;;\a\033[0m"
 
 else
-    echo -e "\033[32m\033]8;;https://github.com/TransformersWsz/myblog\apush to https://github.com/TransformersWsz/myblog failed~\033]8;;\a\033[0m"
+    echo -e "\033[31m\033]8;;https://github.com/TransformersWsz/myblog\apush to https://github.com/TransformersWsz/myblog failed~\U0001F605\033]8;;\a\033[0m"
 fi
 echo "----------------------------------------------------------------------------"
