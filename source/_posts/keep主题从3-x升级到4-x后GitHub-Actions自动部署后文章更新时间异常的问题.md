@@ -23,20 +23,7 @@ keep主题4.x新增了很多功能配置，在升级的过程中遇到了一些�
 
 #### 两种解决方法
 1. 在博客的`Front-Matter`添加`updated`字段：
-```markdown
----
-title: TDM检索技术讲解
-mathjax: true
-toc: true
-date: 2024-02-27 01:46:38
-updated: 2024-02-27 01:46:38
-categories:
-- 搜广推
-tags:
-- 召回
-- Tree-based Model
----
-```
+![updated](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.64dl9m683h.webp)
 
 2. 使用主题作者提供的Github Action工作流
 ```yaml
