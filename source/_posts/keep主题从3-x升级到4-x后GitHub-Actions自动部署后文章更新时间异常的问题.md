@@ -68,3 +68,5 @@ jobs:
 - [如何解决 GitHub Actions 自动部署后文章更新时间异常的问题](https://keep.xpoet.cn/2023/11/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3-GitHub-Actions-%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%90%8E%E6%96%87%E7%AB%A0%E6%9B%B4%E6%96%B0%E6%97%B6%E9%97%B4%E5%BC%82%E5%B8%B8%E7%9A%84%E9%97%AE%E9%A2%98/)
 - [You must provide the action with either a Personal Access Token or the GitHub Token secret in order to deploy](https://stackoverflow.com/questions/59261555/you-must-provide-the-action-with-either-a-personal-access-token-or-the-github-to)
 - [hexo-deploy-github-pages-action](https://github.com/theme-keep/hexo-deploy-github-pages-action)
+- [文章列表时间展示不对 #248](https://github.com/XPoet/hexo-theme-keep/issues/248)
+- [之前的工作流：deploy.yml](https://gist.github.com/TransformersWsz/1bd68b6c6cc25a1ccf50fc9f12faa1a1)
