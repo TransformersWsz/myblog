@@ -42,7 +42,7 @@ tags:
 ___
 
 ## 参考
-- [阿里妈妈深度树检索技术(TDM) 及应用框架的探索实践](https://mp.weixin.qq.com/s/sw16_sUsyYuzpqqy39RsdQ)
+- [阿里妈妈深度树检索技术(TDM)及应用框架的探索实践](https://mp.weixin.qq.com/s/sw16_sUsyYuzpqqy39RsdQ)
 - [阿里TDM：Tree-based Deep Model](https://zhuanlan.zhihu.com/p/78941783)
 - [阿里妈妈TDM模型详解](https://zhuanlan.zhihu.com/p/93201318)
 - [Paddle TDM 模型实现](https://github.com/PaddlePaddle/PaddleRec/blob/master/models/treebased/README.md)
