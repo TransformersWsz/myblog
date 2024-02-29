@@ -335,7 +335,7 @@ footer:
 # Docs: https://keep-docs.xpoet.cn/basis/configuration-guide/inject.html
 # ---------------------------------------------------------------------------------------
 inject:
-  enable: true  # Option values: true | false
+  enable: false  # Option values: true | false
   css:
     - /css/custom.css
     # e.g.
