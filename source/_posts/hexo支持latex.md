@@ -3,6 +3,7 @@ title: hexo支持latex
 mathjax: true
 toc: true
 date: 2022-03-08 00:12:04
+updated: 2022-03-08 00:12:04
 categories:
 - tools
 tags:
@@ -92,6 +93,7 @@ mathjax: true
 ---
 title: {{ title }}
 date: {{ date }}
+updated: {{ date }}
 categories: 
 tags:
 mathjax: true

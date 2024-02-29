@@ -3,6 +3,7 @@ title: Linux魔法变量
 mathjax: true
 toc: true
 date: 2022-08-07 02:43:09
+updated: 2022-08-07 02:43:09
 categories:
 - OS
 tags:

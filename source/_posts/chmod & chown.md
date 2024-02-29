@@ -2,6 +2,7 @@
 title: chmod & chown
 mathjax: true
 date: 2017-12-20 16:54:56
+updated: 2017-12-20 16:54:56
 categories:
 - OS
 tags:

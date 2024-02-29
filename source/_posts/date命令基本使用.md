@@ -3,6 +3,7 @@ title: date命令基本使用
 mathjax: true
 toc: true
 date: 2022-12-23 00:43:10
+updated: 2022-12-23 00:43:10
 categories:
 - OS
 tags:

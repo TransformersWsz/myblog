@@ -3,6 +3,7 @@ title: BST & AVL & RBT
 mathjax: true
 toc: true
 date: 2021-08-23 02:02:45
+updated: 2021-08-23 02:02:45
 categories: 
 - Data Structure
 tags:

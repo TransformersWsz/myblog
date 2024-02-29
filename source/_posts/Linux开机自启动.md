@@ -2,6 +2,7 @@
 title: Linux开机自启动
 mathjax: true
 date: 2019-07-01 16:23:16
+updated: 2019-07-01 16:23:16
 categories:
 - OS
 tags:

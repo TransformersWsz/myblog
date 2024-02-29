@@ -2,6 +2,7 @@
 title: GCN
 mathjax: true
 date: 2020-05-24 12:32:37
+updated: 2020-05-24 12:32:37
 categories:
 - NLP
 tags:

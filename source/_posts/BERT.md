@@ -2,6 +2,7 @@
 title: BERT
 mathjax: true
 date: 2019-07-28 22:22:15
+updated: 2019-07-28 22:22:15
 categories:
 - NLP
 tags:

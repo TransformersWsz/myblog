@@ -2,6 +2,7 @@
 title: GLM
 mathjax: true
 date: 2019-05-29 21:55:37
+updated: 2019-05-29 21:55:37
 categories: 
 - Machine Learning
 tags:

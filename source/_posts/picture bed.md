@@ -2,6 +2,7 @@
 title: picture bed
 mathjax: true
 date: 2019-09-19 22:03:03
+updated: 2019-09-19 22:03:03
 categories:
 - personal
 tags:

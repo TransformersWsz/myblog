@@ -2,6 +2,7 @@
 title: tmux - 终端复用工具
 mathjax: true
 date: 2019-09-12 16:19:34
+updated: 2019-09-12 16:19:34
 categories:
 - OS
 tags:

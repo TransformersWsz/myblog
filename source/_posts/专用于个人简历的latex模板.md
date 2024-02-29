@@ -3,6 +3,7 @@ title: 专用于个人简历的latex模板
 mathjax: true
 toc: true
 date: 2022-04-29 17:05:33
+updated: 2022-04-29 17:05:33
 categories:
 - tools
 tags:

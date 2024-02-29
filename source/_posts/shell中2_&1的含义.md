@@ -3,6 +3,7 @@ title: shell中2>&1的含义
 mathjax: true
 toc: true
 date: 2021-07-16 00:50:25
+updated: 2021-07-16 00:50:25
 categories:
 - OS
 tags:

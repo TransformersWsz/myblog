@@ -3,6 +3,7 @@ title: Windows Terminal主题配置
 mathjax: true
 toc: true
 date: 2022-03-01 16:29:22
+updated: 2022-03-01 16:29:22
 categories:
 - OS
 tags:

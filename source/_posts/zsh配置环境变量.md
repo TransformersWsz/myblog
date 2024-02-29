@@ -3,6 +3,7 @@ title: zsh配置环境变量
 mathjax: true
 toc: true
 date: 2022-03-10 16:08:36
+updated: 2022-03-10 16:08:36
 categories:
 - OS
 tags:

@@ -3,6 +3,7 @@ title: Relation Classification with Entity Type Restriction
 mathjax: true
 toc: true
 date: 2022-05-10 23:48:24
+updated: 2022-05-10 23:48:24
 categories:
 - NLP
 tags:

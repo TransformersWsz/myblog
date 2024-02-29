@@ -3,6 +3,7 @@ title: 解决wsl2参考的对象类型不支持尝试的操作
 mathjax: true
 toc: true
 date: 2022-09-09 00:52:32
+updated: 2022-09-09 00:52:32
 categories:
 - OS
 tags:

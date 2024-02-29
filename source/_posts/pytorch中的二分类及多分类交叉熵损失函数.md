@@ -2,6 +2,7 @@
 title: PyTorch中的二分类及多分类交叉熵损失函数
 mathjax: true
 date: 2020-12-08 21:55:51
+updated: 2020-12-08 21:55:51
 categories:
 - PyTorch
 tags:

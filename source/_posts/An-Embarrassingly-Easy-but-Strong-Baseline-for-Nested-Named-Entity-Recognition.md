@@ -3,6 +3,7 @@ title: An Embarrassingly Easy but Strong Baseline for Nested Named Entity Recogn
 mathjax: true
 toc: true
 date: 2022-09-20 00:59:35
+updated: 2022-09-20 00:59:35
 categories:
 - NLP
 tags:

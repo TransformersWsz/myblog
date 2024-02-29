@@ -1,6 +1,7 @@
 ---
 title: CNN
 date: 2019-06-02 21:11:54
+updated: 2019-06-02 21:11:54
 mathjax: true
 categories:
 - Machine Learning

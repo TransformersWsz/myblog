@@ -2,6 +2,7 @@
 title: 四种常见的POST提交数据方式
 mathjax: true
 date: 2017-12-15 22:39:53
+updated: 2017-12-15 22:39:53
 categories:
 - Software Engineering
 tags:

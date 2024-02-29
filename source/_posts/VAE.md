@@ -3,6 +3,7 @@ title: VAE
 mathjax: true
 toc: true
 date: 2022-01-12 15:04:04
+updated: 2022-01-12 15:04:04
 categories:
 - Machine Learning
 tags:

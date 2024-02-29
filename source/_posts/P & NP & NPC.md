@@ -1,6 +1,7 @@
 ---
 title: P & NP & NPC
 date: 2019-01-24 12:15:44
+updated: 2019-01-24 12:15:44
 mathjax: true
 categories:
 - Algorithm

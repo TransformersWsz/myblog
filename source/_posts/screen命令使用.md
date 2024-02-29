@@ -3,6 +3,7 @@ title: screen命令使用
 mathjax: true
 toc: true
 date: 2022-07-20 00:38:02
+updated: 2022-07-20 00:38:02
 categories:
 - OS
 tags:

@@ -2,6 +2,7 @@
 title: logistic回归参数求解推导过程
 mathjax: true
 date: 2021-03-23 22:11:58
+updated: 2021-03-23 22:11:58
 categories:
 - Machine Learning
 tags:

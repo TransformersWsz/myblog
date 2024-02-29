@@ -3,6 +3,7 @@ title: git合并多个commit
 mathjax: true
 toc: true
 date: 2022-10-14 01:12:07
+updated: 2022-10-14 01:12:07
 categories:
 - VCS
 tags:

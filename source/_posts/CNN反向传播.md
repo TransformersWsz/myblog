@@ -2,6 +2,7 @@
 title: CNN反向传播
 mathjax: true
 date: 2019-06-03 22:49:21
+updated: 2019-06-03 22:49:21
 categories:
 - Machine Learning
 tags:

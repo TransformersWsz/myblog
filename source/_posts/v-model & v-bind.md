@@ -2,6 +2,7 @@
 title: v-model & v-bind
 mathjax: true
 date: 2018-05-08 22:24:56
+updated: 2018-05-08 22:24:56
 categories:
 - Software Engineering
 tags:

@@ -2,6 +2,7 @@
 title: SVM
 mathjax: true
 date: 2019-06-22 22:01:08
+updated: 2019-06-22 22:01:08
 categories: 
 - Machine Learning
 tags:
