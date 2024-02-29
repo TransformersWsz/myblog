@@ -1,67 +1,23 @@
-# workflow name
-name: Hexo Blog CI
-
-# master branch on push, auto run
-on: 
+name: Hexo Deploy GitHub Pages
+on:
   push:
     branches:
       - main
-      
 jobs:
-  build: 
-    runs-on: ubuntu-latest 
-        
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
     steps:
-    # check it to your workflow can access it
-    # from: https://github.com/actions/checkout
-    - name: Checkout Repository master branch
-      uses: actions/checkout@master 
-      
-    # from: https://github.com/actions/setup-node  
-    - name: Setup Node.js 16.x 
-      uses: actions/setup-node@master
+    - name: Checkout
+      uses: actions/checkout@v3
       with:
-        node-version: "16.14.0"
-    
-    - name: Cache node modules
-      uses: actions/cache@v1
-      id: cache
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-    
-    - name: Setup Hexo Dependencies
-      run: |
-        npm install hexo-cli -g
-        npm install
-    
-    - name: update mathjax
-      run: |
-        cp correct/hexo-renderer-kramed/renderer.js node_modules/hexo-renderer-kramed/lib/
-        cp correct/kramed/inline.js node_modules/kramed/lib/rules/
-        cp correct/hexo-renderer-mathjax/mathjax.html node_modules/hexo-renderer-mathjax
-        cp correct/hexo-tag-echarts/echarts-template.html node_modules/hexo-tag-echarts
-        cp correct/hexo-asset/index.js node_modules/hexo-asset/lib/
+        fetch-depth: 0
 
-    
-    - name: Setup Deploy Private Key
+    - name: Build and Deploy
+      uses: theme-keep/hexo-deploy-github-pages-action@master
       env:
-        HEXO_DEPLOY_PRIVATE_KEY: ${{ secrets.HEXO_DEPLOY_PRI }}
-      run: |
-        mkdir -p ~/.ssh/
-        echo "$HEXO_DEPLOY_PRIVATE_KEY" > ~/.ssh/id_rsa 
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan github.com >> ~/.ssh/known_hosts
-        
-    - name: Setup Git Infomation
-      run: | 
-        git config --global user.name "TransformersWsz"
-        git config --global user.email "3287124026@qq.com"
-    - name: Deploy Hexo 
-      run: |
-        hexo clean
-        hexo generate 
-        hexo deploy
+        # Your GitHub Token
+        PERSONAL_TOKEN: ${{ secrets.picx_image_hosting }}
 
+        # The repository the action should deploy to
+        PUBLISH_REPOSITORY: TransformersWsz/TransformersWsz.github.io
