@@ -34,6 +34,7 @@ base_info:
 # If you want to enable Categories and Tags, you need to create categories and tags pages
 # e.g. `hexo new page categories` or `hexo new page tags`
 menu:
+  Home: /
   Archives: /archives
   Tags: /tags
   Categories: /categories
@@ -89,7 +90,7 @@ social_contact:
 # ---------------------------------------------------------------------------------------
 scroll:
   # Show progress bar in top when page scroll
-  progress_bar: false  # Option values: true | false
+  progress_bar: true  # Option values: true | false
 
   # Show percent when page scroll
   percent: false       # Option values: true | false
@@ -141,7 +142,7 @@ post:
   copyright_info: false  # Option values: true | false
 
   # Post share
-  share: false           # Option values: true | false
+  share: true           # Option values: true | false
 
   # Reward author
   reward:
@@ -177,7 +178,7 @@ toc:
   init_open: true    # Option values: true | false
 
   # TOC layout on post page
-  layout: right      # Option values: left | right
+  layout: left      # Option values: left | right
 
 
 # ---------------------------------------------------------------------------------------
