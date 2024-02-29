@@ -21,3 +21,4 @@ jobs:
 
         # The repository the action should deploy to
         PUBLISH_REPOSITORY: TransformersWsz/TransformersWsz.github.io
+        BRANCH: main
