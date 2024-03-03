@@ -16,7 +16,7 @@ tags:
 
 ![ViT](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.ltb9u1l3.webp)
 
-## pathc -> token
+## patch -> token
 为了将图片处理成序列格式，很自然地想到将图片分割成一个个patch，再把patch处理成token。
 
 ![patch](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.54xi0lkn9a.webp)
@@ -48,7 +48,21 @@ tags:
 
 在相同的数据集JFT-300M上预训练后，ViT在所有的下游任务上，都超过了BiT。值得注意的是，准确率上提升不大，但训练时间大为缩短。
 
-> 可能是基于Transformer架构的VIT，和卷积神经网络相比，更适合做切分均匀的矩阵计算，这样我们就能把参数均匀切到不同卡上做分布式训练，更好利用GPU算力，提升训练效果。
+> 可能是基于Transformer架构的VIT，和卷积神经网络相比，更适合做切分均匀的矩阵计算，这样我们就能把参数均匀切到不同卡上做分布式训练，更好利用GPU算力，提升训练效率。
+
+但transformer架构有个独门绝技，那就是大力出奇迹。数据量越大，模型参数越多，任务效果就越好。下图就是证明：
+
+![exp](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.6f0f6yxsxl.webp)
+
+## ViT学习到空间局部性了吗？
+
+![local](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.45f93hws8.webp)
+
+可以看到，每个patch除了跟自己最相似外，其与周围的patch相关性高于距离较远的patch。这就说明VIT通过位置编码，已经学到了一定的空间局部性。
+
+## 总结
+- ViT证明了Transformer架构在CV领域的可行性，以后Transformer将大一统各领域。NLP的成功经验非常有潜力迁移到CV领域，比如scaling law，大数据+大模型的范式将开拓出CV的新一片天地。
+
 ___
 
 ## 参考
