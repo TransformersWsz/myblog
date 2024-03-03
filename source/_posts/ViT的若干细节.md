@@ -62,6 +62,7 @@ tags:
 
 ## 总结
 - ViT证明了Transformer架构在CV领域的可行性，以后Transformer将大一统各领域。NLP的成功经验非常有潜力迁移到CV领域，比如scaling law，大数据+大模型的范式将开拓出CV的新一片天地。
+  - 大数据+大模型真的是既无脑又有效，通过这种方式让Transformer自己去学习到特定领域的归纳偏置。可以说Transformer下限比CNN低，但上限又是CNN无法企及的。
 
 ___
 
