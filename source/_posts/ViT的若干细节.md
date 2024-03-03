@@ -2,8 +2,8 @@
 title: ViT的若干细节
 mathjax: true
 toc: true
-date: 2024-03-03 16:01:20
-updated: 2024-03-03 16:01:20
+date: 2024-03-03 15:01:20
+updated: 2024-03-03 15:01:20
 categories:
 - Machine Learning
 tags:
@@ -58,7 +58,7 @@ tags:
 
 ![local](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.45f93hws8.webp)
 
-可以看到，每个patch除了跟自己最相似外，其与周围的patch相关性高于距离较远的patch。这就说明VIT通过位置编码，已经学到了一定的空间局部性。
+可以看到，每个patch除了跟自己最相似外，其与周围的patch相关性高于距离较远的patch。这就说明ViT通过位置编码，已经学到了一定的空间局部性。
 
 ## 总结
 - ViT证明了Transformer架构在CV领域的可行性，以后Transformer将大一统各领域。NLP的成功经验非常有潜力迁移到CV领域，比如scaling law，大数据+大模型的范式将开拓出CV的新一片天地。
