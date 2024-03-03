@@ -26,7 +26,7 @@ tags:
 如何将大小为 $16 \times 16 \times 3$ 的patch，映射为 $768$ 维的token？源码是直接将其[reshape](https://github.com/lucidrains/vit-pytorch/blob/5578ac472faf3903d4739ba783f3875b77177e57/vit_pytorch/vit.py#L96)
 
 {% note danger %}
-在reshape之后，还需要过一层$768 \times 768$的embedding层。因为reshape后的$768$维向量是参数无关的，不参与梯度更新，过完embedding层，即拥有了token embedding的语义。
+在reshape之后，还需要过一层$768 \times 768$的embedding层。因为reshape后的$768$维向量是参数无关的，不参与梯度更新，过完embedding层，即拥有了token embedding的语义信息。
 {% endnote %}
 
 #### 处理成patch的好处
@@ -40,8 +40,15 @@ tags:
 ![pos](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.7smyazbtz0.webp)
 
 {% note danger %}
-个人感觉2-d位置编码更make sense，它保留了patch之间的空间位置关系，跟CNN类似。直接粗暴地拉平成一维序列，丢弃了
+个人感觉2-d位置编码更make sense，它保留了patch之间的空间位置关系，跟CNN类似。直接粗暴地拉平成一维序列，则丢弃了这种空间信息。
 {% endnote %}
+
+## 实验结果
+![exp](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.8z69jlfhxt.webp)
+
+在相同的数据集JFT-300M上预训练后，ViT在所有的下游任务上，都超过了BiT。值得注意的是，准确率上提升不大，但训练时间大为缩短。
+
+> 可能是基于Transformer架构的VIT，和卷积神经网络相比，更适合做切分均匀的矩阵计算，这样我们就能把参数均匀切到不同卡上做分布式训练，更好利用GPU算力，提升训练效果。
 ___
 
 ## 参考
