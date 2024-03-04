@@ -69,7 +69,9 @@ $$
 
 ## 最佳实践
 
-[Pytorch实现: VAE](https://adaning.github.io/posts/9047.html) 这篇博客实现了VAE，整体上代码简单易懂。在generation阶段，我们只需从学习到的概率分布中采样，然后送入decoder中解码，即可获得生成的图片。
+- [Pytorch实现: VAE](https://adaning.github.io/posts/9047.html) 这篇博客实现了VAE，整体上代码简单易懂。在generation阶段，我们只需从学习到的概率分布中采样，然后送入decoder中解码，即可获得生成的图片。
+
+- 小小将的VAE实现，可以直接运行：https://github.com/xiaohu2015/nngen/blob/main/models/vae.ipynb
 
 ___
 
