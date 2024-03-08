@@ -15,6 +15,9 @@ YOLO是最经典的一阶目标检测框架，记录一下v1思路。
 <!--more-->
 
 ## 整体流程
+
+![model](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.es98zgnbw.webp)
+
 1. 输入数据一张 $448 \times 448 \times 3$ 的图片，切分成 $7 \times 7$ 的网格
 2. 将图片经过多层CNN，下采样得到 $7 \times 7 \times 30$ 的feature map，其中 $30 = 2 * (4 + 1) + 20$ 
    - $2$ 表示每个单元格预测两个边界框
@@ -25,6 +28,16 @@ YOLO是最经典的一阶目标检测框架，记录一下v1思路。
 总结一下，将图片分割成 $S \times S$ 个单元格，每个单元格预测出 $S \times S \times ( B * 5 + C )$ 大小的张量。对应上述流程：$S = 7, B = 2, C = 20$
 
 #### 损失函数
+
+$$
+\begin{gathered}
+\lambda_{\text {coord }} \sum_{i=0}^{S^2} \sum_{j=0}^B \mathbb{1}_{i j}^{\text {obj }}\left[\left(x_i-\hat{x}_i\right)^2+\left(y_i-\hat{y}_i\right)^2\right] \\
++\lambda_{\text {coord }} \sum_{i=0}^{S^2} \sum_{j=0}^B \mathbb{1}_{i j}^{\text {obj }}\left[\left(\sqrt{w_i}-\sqrt{\hat{w}_i}\right)^2+\left(\sqrt{h_i}-\sqrt{\hat{h}_i}\right)^2\right] \\
++\sum_{i=0}^{S^2} \sum_{j=0}^B \mathbb{1}_{i j}^{\text {obj }}\left(C_i-\hat{C}_i\right)^2 \\
++\lambda_{\text {noobj }} \sum_{i=0}^{S^2} \sum_{j=0}^B \mathbb{1}_{i j}^{\text {noobj }}\left(C_i-\hat{C}_i\right)^2 \\
++\sum_{i=0}^{S^2} \mathbb{1}_i^{\text {obj }} \sum_{c \in \text { classes }}\left(p_i(c)-\hat{p}_i(c)\right)^2
+\end{gathered}
+$$
 
 1. 第一项是边界框中心坐标的误差
 2. 第二项是边界框的高与宽的误差
