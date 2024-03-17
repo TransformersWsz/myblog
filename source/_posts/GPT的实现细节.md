@@ -50,5 +50,6 @@ if token == "<EOS>":
 ___
 
 ## 参考
+- [GPT2LMHeadModel](https://huggingface.co/docs/transformers/model_doc/gpt2#transformers.GPT2LMHeadModel)
 - [mingpt](https://github.com/karpathy/minGPT/blob/master/mingpt/model.py)
 - [GPT2-NewsTitle](https://github.dev/TransformersWsz/GPT2-NewsTitle)
