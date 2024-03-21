@@ -20,7 +20,7 @@
 
 - name: 老猫轩仔
   link: https://www.agedcat.com/
-  avatar: https://www.agedcat.com/wp-content/uploads/2021/03/1616508591-bg-47.jpg
+  avatar: https://picbed.agedcat.com/config/avatar.jpg
   description: "郭尔轩"
 
 - name: 韦阳
@@ -33,9 +33,9 @@
   avatar: https://avatars.githubusercontent.com/u/5747697?v=4
   description: "支付宝工程师"
 
-- name: XPoet
+- name: 指间的诗意
   link: https://xpoet.cn/
-  avatar: https://cdn.jsdelivr.net/gh/XPoet/image-hosting@master/common-use/avatar.jpg
+  avatar: https://xpoet.cn/images/avatar.png
   description: "hexo-theme-keep和PicX的开发者"
 
 - name: Molunerfinn
@@ -70,7 +70,7 @@
 
 - name: 老石谈芯
   link: https://shilicon.com/
-  avatar: https://i2.hdslb.com/bfs/face/b7d1228d4df6bcea8f1b9eb01545bb0b02a2aa65.jpg@240w_240h_1c_1s.jpg
+  avatar: https://i2.hdslb.com/bfs/face/b7d1228d4df6bcea8f1b9eb01545bb0b02a2aa65.jpg@240w_240h_1c_1s_!web-avatar-space-header.avif
   description: "帝国理工博士、芯片工程师"
 
 - name: LZY
