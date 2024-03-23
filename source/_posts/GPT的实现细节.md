@@ -16,27 +16,12 @@ tags:
 <!--more-->
 
 ## 数据集构造
-原始数据集schema：
-```text
-input=who is your favorite basketball player?
-output=Of course Kobe Bryant!
-```
-那么在构造训练集时，根据chunk size构造多个输入：
-```text
-input_1=who is your favorite basketball player? Of
-input_2=who is your favorite basketball player? Of course
-......
-input_n-1=who is your favorite basketball player? Of course Kobe Bryant!
-input_n=who is your favorite basketball player? Of course Kobe Bryant! <EOS>
-```
-由于训练任务是下一个单词预测，所以 $x=input[:-1], y=input[1:]$
 
-## loss
-$x$是模型可见已知的，[需要mask掉](https://github.com/karpathy/minGPT/blob/37baab71b9abea1b76ab957409a1cc2fbfba8a26/demo.ipynb)，[不算入loss](https://github.com/karpathy/minGPT/blob/37baab71b9abea1b76ab957409a1cc2fbfba8a26/mingpt/model.py#L278)：
-```python
-y[:-1] = -1
-loss = F.cross_entropy(logits.view(-1, logits.size(-1)), targets.view(-1), ignore_index=-1)
-```
+根据Transformer Decoder-Only特点，直接将多轮对话拼成一条session样本，过一次前向传播，得到多条回复的loss：
+
+![sample](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.8hg8njrad1.png)
+
+而以往的方法是将多轮对话拆成多条样本，存在大量重复计算问题，效率低下。且该方法对于靠前轮次对话，证明见：[大模型微调样本构造trick](https://zhuanlan.zhihu.com/p/641562439)
 
 ## 生成
 在[karpathy/minGPT](https://github.com/karpathy/minGPT/blob/37baab71b9abea1b76ab957409a1cc2fbfba8a26/mingpt/model.py#L289)项目中，是直接粗暴地生成固定长度的文本。这样做的问题就是生成的文本无法判断何处阶段。
