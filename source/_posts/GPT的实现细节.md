@@ -21,7 +21,7 @@ tags:
 
 ![sample](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.8hg8njrad1.png)
 
-而以往的方法是将多轮对话拆成多条样本，存在大量重复计算问题，效率低下。且该方法对于靠前轮次对话，证明见：[大模型微调样本构造trick](https://zhuanlan.zhihu.com/p/641562439)
+而以往的方法是将多轮对话拆成多条样本，存在大量重复计算问题，效率低下。且该方法对于靠前轮次对话影响权重更大，不符合对话常识，靠后轮次应该权重更大，证明见：[大模型微调样本构造trick](https://zhuanlan.zhihu.com/p/641562439)
 
 ## 生成
 在[karpathy/minGPT](https://github.com/karpathy/minGPT/blob/37baab71b9abea1b76ab957409a1cc2fbfba8a26/mingpt/model.py#L289)项目中，是直接粗暴地生成固定长度的文本。这样做的问题就是生成的文本无法判断何处阶段。
