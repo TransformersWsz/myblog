@@ -38,3 +38,4 @@ ___
 - [GPT2LMHeadModel](https://huggingface.co/docs/transformers/model_doc/gpt2#transformers.GPT2LMHeadModel)
 - [mingpt](https://github.com/karpathy/minGPT/blob/master/mingpt/model.py)
 - [GPT2-NewsTitle](https://github.dev/TransformersWsz/GPT2-NewsTitle)
+- [全栈大模型微调框架LLaMA Factory：从预训练到RLHF的高效实现](https://www.bilibili.com/video/BV1Gt421L7dt/?spm_id_from=333.1007.tianma.23-1-87.click&vd_source=3f2411263f367ccf993c28b58688c0e7)
