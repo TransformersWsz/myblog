@@ -35,7 +35,9 @@ $$
 \boldsymbol{\theta}_{\mathrm{M}}=\boldsymbol{\theta}_{\mathrm{PRE}}+\lambda \cdot \sum_{k=1}^K \hat{\boldsymbol{\delta}}^{t_k}=\boldsymbol{\theta}_{\mathrm{PRE}}+\lambda \cdot \sum_{k=1}^K\left(\boldsymbol{\theta}_{\mathrm{DARE}}^{t_k}-\boldsymbol{\theta}_{\mathrm{PRE}}\right) .
 \end{gathered}
 $$
+
 流程图：
+
 ![procedure](https://img-blog.csdnimg.cn/img_convert/4b6a8cd3486019791587654ec9fd7897.png)
 
 
