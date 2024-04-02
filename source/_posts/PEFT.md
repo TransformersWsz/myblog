@@ -1,5 +1,5 @@
 ---
-title: 大模型微调方法
+title: PEFT
 mathjax: true
 toc: true
 date: 2023-07-18 23:57:18
