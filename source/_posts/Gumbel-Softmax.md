@@ -11,9 +11,18 @@ tags:
 - Softmax
 - 可导
 ---
-Argmax是不可求导的，Gumbel Softmax允许模型能从神经元的离散分布（比如类别分布categorical distribution）中采样的这个过程变得可微，从而允许反向传播时可以用梯度更新模型参数。
+Argmax是不可求导的，Gumbel Softmax允许模型能从网络层的离散分布（比如类别分布categorical distribution）中稀疏采样的这个过程变得可微，从而允许反向传播时可以用梯度更新模型参数。
 
 <!--more-->
+
+## 算法流程
+1. 对于某个网络层输出的 $\mathrm{n}$ 维向量 $v=\left[v_1, v_2, \ldots, v_n\right]$，生成 $\mathrm{n}$ 个服从均匀分布 $\mathrm{U}(0,1)$ 的独立样本 $\epsilon_1, \ldots, \epsilon_n$
+2. 通过 $G_i=-\log \left(-\log \left(\epsilon_i\right)\right)$ 计算得到 $G_i$
+3. 对应相加得到新的值向量 $v^{\prime}=\left[v_1+G_1, v_2+G_2, \ldots, v_n+G_n\right]$
+4. 通过softmax函数计算各个类别的概率大小，其中 $\tau$ 是温度参数：
+$$
+p_\tau\left(v_i^{\prime}\right)=\frac{e^{v_i^{\prime} / r}}{\sum_{j=1}^n e^{v_j^{\prime} / \tau}}
+$$
 
 ## Gumbel-Max Trick
 Gumbel分布是专门用来建模从其他分布（比如高斯分布）采样出来的极值形成的分布，而我们这里“使用argmax挑出概率最大的那个类别索引”就属于取极值的操作，所以它属于Gumbel分布。
@@ -34,8 +43,11 @@ $$
 $$
 p_i^{\prime}=\frac{\exp \left(\frac{g_i+\log p_i}{\tau}\right)}{\sum_j \exp \left(\frac{g_j+\log p_j}{\tau}\right)}
 $$
-$\tau$ 越大，越接近argmax
+$\tau$ 越大，越接近argmax。
+
 ___
 
 ## 参考
+- [CATEGORICAL REPARAMETERIZATION
+WITH GUMBEL-SOFTMAX](https://openreview.net/pdf?id=rkE3y85ee)
 - [通俗易懂地理解Gumbel Softmax](https://zhuanlan.zhihu.com/p/633431594)
