@@ -27,7 +27,14 @@ $$
 z=\operatorname{argmax}_i\left(\log \left(p_i\right)+g_i\right) \\
 g_i=-\log \left(-\log \left(u_i\right)\right), u_i \sim U(0,1)
 $$
-上式使用了重参数技巧把采样过程分成了确定性的部分和随机性的部分，我们会计算所有类别的log分布概率（确定性的部分），然后加上一些噪音（随机性的部分），上面的例子中，噪音是标准高斯分布，而这里噪音是标准gumbel分布。在我们把采样过程的确定性部分和随机性部分结合起来之后，我们在此基础上再用一个argmax来找到具有最大概率的类别
+上式使用了重参数技巧把采样过程分成了确定性的部分和随机性的部分，我们会计算所有类别的log分布概率（确定性的部分），然后加上一些噪音（随机性的部分），这里噪音是标准gumbel分布。在我们把采样过程的确定性部分和随机性部分结合起来之后，我们在此基础上再用一个argmax来找到具有最大概率的类别。
+
+## Softmax
+使用softmax替换不可导的argmax，用温度系数 $\tau$ 来近似argmax：
+$$
+p_i^{\prime}=\frac{\exp \left(\frac{g_i+\log p_i}{\tau}\right)}{\sum_j \exp \left(\frac{g_j+\log p_j}{\tau}\right)}
+$$
+$\tau$ 越大，越接近argmax
 ___
 
 ## 参考
