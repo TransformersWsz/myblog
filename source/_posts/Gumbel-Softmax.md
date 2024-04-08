@@ -48,6 +48,5 @@ $\tau$ 越大，越接近argmax。
 ___
 
 ## 参考
-- [CATEGORICAL REPARAMETERIZATION
-WITH GUMBEL-SOFTMAX](https://openreview.net/pdf?id=rkE3y85ee)
+- [CATEGORICAL REPARAMETERIZATION WITH GUMBEL-SOFTMAX](https://openreview.net/pdf?id=rkE3y85ee)
 - [通俗易懂地理解Gumbel Softmax](https://zhuanlan.zhihu.com/p/633431594)
