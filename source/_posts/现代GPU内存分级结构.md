@@ -44,6 +44,8 @@ c[n] = a[n] + b[n];
 
 虽然局部内存在用法上类似于寄存器，但从硬件来看，局部内存只是全局内存的一部分。所以，局部内存的延迟也很高。每个线程最多能使用高达512KB的局部内存，但使用过多会降低程序的性能。
 
+#### 总结
+
 ![detail](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.b8p2wws76.webp)
 
 ___
