@@ -14,5 +14,10 @@ tags:
 - k_proj
 - v_proj
 ---
+llama模型结构如下：
+
+<!--more-->
+
+![llama](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.2krpqrv609.png)
 
 https://blog.csdn.net/BIT_666/article/details/132161203
