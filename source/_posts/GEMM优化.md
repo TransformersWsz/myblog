@@ -161,3 +161,5 @@ ___
 
 ## 参考
 - [从啥也不会到Cuda GEMM优化](https://mp.weixin.qq.com/s/YLrsu1KAhzG8gFQ2L-TaMA)
+- [传统 CUDA GEMM 不完全指北](https://zhuanlan.zhihu.com/p/584236348)
+- [CUDA 矩阵乘法终极优化指南](https://zhuanlan.zhihu.com/p/410278370)
