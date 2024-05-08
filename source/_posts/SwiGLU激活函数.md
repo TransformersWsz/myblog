@@ -9,6 +9,9 @@ categories:
 tags:
 - LLM
 - 激活函数
+- GELU
+- Swish
+- GLU
 ---
 SwiGLU激活函数已经成为LLM的标配了。它是GLU的变体，公式如下：
 $$
