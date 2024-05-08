@@ -39,8 +39,8 @@ F.silu(self.w1(x)) * self.w2(x)
 
 在 [GLU Variants Improve Transformer](https://arxiv.org/pdf/2002.05202) 论文中，作者比较了各种GLU变体的激活函数，SwiGLU在各项任务上表现出众。但作者并未给出解释原因，只能说后验是这样，那就选它呗，所以成了LLM的标配。
 
-## 各激活函数示图
-
+## 各激活函数示意图
+![act](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.8kzwfgcqya.png)
 ___
 
 ## 参考
