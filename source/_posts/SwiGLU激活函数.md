@@ -11,7 +11,11 @@ tags:
 - 激活函数
 ---
 SwiGLU激活函数已经成为LLM的标配了。它是GLU的变体，公式如下：
+$$
+\operatorname{SwiGLU}(x, W, V, b, c, \beta)=\operatorname{Swish}_\beta(x W+b) \otimes(x V+c)
+$$
 
+<!--more-->
 ___
 
 ## 参考
