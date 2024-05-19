@@ -45,7 +45,7 @@ NVML的定义完全不符合我们日常开发中的“利用率”理解。它�
 
 > 资源具有无法服务的额外工作的程度
 
-我们可以用 `dcgm-exporter` 来收集GPU的饱和度信息：
+我们可以用 `dcgm-exporter` 来收集GPU的饱和度信息，这里引用[Tim在路上](https://mp.weixin.qq.com/s/4_An51JuRGWTU0dLgZYHpQ)的图片：
 
 ![gpu-util](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.4g4bj2yxql.webp)
 
