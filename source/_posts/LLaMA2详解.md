@@ -73,3 +73,4 @@ ___
 - [大部分的大模型(LLM)采用左填充(left-padding)的原因](https://zhuanlan.zhihu.com/p/646852375)
 - [从头预训练一只超迷你 LLaMA 3](https://mp.weixin.qq.com/s/Yf_NU3pgedLHl8dWAaMRfQ)
 - [LLM padding 细节](https://zhuanlan.zhihu.com/p/675273498)
+- [LLM - Transformer && LLaMA2 结构分析与 LoRA 详解](https://blog.csdn.net/BIT_666/article/details/132161203)
