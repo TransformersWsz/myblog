@@ -2,14 +2,62 @@
 title: LLaMA2详解
 mathjax: true
 toc: true
-date: 2024-05-23 02:19:35
-updated: 2024-05-23 02:19:35
+date: 2024-06-02 02:19:35
+updated: 2024-06-02 02:19:35
 categories:
 - NLP
 tags:
 - LLM
 - LLaMA
 ---
+
+## RoPE
+这个不多谈了，见：[旋转位置编码](https://transformerswsz.github.io/2023/09/04/%E6%97%8B%E8%BD%AC%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81/)
+
+## RMSNorm
+标准Transformer的LayerNorm如下：
+$$
+y=\frac{x-\operatorname{Mean}(x)}{\sqrt{\operatorname{Var}(x)+\varepsilon}} * W+B
+$$
+
+llama2采用了RMSNorm：
+$$
+y=\frac{x}{R M S(x)+\varepsilon}, RMS(x) = \sqrt{\frac{1}{n} \sum_{1}^n {x_i}^2}
+$$
+
+[实现源码](https://github.com/meta-llama/llama/blob/b8348da38fde8644ef00a56596efb376f86838d1/llama/model.py#L52)：
+```python
+def _norm(self, x):
+    """
+    Apply the RMSNorm normalization to the input tensor.
+
+    Args:
+        x (torch.Tensor): The input tensor.
+
+    Returns:
+        torch.Tensor: The normalized tensor.
+
+    """
+    return x * torch.rsqrt(x.pow(2).mean(-1, keepdim=True) + self.eps)
+```
+
+RMSNorm能保证激活效果变化，且计算效率能提升7%∼64%
+
+## SwiGLU
+这个不多谈了，见：[SwiGLU激活函数](https://transformerswsz.github.io/2024/05/09/SwiGLU%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/)
+
+## MLP
+![MLP](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.7lju1gc3hj.webp)
+
+[up、gate、down都是三个linear层](https://github.com/meta-llama/llama/blob/b8348da38fde8644ef00a56596efb376f86838d1/llama/model.py#L307)：`down(up * silu(gate))`
+
+```python
+def forward(self, x):
+    return self.w2(F.silu(self.w1(x)) * self.w3(x))
+```
+
+## GQA
+这个不多谈了，见：[Multi Query Attention & Group Query Attention](https://transformerswsz.github.io/2023/09/13/Multi-Query-Attention-Group-Query-Attention/)
 
 ## padding_side
 llama系列训练和推理都是right padding：
