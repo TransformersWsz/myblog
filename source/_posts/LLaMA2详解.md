@@ -15,6 +15,8 @@ LLaMA2的模型结构拆解：
 
 <!--more-->
 
+![llama](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.2krpqrv609.png)
+
 ## RoPE
 这个不多谈了，见：[旋转位置编码](https://transformerswsz.github.io/2023/09/04/%E6%97%8B%E8%BD%AC%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81/)
 
