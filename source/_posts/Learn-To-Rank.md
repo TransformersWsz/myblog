@@ -27,8 +27,13 @@ tags:
 |优点|准确性高|无须人工干预，成本低|
 |缺点|代价高且耗时|用户行为日志存在大量偏差，比如：<li>位置偏差：用户倾向于点击列表靠前的item</li><li>样本选择偏差：有用户点击的query知识总体query的一个子集，无法获取全部的query下doc的label</li>|
 
+## 评价指标
+这里主要介绍[NDCG](https://chatgpt.com/share/613f6af0-fdc1-4435-81e0-8c3a3b763779)
 
-https://xdren69.github.io/2021/04/26/learning-to-rank/
+## 三大rank算法
+#### pointwise
+#### pairwise
+#### listwise
 
 
 
