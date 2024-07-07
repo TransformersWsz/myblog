@@ -62,7 +62,10 @@ Listwise方法是直接对整个list的document的排序进行优化，目标损
 - 缺点
   - 计算复杂度高
 
-#### 经典模型ListNet
+#### 经典模型ListMLE
+直接以真实标签顺序为目标，最大化预测结果排序与目标一致的概率即可。
+![ListMLE](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.7egnk999fg.png)
+
 ___
 
 ## 参考
