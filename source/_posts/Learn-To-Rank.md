@@ -54,11 +54,18 @@ pairwise方法在计算目标损失函数的时候，每一次需要基于一个
 ![RankNet](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.8ojkqhz95u.png)
 
 ### listwise
+Listwise方法是直接对整个list的document的排序进行优化，目标损失函数中优化整个list的document的排序结果。其中模型输入和对应的标签label形式如下：
+- 输入: 整个list document
+- 输出: 排序好的document list
 
+- 优点：直接建模list内的所有文档序关系，与评估目标一致
+- 缺点
+  - 计算复杂度高
 
-
+#### 经典模型ListNet
 ___
 
 ## 参考
 - [Learning to Rank简介](https://www.cnblogs.com/bentuwuying/p/6681943.html)
 - [learning to rank中的Listwise，Pairwise和Pointwise](https://xdren69.github.io/2021/04/26/learning-to-rank/)
+- 
