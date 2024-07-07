@@ -40,6 +40,18 @@ pointwise方法损失函数计算只与单个document有关，本质上是训练
   - 损失函数也没有建模到预测排序中的位置信息
 
 ### pairwise
+pairwise方法在计算目标损失函数的时候，每一次需要基于一个pair的document的预测结果进行损失函数的计算。其中模型输入和对应的标签label形式如下：
+- 输入：一个文档对(docA, docB)
+- 输出：相对序(1 or 0.5 or 0)
+
+- 优点：实现简单；建模了两个文档相对序关系
+- 缺点
+  - 样本对量级高，$O(n^2)$
+  - 对错误标注数据敏感，会造成多个pair对错误
+  - 仅考虑了文档对pair的相对位置，仍然没有建模到预测排序中的位置信息
+
+#### 经典模型RankNet
+![RankNet](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.8ojkqhz95u.png)
 
 ### listwise
 
