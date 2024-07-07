@@ -11,9 +11,17 @@ tags:
 - Neural Networks
 ---
 
-在信息检索中，给定一个query，搜索引擎会召回一系列相关的Documents（通过term匹配，keyword匹配，或者semantic匹配的方法），然后便需要对这些召回的Documents进行排序，最后将Top N的Documents输出。而排序问题就是使用一个模型 f(q,d)来对该query下的documents进行排序，这个模型可以是人工设定一些参数的模型，也可以是用机器学习算法自动训练出来的模型。现在第二种方法越来越流行，尤其在Web Search领域，因为在Web Search 中，有很多信息可以用来确定query-doc pair的相关性，而另一方面，由于大量的搜索日志的存在，可以将用户的点击行为日志作为training data，使得通过机器学习自动得到排序模型成为可能。
+在信息检索中，给定一个query，搜索引擎召回一系列相关的Documents，然后对这些Documents进行排序，最后将Top N的Documents输出。
 
-需要注意的是，排序问题最关注的是各个Documents之间的相对顺序关系，而不是各个Documents的预测分最准确。
+{% note danger %}
+排序问题最关注的是各Documents之间的相对顺序关系，而不是各个Documents的预测分最准确。
+{% endnote %}
+
+## 训练数据
+- 人工标注：比较准确，但代价高且耗时
+- 搜索日志：根据用户的实际搜索和点击行为，来判断query-doc的相关性。比如同一个query下，不同doc的点击数来作为它们相关程度的大小
+  - 
+
 
 https://xdren69.github.io/2021/04/26/learning-to-rank/
 
