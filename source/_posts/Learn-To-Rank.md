@@ -36,3 +36,4 @@ ___
 
 ## 参考
 - [Learning to Rank简介](https://www.cnblogs.com/bentuwuying/p/6681943.html)
+- [learning to rank中的Listwise，Pairwise和Pointwise](https://xdren69.github.io/2021/04/26/learning-to-rank/)
