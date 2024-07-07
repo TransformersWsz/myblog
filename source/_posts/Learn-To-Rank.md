@@ -13,6 +13,8 @@ tags:
 
 在信息检索中，给定一个query，搜索引擎召回一系列相关的Documents，然后对这些Documents进行排序，最后将Top N的Documents输出。
 
+<!--more-->
+
 {% note danger %}
 排序问题最关注的是各Documents之间的相对顺序关系，而不是各个Documents的预测分最准确。
 {% endnote %}
