@@ -83,7 +83,7 @@
   avatar: https://wulc.me/files/profile.jpg
   description: "字节广告算法工程师"
 
-- name: Lil
+- name: Lilian Weng
   link: https://lilianweng.github.io/
   avatar: https://pbs.twimg.com/profile_images/1052456981838086150/JcK3h5I1_400x400.jpg
   description: "OpenAI工程师"
@@ -103,7 +103,12 @@
   avatar: https://avatars.githubusercontent.com/u/13911814?v=4
   description: "百度广告算法专家"
 
-- name: BlueFishManCN
+- name: 苏剑林
   link: https://spaces.ac.cn/
   avatar: https://spaces.ac.cn/usr/themes/geekg/images/avatar.png
-  description: "苏剑林"
+  description: "苏神"
+
+- name: 梦里风林
+  link: https://blog.cweihang.io/
+  avatar: https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.3d4p4h2dub.png
+  description: "华南理工本硕、大疆CV算法工程师"
