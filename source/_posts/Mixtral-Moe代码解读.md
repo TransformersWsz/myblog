@@ -1,9 +1,9 @@
 ---
-title: Mixtral Moe代码解读
+title: Mixtral MoE代码解读
 mathjax: true
 toc: true
-date: 2024-01-11 02:42:13
-updated: 2024-01-11 02:42:13
+date: 2024-08-06 02:42:13
+updated: 2024-08-06 02:42:13
 categories:
 - NLP
 tags:
