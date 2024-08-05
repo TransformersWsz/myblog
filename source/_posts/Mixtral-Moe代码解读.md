@@ -46,15 +46,12 @@ for expert_idx in range(self.num_experts):
     idx, top_x = torch.where(expert_mask[expert_idx])
     
     """
-    这样取到expert_mask[expert_idx]，从上面的注释可以知道维度是
-    [topk, bs * sl]；torch.where的结果，第一个结果代表选到了哪一行，第二个代表选择了哪一列
-    
-    对应到实际意义，top_x表示取的列，也就是取哪些token
-    而行表示，取到的这些token，根据路由gate计算，当前expert是排行第几；
-    所以这里变量名字可能有点混淆，
+    这样取到expert_mask[expert_idx]，从上面的注释可以知道维度是[topk, bs * sl]
+    torch.where的结果，第一个结果代表选到了哪一行，第二个代表选择了哪一列。对应到实际意义，top_x表示取的列，也就是取哪些token
+    而行表示，取到的这些token，根据路由gate计算，当前expert是排行第几
     """
     
-    # 没有token需要当前的expert计算
+    # 即当前expert没有被任何一个token选中，运气是真差
     if top_x.shape[0] == 0:
         continue
     
@@ -62,12 +59,13 @@ for expert_idx in range(self.num_experts):
     top_x_list = top_x.tolist()
     idx_list = idx.tolist()
 
-    # 前面hidden states已经转成了 [bs * sl, hs]，根据top_x 可以找到需要计算的token，这些token依旧是有序的
+    # 前面hidden states已经转成了 [bs * sl, hs]，根据top_x可以找到需要计算的token，这些token依旧是有序的
+    # hidden_states[None, top_x_list]的shape是(1, top_x_list.size(), hidden_dim)
     current_state = hidden_states[None, top_x_list].reshape(-1, hidden_dim)
     
-    # 找到这个expert对应的权重 乘进去
+    # 找到这个expert对应的权重乘进去
     # 上面计算的权重是routing_weights，维度是bs * sl, topk
-    # 根据top_x_list 对应的token，idx_list表示topk中第几个
+    # 根据top_x_list对应的token，idx_list表示topk中第几个
     # 可以直接取到相应的权重
     current_hidden_states = expert_layer(current_state) * routing_weights[top_x_list, idx_list, None]
 
