@@ -10,7 +10,7 @@ tags:
 - U-Net
 - CNN
 ---
-U-Net是医疗领域进行语义分割的利器，随着AIGC的爆火，U-Net已成为Diffusion Model的backbone，有必须详细记录下。
+U-Net是医疗领域进行语义分割的利器，随着AIGC的爆火，U-Net已成为Diffusion Model的backbone，有必要详细记录下。
 
 <!--more-->
 
