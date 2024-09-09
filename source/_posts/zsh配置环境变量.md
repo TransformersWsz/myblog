@@ -16,7 +16,7 @@ MacOS现在默认的shell为zsh了，这里以配置node环境变量为例：
 
 1. 打开 `~/.zshrc`
 2. 输入如下内容：
-```shell
+```bash
 NODE_ENV=~/opt/node/bin
 export PATH=$NODE_ENV:$PATH
 ```

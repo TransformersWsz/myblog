@@ -193,7 +193,7 @@ int main(int argc, char **argv)
 ```
 
 编译 `sum_martix.cu` 文件并执行程序：
-```shell
+```bash
 nvcc -o sum_matrix sum_martix.cu && ./sum_matrix 
 ```
 ___

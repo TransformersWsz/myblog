@@ -10,6 +10,6 @@ tags:
 - Markdown
 - ipynb
 ---
-```shell
+```bash
 jupyter nbconvert --to markdown pd.ipynb
 ```

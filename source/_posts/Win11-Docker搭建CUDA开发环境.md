@@ -26,7 +26,7 @@ tags:
 
 目前想在docker容器里调用windows gpu，已经不再需要安装镜像nvidia-docker了。新版docker已经支持透传gpu，直接在参数里添加 `--gpus all` 即可：
 
-```shell
+```bash
 docker run -it --gpus all --name gpu_test -e NVIDIA_DRIVER_CAPABILITIES=compute,utility -e NVIDIA_VISIBLE_DEVICES=all mortals/codeenv:conda-cuda11.8
 ```
 
