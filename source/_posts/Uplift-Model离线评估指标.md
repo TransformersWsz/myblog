@@ -25,4 +25,7 @@ $$
 
 具体计算步骤如下：
 1. 模型对样本集预测，然后将样本按照预测得到的uplift value进行降序排序
-2. 取topK个样本，计算得到$f(k)$。以$k$为横轴，$f(k)$为纵轴，画出Uplift Curve
+2. 取topK个样本，计算得到 $f(k)$ 。以 $k$ 为横轴，$f(k)$ 为纵轴，画出Uplift Curve
+   - $Y_k^T$ 表示topK个样本中， treatment组有转化的样本数，$Y_k^C$同理
+   - $Y_k^T$ 表示topK个样本中， treatment组有转化的样本数，$Y_k^C$同理
+3. Uplift Curve下的面积即是AUUC
