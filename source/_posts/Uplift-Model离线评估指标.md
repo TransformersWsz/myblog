@@ -32,44 +32,67 @@ $$
 
 #### 代码实践
 ```python
-import numpy as np
-import pandas as pd
+def uplift_curve(y_true, uplift, treatment):
+    """Compute Uplift curve.
 
-# 示例数据
-data = {
-    'user_id': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    'treatment': [1, 1, 1, 0, 0, 1, 0, 1, 0, 1],
-    'response': [1, 0, 1, 1, 0, 1, 1, 0, 0, 0],
-    'uplift_score': [1.5, 0.45, 0.43, 0.38, 0.36, 0.31, 0.29, 0.28, 0.20, 0.11]
-}
+    For computing the area under the Uplift Curve, see :func:`.uplift_auc_score`.
 
-df = pd.DataFrame(data)
+    Args:
+        y_true (1d array-like): Correct (true) binary target values.
+        uplift (1d array-like): Predicted uplift, as returned by a model.
+        treatment (1d array-like): Treatment labels.
 
-# 按照 uplift 预测分数降序排序
-df = df.sort_values(by='uplift_score', ascending=False)
+    Returns:
+        array (shape = [>2]), array (shape = [>2]): Points on a curve.
 
-# 初始化累计收益曲线数据
-cumulative_treat = 0
-cumulative_control = 0
-treatment_count = np.sum(df['treatment'] == 1)
-control_count = np.sum(df['treatment'] == 0)
-uplift_curve = []
+    See also:
+        :func:`.uplift_auc_score`: Compute normalized Area Under the Uplift curve from prediction scores.
 
-# 计算累积收益
-for index, row in df.iterrows():
-    if row['treatment'] == 1:
-        cumulative_treat += row['response']
-    else:
-        cumulative_control += row['response']
+        :func:`.perfect_uplift_curve`: Compute the perfect Uplift curve.
 
-    uplift = (cumulative_treat / treatment_count) - (cumulative_control / control_count)
-    uplift_curve.append(uplift)
+        :func:`.plot_uplift_curve`: Plot Uplift curves from predictions.
 
-# 计算 AUUC (曲线下面积)
-auuc = np.trapz(uplift_curve, dx=1 / len(uplift_curve))
+        :func:`.qini_curve`: Compute Qini curve.
 
-# 打印 AUUC 值
-print(f"AUUC: {auuc}")
+    References:
+        Devriendt, F., Guns, T., & Verbeke, W. (2020). Learning to rank for uplift modeling. ArXiv, abs/2002.05897.
+    """
+
+    check_consistent_length(y_true, uplift, treatment)
+    check_is_binary(treatment)
+    check_is_binary(y_true)
+
+    y_true, uplift, treatment = np.array(y_true), np.array(uplift), np.array(treatment)
+
+    desc_score_indices = np.argsort(uplift, kind="mergesort")[::-1]
+    y_true, uplift, treatment = y_true[desc_score_indices], uplift[desc_score_indices], treatment[desc_score_indices]
+
+    y_true_ctrl, y_true_trmnt = y_true.copy(), y_true.copy()
+
+    y_true_ctrl[treatment == 1] = 0
+    y_true_trmnt[treatment == 0] = 0
+
+    distinct_value_indices = np.where(np.diff(uplift))[0]
+    threshold_indices = np.r_[distinct_value_indices, uplift.size - 1]
+
+    num_trmnt = stable_cumsum(treatment)[threshold_indices]
+    y_trmnt = stable_cumsum(y_true_trmnt)[threshold_indices]
+
+    num_all = threshold_indices + 1
+
+    num_ctrl = num_all - num_trmnt
+    y_ctrl = stable_cumsum(y_true_ctrl)[threshold_indices]
+
+    curve_values = (np.divide(y_trmnt, num_trmnt, out=np.zeros_like(y_trmnt), where=num_trmnt != 0) -
+                    np.divide(y_ctrl, num_ctrl, out=np.zeros_like(y_ctrl), where=num_ctrl != 0)) * num_all
+
+    if num_all.size == 0 or curve_values[0] != 0 or num_all[0] != 0:
+        # Add an extra threshold position if necessary
+        # to make sure that the curve starts at (0, 0)
+        num_all = np.r_[0, num_all]
+        curve_values = np.r_[0, curve_values]
+
+    return num_all, curve_values
 ```
 
 
@@ -154,3 +177,9 @@ def qini_curve(y_true, uplift, treatment):
 
     return num_all, curve_values
 ```
+
+___
+
+## 参考
+- [排序评估：AUUC、Qini coefficient](https://zhuanlan.zhihu.com/p/627342229)
+- [Source code for sklift.metrics.metrics](https://www.uplift-modeling.com/en/latest/_modules/sklift/metrics/metrics.html#qini_auc_score)
