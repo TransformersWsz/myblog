@@ -59,3 +59,4 @@ ___
 ## 参考
 
 - [AUC 和 gauc ks](https://zhuanlan.zhihu.com/p/88708071)
+- [如何理解机器学习和统计中的AUC？ - 无涯的回答](https://www.zhihu.com/question/39840928/answer/241440370)
