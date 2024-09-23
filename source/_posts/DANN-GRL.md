@@ -28,7 +28,9 @@ tags:
   - 这两个网络对抗训练，DANN通过GRL层使特征提取器更新的梯度与域判别器的梯度相反，构造出了类似于GAN的对抗损失，又通过该层避免了GAN的两阶段训练过程，提升模型训练稳定性
 
 ## GRL
-GRL是作用在特征提取器上的，对其参数梯度取反，具体实现如下：
+GRL是作用在特征提取器上的，对其参数梯度取反。
+
+具体实现如下：
 ```python
 class ReverseLayerF(Function):
 
@@ -45,7 +47,21 @@ class ReverseLayerF(Function):
         return output, None
 ```
 
+调用如下：
+```python
+def forward(self, input_data, alpha):
+    input_data = input_data.expand(input_data.data.shape[0], 3, 28, 28)
+    feature = self.feature(input_data)
+    feature = feature.view(-1, 50 * 4 * 4)
+    reverse_feature = ReverseLayerF.apply(feature, alpha)
+    class_output = self.class_classifier(feature)
+    domain_output = self.domain_classifier(reverse_feature)
+
+    return class_output, domain_output
+```
+
 ___
 
 ## 参考
 - [【深度域自适应】一、DANN与梯度反转层（GRL）详解](https://zhuanlan.zhihu.com/p/109051269)
+- [zengjichuan/DANN](https://github.com/zengjichuan/DANN)
