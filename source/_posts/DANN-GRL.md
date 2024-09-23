@@ -28,7 +28,23 @@ tags:
   - 这两个网络对抗训练，DANN通过GRL层使特征提取器更新的梯度与域判别器的梯度相反，构造出了类似于GAN的对抗损失，又通过该层避免了GAN的两阶段训练过程，提升模型训练稳定性
 
 ## GRL
-GRL是作用在特征提取器上的，
+GRL是作用在特征提取器上的，对其参数梯度取反，具体实现如下：
+```python
+class ReverseLayerF(Function):
+
+    @staticmethod
+    def forward(ctx, x, alpha):
+        ctx.alpha = alpha
+
+        return x.view_as(x)
+
+    @staticmethod
+    def backward(ctx, grad_output):
+        output = grad_output.neg() * ctx.alpha
+
+        return output, None
+```
+
 ___
 
 ## 参考
