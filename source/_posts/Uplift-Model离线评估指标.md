@@ -5,7 +5,7 @@ toc: true
 date: 2024-09-16 16:28:35
 updated: 2024-09-16 16:28:35
 categories:
-- 营销
+- Marketing
 tags:
 - AUUC
 - Uplift Curve
