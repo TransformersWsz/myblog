@@ -24,7 +24,7 @@ $$
 
 ___
 ## Deep Q-Learning
-
+Deep Q-Learning将Q-Table的更新问题变成一个函数拟合问题，相近的状态得到相近的输出动作。
 
 ___
 
