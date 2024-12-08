@@ -48,6 +48,9 @@ DQN算法最终更新的目标是让$Q_\theta(s,a)$逼近$r+\gamma \max _{a^{\pr
 
 1. 原来的训练网络$Q_\theta(s,a)$，用于计算原来的损失函数中的项$\frac{1}{2}\left[Q_\theta(s, a)-\left(r+\gamma \max _{a^{\prime}} Q_{\theta^{-}}\left(s^{\prime}, a^{\prime}\right)\right)\right]^2$中的$Q_\theta(s,a)$，并且使用正常梯度下降方法来进行更新。
 2. 目标网络$Q_{\theta^{-}}\left(s^{\prime}, a^{\prime}\right)$，用于计算原先损失函数中的$(r+\gamma \max _{a^{\prime}} Q_{\theta^{-}}\left(s^{\prime}, a^{\prime}\right))$项，其中$\theta^{-}$表示目标网络中的参数。如果两套网络的参数随时保持一致，则仍为原先不够稳定的算法。为了让更新目标更稳定，目标网络并不会每一步都更新。具体而言，目标网络使用训练网络的一套较旧的参数，训练网络$Q_\theta(s,a)$在训练中的每一步都会更新，而目标网络的参数每隔$C$步才会与训练网络同步一次，即$\theta^{-} \leftarrow \theta$。这样做使得目标网络相对于训练网络更加稳定。
+
+#### 代码实践
+具体的交互环境搭建和DQN代码见：[5_Deep_Q_Network](https://github.com/MorvanZhou/Reinforcement-learning-with-tensorflow/blob/master/contents/5_Deep_Q_Network/RL_brain.py)
 ___
 
 ## 参考
