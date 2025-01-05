@@ -29,5 +29,14 @@ $$
     N_{neg\_down} &= N_{neg} * w \\
     p &= \frac{N_{neg\_down}}{N_{neg\_down} + N_{pos}} \\
     q &= \frac{N_{neg}}{N_{neg}+N_{pos}} \\
+    \frac{\frac{1}{p}-1}{w} &= \frac{1}{q} - 1 \\
+    q &= \frac{p}{p + \frac{1-p}{w}}
 \end{aligned}
 $$
+
+___
+
+## 参考
+- [Practical Lessons from Predicting Clicks on Ads at
+Facebook](https://quinonero.net/Publications/predicting-clicks-facebook.pdf)
+- [CTR模型中的频率矫正过程](https://blog.csdn.net/zc02051126/article/details/54379244?spm=1001.2014.3001.5506)
