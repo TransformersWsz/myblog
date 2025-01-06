@@ -27,7 +27,7 @@ tags:
 $$
 \begin{aligned}
     N_{neg\_down} &= N_{neg} * w \\
-    p &= \frac{N_{neg\_down}}{N_{neg\_down} + N_{pos}} \\
+    p &= \frac{N_{neg{\_}{down}}}{N_{neg\_down} + N_{pos}} \\
     q &= \frac{N_{neg}}{N_{neg}+N_{pos}} \\
     \frac{\frac{1}{p}-1}{w} &= \frac{1}{q} - 1 \\
     q &= \frac{p}{p + \frac{1-p}{w}}
