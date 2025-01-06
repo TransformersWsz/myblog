@@ -19,7 +19,7 @@ tags:
 
 - $N_{pos}$ 为线上正样本个数
 - $N_{neg}$ 为线上负样本个数
-- $N_{neg\_down}$ 为降采样后的负样本个数
+- $N_{neg{\_}{down}}$ 为降采样后的负样本个数
 - $w$ 为降采样概率
 - $q$ 为线上CTR
 - $p$ 为模型预估CTR
@@ -37,6 +37,5 @@ $$
 ___
 
 ## 参考
-- [Practical Lessons from Predicting Clicks on Ads at
-Facebook](https://quinonero.net/Publications/predicting-clicks-facebook.pdf)
+- [Practical Lessons from Predicting Clicks on Ads at Facebook](https://quinonero.net/Publications/predicting-clicks-facebook.pdf)
 - [CTR模型中的频率矫正过程](https://blog.csdn.net/zc02051126/article/details/54379244?spm=1001.2014.3001.5506)
