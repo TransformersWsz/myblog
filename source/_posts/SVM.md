@@ -281,7 +281,7 @@ $$
 $$
 J(\theta) = \min_{\theta} C [ \sum_{i=1}^m y^{(i)} cost_1(\theta^T x^{(i)}) + (1 - y^{(i)})cost_0(\theta^T x^{(i)}) ] + \frac {1} {2} \sum_{j=1}^n \theta_j^2 \quad C 为惩罚因子
 $$
-上述函数分析具体可见 https://github.com/TransformersWsz/Halfrost-Field/blob/master/contents/Machine_Learning/Support_Vector_Machines.ipynb
+上述函数分析具体可见：[Support_Vector_Machines.ipynb](https://github.com/TransformersWsz/Halfrost-Field/blob/master/contents/Machine_Learning/Support_Vector_Machines.ipynb)
 
 ___
 
