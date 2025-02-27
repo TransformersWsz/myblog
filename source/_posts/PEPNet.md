@@ -76,3 +76,5 @@ $$
 ___
 
 ## 参考
+- [千人千模 | PEPNet: 2023快手多任务多场景建模](https://zhuanlan.zhihu.com/p/611532716)
+- [PEPNet](https://dl.acm.org/doi/pdf/10.1145/3580305.3599884)
