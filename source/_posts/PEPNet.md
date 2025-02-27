@@ -15,3 +15,9 @@ tags:
 
 ## 背景动机
 
+![Adapter](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.5xarunoecl.webp)
+
+用户在多场景、多任务下的行为存在共性和差异性，如何用联合建模来捕捉这些特性又避免跷跷板效应成为一大难点。
+
+
+## 模型结构
