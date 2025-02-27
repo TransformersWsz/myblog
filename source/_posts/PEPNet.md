@@ -8,6 +8,7 @@ categories:
 - 搜广推
 tags:
 - Multi-Task
+- Multi-Domain
 ---
 鉴于PEPNet已经是多场景、多任务建模的baseline，这里有必要详细讲解一下。
 
