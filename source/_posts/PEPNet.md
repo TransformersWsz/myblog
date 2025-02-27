@@ -35,3 +35,16 @@ $$
 \mathbf{x}^{\prime} = Relu(xW+b) \\
 \boldsymbol{\delta}=\gamma * \operatorname{Sigmoid}\left(\mathbf{x}^{\prime} \mathbf{W}^{\prime}+\boldsymbol{b}^{\prime}\right), \boldsymbol{\delta} \in[0, \gamma]
 $$
+
+#### Embedding Personalized Network(EPNet)
+
+在特征embedding层，显示注入场景的先验信息，从而强化场景个性化特征（可以理解为与该场景相关的特征筛选）：
+$$
+E = E\left(\mathcal{F}_S\right) \oplus E\left(\mathcal{F}_D\right) \\
+\delta_{\text {domain }}=\mho_{e p}\left(E\left(\mathcal{F}_d\right) \oplus(\oslash(\mathbf{E}))\right) \\
+\mathrm{O}_{e p}=\delta_{\text {domain }} \otimes \mathrm{E}
+$$
+
+场景侧特征包括场景id、user和item在该场景下的统计量信息，比如曝光、点击等。
+
+#### Parameter Personalized Network
