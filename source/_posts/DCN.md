@@ -16,7 +16,7 @@ DCN是DeepFM的升级版，后者是只能做二阶交叉特征，随着阶数�
 ## 模型结构
 整体网络结构跟DeepFM类似：
 
-![example](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.9kgbmcdyez.webp)
+![model](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.9kgbmcdyez.webp)
 
 特征交叉细节：
 
