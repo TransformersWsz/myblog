@@ -34,3 +34,21 @@ $$
 作者根据训练集中标签出现的频次来构造标签序列：高频标签置前，低频标签置后。同时在序列头尾插入 `bos` 和 `eos` 表示序列的开始与结束。
 
 #### 问题2的解法
+引入Global Embedding考虑所有可能label的信息，避免贪心依赖上一个label：
+$$
+\overline{\boldsymbol{e}}=\sum_{i=1}^L y_{t-1}^{(i)} \boldsymbol{e}_i \\
+g\left(\boldsymbol{y}_{t-1}\right)=(\mathbf{1}-\boldsymbol{H}) \odot \boldsymbol{e}+\boldsymbol{H} \odot \overline{\boldsymbol{e}} \\
+\boldsymbol{H}=\boldsymbol{W}_1 \boldsymbol{e}+\boldsymbol{W}_2 \overline{\boldsymbol{e}}
+$$
+
+$y_{t-1}$是在$t-1$时间步预测的标签概率分布，$e_i$是$l_i$的embedding。本质上就是根据概率分布对所有可能标签做加权求和。$H$则是门控机制，控制加权embedding的比例。
+
+## 实验结果
+
+![exp](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.2yyi43ptta.webp)
+
+加上GE效果更加明显！
+
+___
+
+## 参考
