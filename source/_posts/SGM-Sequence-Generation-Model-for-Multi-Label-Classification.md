@@ -14,6 +14,13 @@ tags:
 
 <!--more-->
 
+用序列生成来建模标签依赖是一种非常make sense的思路，但存在如下两大问题：
+
+1. 序列建模强调标签的先后顺序，即位置关系，而多标签是一个集合，不存在位置约束，哪个标签在前在后没有关系，只要输出正确就行。这种情况下，ground truth该如何构造？
+2. 序列生成是自回归形式，当前label的生成依赖于上一个label，如果上一个label是错误的，那么将会严重影响后续所有label的预测。这种情况下，该减轻预测错误的label所导致的连锁反应？
+
+SGM针对上述问题提出了如下建模思路：
+
 ## 模型结构
 
 经典的序列生成范式：
@@ -22,3 +29,4 @@ p(\boldsymbol{y} \mid \boldsymbol{x})=\prod_{i=1}^n p\left(y_i \mid y_1, y_2, \c
 $$
 
 ![model](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.1e8r4ljlun.webp)
+
