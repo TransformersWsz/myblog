@@ -16,4 +16,9 @@ tags:
 
 ## 模型结构
 
+经典的序列生成范式：
+$$
+p(\boldsymbol{y} \mid \boldsymbol{x})=\prod_{i=1}^n p\left(y_i \mid y_1, y_2, \cdots, y_{i-1}, \boldsymbol{x}\right)
+$$
+
 ![model](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.1e8r4ljlun.webp)
