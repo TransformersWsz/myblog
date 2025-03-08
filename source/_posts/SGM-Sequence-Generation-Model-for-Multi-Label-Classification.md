@@ -52,3 +52,5 @@ $y_{t-1}$是在$t-1$时间步预测的标签概率分布，$e_i$是$l_i$的embed
 ___
 
 ## 参考
+- [多标签文本分类-如何有效的利用标签之间的关系](https://zhuanlan.zhihu.com/p/377543518?utm_psn=1879874767093494719)
+- [多标签分类新建模方法](https://transformerswsz.github.io/2024/03/18/%E5%A4%9A%E6%A0%87%E7%AD%BE%E5%88%86%E7%B1%BB%E6%96%B0%E5%BB%BA%E6%A8%A1%E6%96%B9%E6%B3%95/)
