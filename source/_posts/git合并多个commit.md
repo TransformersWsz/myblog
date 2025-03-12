@@ -13,7 +13,7 @@ tags:
 
 <!--more-->
 
-我们想把提交历史 `A->B->C->D` 合并成 `A->B->C+D`：
+我们想把提交历史 `A->B->C->D` 合并成 `A->B->C&D`：
 
 
 ![his](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.491ffzcfhf.webp)
