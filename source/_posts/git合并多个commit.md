@@ -22,7 +22,7 @@ tags:
 
 ![rebase](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.5tr6fhzx45.webp)
 
-2. `pick` 表示选择这条commit，`squash` 表示将该commit合并去上一个commit，这里我们选择`pick C, squash D`
+2. `pick` 表示选择这条commit，`squash` 表示将该commit合并到上一个commit，这里我们选择`pick C, squash D`
 3. 编辑完上述信息后，退出保存会弹出如下界面。这是因为两个commit合并后会生成一个新的commit，所以要填写message：
 
 ![update](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.45u3xei2e.webp)
