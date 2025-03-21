@@ -27,7 +27,7 @@ pip install tensorboard
 1. 指定tensorboard输出日志：`writer = SummaryWriter(log_dir=LOG_DIR)`
 2. 将模型和数据集添加到writer中：`writer.add_graph(model, images.to(device))`
 3. 记录过程数据指标：`writer.add_scalar('Test Loss', avg_loss, epoch)`
-4. 当模型开始训练后，启动tensorboard：`tensorboard --logdir=runs`。打开链接就能看到模型过程指标了：http://localhost:6006/ 
+4. 当模型开始训练后，启动tensorboard：`tensorboard --logdir=runs`。打开链接就能看到模型过程指标了：[http://localhost:6006/](http://localhost:6006/)
 
 ## 代码示例
 
