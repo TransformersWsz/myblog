@@ -25,8 +25,7 @@ tags:
 
 
 ## COBRA介绍
-**稀疏ID可以唯一表示item，有很好的区分性，但丧失了对item的细粒度信息刻画。纯文本可以准确可以item属性，但构造成prompt太长，套入到LLM
-中会导致资源消耗过大**。那么如何结合两者的优点呢？
+**稀疏ID可以唯一表示item，有很好的区分性，但丧失了对item的细粒度信息刻画。纯文本可以准确可以item属性，但构造成prompt太长，套入到LLM中会导致资源消耗过大**。那么如何结合两者的优点呢？
 
 
 COBRA首先根据codebook生成item的稀疏ID，**该ID可以理解为item的大类别。既不过于精细，像unique id，又不过于宽泛**。然后将ID序列输入到Transformer Decoder中预测稠密向量。
@@ -46,4 +45,23 @@ ID预测就是经典的多分类任务，dense vector就是经典的对比学习
 
 #### 在线推理
 
-稀疏ID生成：
+1. 稀疏ID生成：decoder根据beam search生成top $M$个ID，每个ID有其得分
+![id gen](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.64e12ncrd7.webp)
+
+2. 稠密向量生成：根据每个稀疏ID继续生成dense vector，然后检索出同一个ID下的跟vector相似的top $N$个候选item
+![vector gen](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.9dd4zb21qb.webp)
+
+3. 最终召回候选集生成：为了兼顾多样性（即不同ID）以及准确性（即同一ID下的候选item），联合打分取top $K$个item召回
+![recall](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.45uxxdi6n.webp)
+
+#### 在离线实验结果
+
+![offline](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.51ebrrvbkk.webp)
+
+在公共数据集上，离线指标提升很明显。在A/B实验上，转化率和收入也在咔咔涨，就不细说了。
+
+___
+
+## 参考
+- [Sparse Meets Dense: Unified Generative Recommendations with Cascaded Sparse-Dense Representations](https://arxiv.org/pdf/2503.02453)
+- [一篇论文，看见百度广告推荐系统在大模型时代的革新](https://mp.weixin.qq.com/s/32AWMSGdwlA5W7rWQG-Plw)
