@@ -3,7 +3,7 @@ title: IPW逆概率加权
 mathjax: true
 toc: true
 date: 2025-04-08 01:23:11
-updated: 2025-04-08 01:23:11
+updated: 2025-04-21 11:23:11
 categories:
 - Marketing
 tags:
@@ -38,6 +38,8 @@ $$
 \tau &= \mu_1 - \mu_0
 \end{aligned}
 $$
+
+> 备注：纠偏效果严重依赖于IPW预估的准确性，需根据业务场景谨慎评估。
 
 ___
 
