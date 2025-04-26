@@ -145,7 +145,7 @@ ___
 
 以下是两者的核心对比：
 
-![diff](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.4cl365j28h.webp)
+![diff](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.64e2128tb1.webp)
 
 
 ### 举例说明
