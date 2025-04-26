@@ -156,7 +156,6 @@ ___
 | 梯度更新           | 沿策略梯度 $\nabla_\theta \log \pi_\theta(a\|s)$ 方向 | 最小化Q值的TD误差 $(Q_{\text{target}} - Q)^2$ |
 | 高方差问题         | 严重（需大量采样或Actor-Critic改进）        | 较低（但需目标网络稳定训练）             |
 
----
 
 ### 举例说明
 **场景：CartPole（平衡杆问题）**
