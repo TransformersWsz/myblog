@@ -17,7 +17,7 @@ tags:
 ## Q-Learning
 Q-learning算法以表格的方式存储了每个状态下所有动作值的表格。表格中的每一个动作价值表示在状态下选择动作然后继续遵循某一策略预期能够得到的期望回报。Q值的更新公式如下：
 $$
-Q(S, A) \leftarrow Q(S, A)+\alpha\left[R+\gamma \max _a Q\left(S^{\prime}, a\right)-Q(S, A)\right]
+Q(S, A) \leftarrow Q(S, A)+\alpha\left[R+\gamma \max _a Q\left(S^{\prime}, a^{\prime}\right)-Q(S, A)\right]
 $$
 
 然而，这种用表格存储动作价值的做法只在环境的状态和动作都是离散的，并且空间都比较小的情况下适用。当动作或状态数量巨大时，Q-Learning已捉襟见肘。
