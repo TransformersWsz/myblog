@@ -120,8 +120,10 @@ w_k = \begin{cases}
 $$
 最终Linear CRF的参数化形式简化如下：
 $$
-P_w(y|x) = \frac {e^{\sum_{k=1}^K w_k f_k(y_{i-1}, y_i, x, i)}} {\sum_y e^{\sum_{k=1}^K w_k f_k(y_{i-1}, y_i, x, i)}} \quad y 表示一条输出序列，如上例的(1, 2, 2)
+P_w(y|x) = \frac {e^{\sum_{k=1}^K w_k f_k(y_{i-1}, y_i, x, i)}} {\sum_y e^{\sum_{k=1}^K w_k f_k(y_{i-1}, y_i, x, i)}}
 $$
+
+其中，$y$ 表示一条输出序列，如上例的(1, 2, 2)
 
 ___
 
