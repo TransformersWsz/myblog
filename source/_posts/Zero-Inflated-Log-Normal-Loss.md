@@ -23,7 +23,9 @@ tags:
 
 ___
 
-LTV建模如下两个任务：
+LTV建模如下两个任务：用户是否付费、付多少费，分别对应上述两个问题。
 
 $$
+pred_ltv(x) = pay_prob(x) \times pay_amount(x)
 $$
+
