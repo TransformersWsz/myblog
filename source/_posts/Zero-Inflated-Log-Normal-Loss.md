@@ -32,5 +32,10 @@ $$
 问题1是个二分类任务，问题2则是个回归任务：
 
 $$
-L_{\text {ZILN }}(x ; p, \mu, \sigma)=L_{\text {CrossEntropy }}\left(\mathbb{1}_{\{x>0\}} ; p\right)+\mathbb{1}_{\{x>0\}} L_{\text {Lognormal }}(x ; \mu, \sigma)
+\begin{aligned}
+    L_{\text {ZILN }}(x ; p, \mu, \sigma) &= L_{\text {CrossEntropy }}\left(\mathbb{1}_{\{x>0\}} ; p\right)+\mathbb{1}_{\{x>0\}} L_{\text {Lognormal }}(x ; \mu, \sigma) \\
+    L_{\text {Lognormal }}(x ; \mu, \sigma) &= \log (x \sigma \sqrt{2 \pi})+\frac{(\log x-\mu)^2}{2 \sigma^2}
+\end{aligned}
+
 $$
+
