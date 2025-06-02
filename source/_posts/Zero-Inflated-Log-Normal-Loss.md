@@ -26,7 +26,11 @@ ___
 LTV建模如下两个任务：用户是否付费、付多少费，分别对应上述两个问题。
 
 $$
-pred_ltv(x) = pay_prob(x) \times pay_amount(x)
+pred_ltv(x) = pay_{prob}(x) \times pay_{amount}(x)
 $$
 
-问题1是个二分类任务，问题2则是个回归任务。
+问题1是个二分类任务，问题2则是个回归任务：
+
+$$
+L_{\text {ZILN }}(x ; p, \mu, \sigma)=L_{\text {CrossEntropy }}\left(\mathbb{1}_{\{x>0\}} ; p\right)+\mathbb{1}_{\{x>0\}} L_{\text {Lognormal }}(x ; \mu, \sigma)
+$$
