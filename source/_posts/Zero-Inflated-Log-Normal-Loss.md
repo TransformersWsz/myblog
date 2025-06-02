@@ -39,3 +39,7 @@ $$
 
 $$
 
+具体到模型建模，就是学习$p$、$mu$、$sigma$：
+
+![model](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.2ks5s2w4g9.webp)
+
