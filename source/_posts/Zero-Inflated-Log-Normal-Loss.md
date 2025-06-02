@@ -26,7 +26,7 @@ ___
 LTV建模如下两个任务：用户是否付费、付多少费，分别对应上述两个问题。
 
 $$
-pred_ltv(x) = pay_{prob}(x) \times pay_{amount}(x)
+pred\_ltv(x) = pay\_prob(x) \times pay\_amount(x)
 $$
 
 问题1是个二分类任务，问题2则是个回归任务：
