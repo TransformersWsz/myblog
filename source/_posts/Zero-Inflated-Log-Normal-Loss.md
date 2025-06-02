@@ -29,3 +29,4 @@ $$
 pred_ltv(x) = pay_prob(x) \times pay_amount(x)
 $$
 
+问题1是个二分类任务，问题2则是个回归任务。
