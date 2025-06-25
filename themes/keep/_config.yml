@@ -147,7 +147,7 @@ post:
   # Reward author
   reward:
     enable: true        # Option values: true | false
-    img_link: https://github.com/TransformersWsz/picx-images-hosting/raw/master/paycode.2rvekes3v8.webp    # Image link for the payment QR code
+    img_link: https://github.com/TransformersWsz/picx-images-hosting/raw/master/code2.8hgqw057u4.webp    # Image link for the payment QR code
     text: 请作者喝杯奶茶🧋                # Custom reward text, Can be null
 
 
