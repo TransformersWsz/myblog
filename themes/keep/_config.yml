@@ -34,12 +34,12 @@ base_info:
 # If you want to enable Categories and Tags, you need to create categories and tags pages
 # e.g. `hexo new page categories` or `hexo new page tags`
 menu:
-  Home: /
-  Archives: /archives
-  Tags: /tags
-  Categories: /categories
-  Links: /links
-  About: /about
+  Home: / || fa-solid fa-home 
+  Archives: /archives || fa-solid fa-box-archive
+  Tags: /tags || fa-solid fa-tags
+  Categories: /categories || fa-solid fa-layer-group
+  Links: /links || fa-solid fa-link 
+  About: /about || fa-solid fa-user-graduate 
   # Changelog: /changelog
   # Photos: /photos
   # ......
