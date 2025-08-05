@@ -15,13 +15,13 @@ tags:
 
 <!--more-->
 
-## 1. 研究背景
+## 研究背景
 - **核心问题**：MoE（混合专家）模型在CTR预估中，专家网络（Expert）的多样性对效果的影响
 - **关键发现**：专家间差异性（不相关度）与模型AUC正相关  
   
 
-## 2. 方法论（Hetero-MoE）
-### 2.1 整体架构
+## 方法论（Hetero-MoE）
+#### 整体架构
 
 ![model](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.7zqqtylbd2.webp)
 
@@ -29,14 +29,14 @@ tags:
 - **个性化Gate**：基于对应Expert的Embedding生成权重  
   
 
-### 2.2 差异性增强手段
+#### 差异性增强手段
 | 维度         | 实现方式                          | 技术细节                                                                 |
 |--------------|----------------------------------|--------------------------------------------------------------------------|
 | **Embedding** | 每个Expert独立Embedding表        | 避免参数共享导致的表征同质化                                              |
 | **结构异构**  | 混合CrossNet/CIN/DNN等不同结构    | 不同结构捕获多样特征交互模式                                              |
 | **正则化**    | 皮尔逊相关系数损失                | $L_corr = ∑(Pearson(E_i, E_j))$，$E_i$为Expert i的输出向量                 |
 
-## 3. 实验效果
+## 实验效果
 - **基准对比**：Hetero-MoE vs 传统MoE  
   | 模型          | AUC提升 | 参数量  |
   |---------------|---------|--------|
@@ -48,7 +48,7 @@ tags:
   - 仅Embedding独立：+0.9% AUC  
   - 全方案：+1.8% AUC
 
-## 4. 关键公式
+## 关键公式
 专家相关性损失（最小化皮尔逊系数）：
 $$
 \mathcal{L}_{corr} = \sum_{i \neq j} \left| \frac{\text{Cov}(E_i, E_j)}{\sigma_{E_i} \sigma_{E_j}} \right|
