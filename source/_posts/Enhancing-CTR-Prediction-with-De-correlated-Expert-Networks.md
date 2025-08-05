@@ -22,6 +22,9 @@ tags:
 
 ## 2. 方法论（Hetero-MoE）
 ### 2.1 整体架构
+
+![model](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.7zqqtylbd2.webp)
+
 - **异构专家**：每个Expert使用独立Embedding + 不同网络结构（CrossNet/CIN/DNN等）
 - **个性化Gate**：基于对应Expert的Embedding生成权重  
   
@@ -51,12 +54,10 @@ $$
 \mathcal{L}_{corr} = \sum_{i \neq j} \left| \frac{\text{Cov}(E_i, E_j)}{\sigma_{E_i} \sigma_{E_j}} \right|
 $$
 
-## 5. 实践建议
-1. **小规模实验**：先测试2-3种异构结构（如DNN+CrossNet）
-2. **计算权衡**：独立Embedding会增加显存占用，需平衡效果与资源
-3. **正则化强度**：λ建议从0.01开始网格搜索
 
 ---
 
+## 参考
+
 - [Enhancing CTR Prediction with De-correlated Expert Networks](https://arxiv.org/pdf/2505.17925)
-- 
+- [中科大&腾讯：通过提升各个专家网络差异性提升基于MoE的CTR预估效果](https://mp.weixin.qq.com/s/JcvMQ5xJYLsCCWNqrv-ZiQ)
