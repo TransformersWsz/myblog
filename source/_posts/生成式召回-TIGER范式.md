@@ -13,7 +13,7 @@ tags:
 - RQ-VAE
 ---
 
-TIGER（Transformer Index for GEnerative Recommenders）是生成式召回的经典力作，其核心思想就是语义ID+Seq2Seq，这一范式启发了后续大量生成式推荐工作。
+TIGER（Transformer Index for Generative Recommenders）是生成式召回的经典力作，其核心思想就是语义ID+Seq2Seq，这一范式启发了后续大量生成式推荐工作。
 
 <!--more-->
 
