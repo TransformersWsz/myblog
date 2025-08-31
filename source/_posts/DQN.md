@@ -24,14 +24,14 @@ $$
 - $A$：当前动作
 - $R$：即时奖励
 - $S'$：下一状态
-- $\gamma$：折扣因子（$ 0 \leq \gamma \leq 1 $），控制未来奖励的重要性
+- $\gamma$：折扣因子（$0 \leq \gamma \leq 1$），控制未来奖励的重要性
 
 
 然而，这种用表格存储动作价值的做法只在环境的状态和动作都是离散的，并且空间都比较小的情况下适用。当动作或状态数量巨大时，Q-Learning已捉襟见肘。
 
-___
+
 ## Deep Q-Learning
-Deep Q-Learning将Q-Table的更新问题变成一个函数拟合问题，相近的状态得到相近的输出动作。但DL与RL结合会存在如下四个问题：
+Deep Q-Learning将Q-Table的更新问题变成一个函数拟合问题，即`q=dnn(s,a)`，相近的状态得到相近的输出动作。但DL与RL结合会存在如下四个问题：
 1. DL需要大量带标签的样本进行监督学习，但RL只有reward返回值
    - 解决方案：使用reward构造标签
 2. DL的样本独立，但RL前后state状态相关
@@ -58,6 +58,7 @@ DQN算法最终更新的目标是让$Q_\theta(s,a)$逼近$r+\gamma \max _{a^{\pr
 
 #### 代码实践
 具体的交互环境搭建和DQN代码见：[5_Deep_Q_Network](https://github.com/MorvanZhou/Reinforcement-learning-with-tensorflow/blob/master/contents/5_Deep_Q_Network/RL_brain.py)
+
 ___
 
 ## 参考
