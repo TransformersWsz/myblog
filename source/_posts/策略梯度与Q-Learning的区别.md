@@ -22,7 +22,7 @@ PG和Q-Learning都是RL的两大主流算法，记录下两者差异。
 ### 核心思想
 1. 策略参数化：用神经网络或其他函数近似策略 $\pi_\theta(a|s)$，输入状态s，输出动作a的概率分布（或连续动作的均值/方差）
 2. 目标函数：最大化期望回报 $J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta} [R(\tau)]$，其中$\tau$是轨迹（状态-动作序列），$R(\tau)$是轨迹的总奖励
-3. 梯度上升：计算目标函数对策略参数\theta的梯度 $\nabla_\theta J(\theta)$，并沿梯度方向更新参数：
+3. 梯度上升：计算目标函数对策略参数$\theta$的梯度 $\nabla_\theta J(\theta)$，并沿梯度方向更新参数：
 $$
 \theta \leftarrow \theta + \alpha \nabla_\theta J(\theta)
 $$
