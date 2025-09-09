@@ -59,7 +59,7 @@ def train():
             if np.random.uniform(0, 1) < EPSILON:
                 action = np.random.randint(NUM_ACTIONS)  # 随机探索
             else:
-                action = np.argmax(q_table[state])  # 选择当前Q值最大的动作
+                action = np.argmax(q_table[state])  # 选择当前Q值最大的动作，从而计算出当前的奖励
 
             # 执行动作，得到新状态和奖励
             next_state, reward, done = take_action(state, action)
