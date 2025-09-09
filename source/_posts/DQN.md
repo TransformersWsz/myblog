@@ -29,6 +29,93 @@ $$
 - TD target - $Q(S,A)$：时序差分误差
    - TD target = $R+\gamma \max _a Q\left(S^{\prime}, A^{\prime}\right)$：这是一个更接近“真实”长期得分的估值
 
+伪代码如下：
+```python
+import numpy as np
+import time
+
+# 定义环境参数
+GRID_SIZE = 4  # 网格世界大小 (4x12)
+NUM_ACTIONS = 4  # 动作数量: 0:上, 1:右, 2:下, 3:左
+
+# 定义Q-Learning参数
+ALPHA = 0.1    # 学习率
+GAMMA = 0.99   # 折扣因子
+EPSILON = 0.1  # 探索概率 (10%的概率随机探索)
+EPISODES = 500 # 训练轮数
+
+# 初始化Q表，形状为 (状态数量, 动作数量)
+q_table = np.zeros((GRID_SIZE * 12, NUM_ACTIONS))
+
+# 训练函数
+def train():
+    for episode in range(EPISODES):
+        state = 36  # 起始状态 (左下角 S)
+        total_reward = 0
+        done = False
+
+        while not done:
+            # ε-greedy策略: 大部分时间选择最优动作，小部分时间随机探索
+            if np.random.uniform(0, 1) < EPSILON:
+                action = np.random.randint(NUM_ACTIONS)  # 随机探索
+            else:
+                action = np.argmax(q_table[state])  # 选择当前Q值最大的动作
+
+            # 执行动作，得到新状态和奖励
+            next_state, reward, done = take_action(state, action)
+            
+            # Q-Learning更新公式
+            old_value = q_table[state, action]
+            next_max = np.max(q_table[next_state])
+            
+            new_value = old_value + ALPHA * (reward + GAMMA * next_max - old_value)
+            q_table[state, action] = new_value
+
+            state = next_state
+            total_reward += reward
+
+        # 每50轮打印一次进度
+        if episode % 50 == 0:
+            print(f"Episode: {episode}, Total Reward: {total_reward}")
+
+# 环境交互函数
+def take_action(state, action):
+    row, col = state // 12, state % 12
+    
+    # 定义动作效果
+    if action == 0:    row -= 1  # 上
+    elif action == 1:  col += 1  # 右
+    elif action == 2:  row += 1  # 下
+    elif action == 3:  col -= 1  # 左
+
+    # 确保不走出边界
+    row = max(0, min(row, GRID_SIZE - 1))
+    col = max(0, min(col, 11))
+    
+    new_state = row * 12 + col
+    reward = -1  # 每走一步的代价
+    
+    # 检查是否到达终点或掉下悬崖
+    if new_state == 47:  # 终点(G)
+        reward = 100
+        done = True
+    elif 37 <= new_state <= 46:  # 悬崖区域
+        reward = -100
+        new_state = 36  # 回到起点
+        done = False
+    else:
+        done = False
+        
+    return new_state, reward, done
+
+# 运行训练
+train()
+
+# 查看学习结果
+print("Training completed!")
+print("Final Q-table:")
+print(q_table)
+```
 
 然而，这种用表格存储动作价值的做法只在环境的状态和动作都是离散的，并且空间都比较小的情况下适用。当动作或状态数量巨大时，Q-Learning已捉襟见肘。
 
