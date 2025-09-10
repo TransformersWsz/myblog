@@ -13,8 +13,16 @@ tags:
 **ε-greedy（Epsilon-Greedy）** 是强化学习中最重要、最基础的概念之一，它完美地解决了**探索（Exploration）** 与**利用（Exploitation）** 之间的权衡问题。
 
 <!--more-->
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
  
-ε-greedy策略的流程如下：
+该行为策略的流程如下：
 ```mermaid
 flowchart TD
     Start[开始] --> Input[生成一个随机数<br>0<=rand<=1]
