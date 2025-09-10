@@ -290,7 +290,7 @@ lazyload:
 # Docs: https://keep-docs.xpoet.cn/basis/configuration-guide/cdn.html
 # ---------------------------------------------------------------------------------------
 cdn:
-  enable: false       # Option values: true | false
+  enable: true       # Option values: true | false
   provider: cdnjs     # Option values: cdnjs | jsdelivr | unpkg
 
 

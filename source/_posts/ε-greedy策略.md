@@ -14,13 +14,6 @@ tags:
 
 <!--more-->
 
-```mermaid
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
-```
  
 该行为策略的流程如下：
 ```mermaid
