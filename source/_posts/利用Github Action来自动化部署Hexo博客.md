@@ -14,8 +14,8 @@ tags:
 
 <!--more-->
 
-## 新建仓库
-- 存放博客源文章的仓库（Source Repo），命名随意
+## 新建两个仓库
+- 存放博客源文章的仓库（Source Repo），命名随意，即本地源码push的目标仓库
 - 存放编译后生成的静态文件的仓库（Page Repo），命名 `username.github.io`
 
 ## 配置部署密钥
