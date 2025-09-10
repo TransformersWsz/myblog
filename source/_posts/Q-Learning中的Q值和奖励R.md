@@ -2,8 +2,8 @@
 title: Q-Learning中的Q值和奖励R
 mathjax: true
 toc: true
-date: 2025-09-01 01:12:01
-updated: 2025-09-01 01:12:01
+date: 2025-09-04 01:12:01
+updated: 2025-09-04 01:12:01
 categories:
 - Reinforcement Learning
 tags:
