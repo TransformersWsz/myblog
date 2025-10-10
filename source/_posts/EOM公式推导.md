@@ -13,9 +13,10 @@ tags:
 
 <!--more-->
 
-记录下EOM的公式推导
+在这里记录下EOM的公式推导。
 
-![EOM](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.64e8ncku8n.webp)
+
+![EOM](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.1ovti3dugm.webp)
 
 这个推导依赖于**概率论中的两个核心概念**：
 
