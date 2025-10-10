@@ -80,6 +80,10 @@ $$
 \end{aligned}
 $$
 
-___
 
 在营销场景的在线运筹中，$h(X) = t$ 表示运筹出一张券面额，如果实发面额$T$也等于$t$，那么$z=\frac{Y}{p_t}$，这样即可模拟出在线业务收益。$p_t$是该treatment的样本分布占比，$\frac{1}{p_t}$表示IPW，从而避免样本不均的影响。
+
+___
+
+## 参考
+- [Uplift Modeling with Multiple Treatments and General Response Types](https://epubs.siam.org/doi/pdf/10.1137/1.9781611974973.66)
