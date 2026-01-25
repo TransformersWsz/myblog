@@ -82,7 +82,6 @@ $$
 > 🔥 **结论**：这个小模型的 MFU 极低！  
 > 原因：A100 的算力极其强大（312 TFLOPS），而小型 MLP 的计算量太小，无法“喂饱”GPU。
 
-✅ **启示**：要提升 MFU，必须使用**更大模型**或**更大 batch size**，以提高计算密度。
 
 ___
 ## 3. 如何提高 MFU？
@@ -91,6 +90,7 @@ ___
 
 | 优化方向 | 具体方法 |
 |--------|--------|
+| **增加模型参数** | 提高模型单位时间内的计算量 |
 | **增大 Batch Size** | 提高计算密度，摊薄通信与 kernel 启动开销 |
 | **高效并行策略** | 结合 Tensor Parallelism、Pipeline Parallelism、ZeRO 等 |
 | **Kernel 优化** | 使用 fused kernels、FlashAttention、cuBLASLt 等 |
