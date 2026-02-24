@@ -8,7 +8,7 @@ categories:
 - Algorithm
 tags:
 - Diffusion
-- PyTorch
+- Bidding
 ---
 
 这是阿里巴巴在广告自动出价的一篇工作，用扩散模型颠覆了传统深度rl出价的范式，取得了线上线下的巨大收益。
@@ -41,8 +41,11 @@ $$
 $$P(s_{t+1}|s_t,a_t,s_{t-1},a_{t-1},...) = P(s_{t+1}|s_t,a_t)$$
 
 **但论文的统计分析发现**：随着历史序列长度增加，与下一状态的相关系数显著上升。
-![correlation](https://i-blog.csdnimg.cn/direct/5ce99551c5064e8d974434c80dccdb20.png)
+
+![correlation](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.9rjxqqfgz6.webp)
+
 这说明**历史信息**对预测未来状态很重要，但MDP假设丢弃了这些信息。
+
 
 针对DRL的缺陷，AIGB直接建模总收益与整个状态轨迹的关联性：
 
@@ -65,7 +68,9 @@ $$P(s_{t+1}|s_t,a_t,s_{t-1},a_{t-1},...) = P(s_{t+1}|s_t,a_t)$$
 | **决策方式** | 逐步决策（online） | 全局规划后执行(Planning&Control) |
 
 ### 3.2 整体框架
-![model](https://i-blog.csdnimg.cn/direct/cc59e6024fd449feb3011ffdeba4d8c5.png)
+
+![model](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.2vfa6jytaj.webp)
+
 1. **Planning生成整条轨迹**：用扩散模型生成整个未来状态轨迹
 2. **Control生成出价动作**：用逆动力学模型反推出当前动作，逼近规划轨迹
 
@@ -119,7 +124,7 @@ $$
 
 ### 4.5 线上推理流程
 
-![inference](https://i-blog.csdnimg.cn/direct/307306bd407f437c9b007d096d9ac911.png)
+![inference](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.60us5huy4x.webp)
 
 - 每次时间步$t$**重新生成整个未来轨迹**，即$t-1$生成的$x_0(\tau)$与$t$生成的$x_0(\tau)$无关
 - 根据历史状态和预测下一状态，用idm来生成出价动作
@@ -128,7 +133,7 @@ $$
 
 ## 五、实验结果
 
-![experiment](https://i-blog.csdnimg.cn/direct/35ca08da172741bcb9f88157c5e225c2.png)
+![experiment](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.8l0mi4wchh.webp)
 DiffBid在各数据集上都取得了sota，并大幅领先所有baseline。
 
 
@@ -140,6 +145,6 @@ DiffBid在各数据集上都取得了sota，并大幅领先所有baseline。
 - 历史状态和预测状态影响出价动作：$\hat{\boldsymbol{a}}_t = f_{\phi}(s_{t-L:t}, s_{t+1}')$
 
 2. diffusion需要多步去噪，线上RT高如何解决？
-![online](https://i-blog.csdnimg.cn/direct/cf0f9e06dca04cf3ad7212694e79d0f5.png)
+![online](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.3rbrm0ep1e.webp)
 
 论文里也提到了这个问题，推理耗时与去噪步数成正比。对于文生图模型，为确保图片质量，步数会非常大，但对于出价问题，较小的步数已经能保证较好的实验效果，且自动出价对实时性要求不高。

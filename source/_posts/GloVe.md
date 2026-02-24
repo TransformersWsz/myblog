@@ -5,7 +5,7 @@ toc: true
 date: 2021-07-21 01:11:50
 updated: 2021-07-21 01:11:50
 categories:
-- Algorithm
+- NLP
 tags:
 - Word2Vec
 - 面试
