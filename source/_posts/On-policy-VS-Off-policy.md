@@ -22,9 +22,13 @@ tags:
 > 如果行为策略与目标策略一致，则是on-policy，否则为off-policy。
 
 下面将以两个经典算法为例介绍on-policy、off-policy区别。
+
 ## SARSA(On-policy)
+
 算法流程如下：
-![sarsa](https://i-blog.csdnimg.cn/direct/f26b6cafa7b646d4b1a6ae85297c857d.png)
+
+![correlation](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.8dxetj1f92.webp)
+
 python伪代码如下：
 
 ```python
@@ -62,8 +66,11 @@ def sarsa():
 收集数据时用的是 ε-greedy，更新时用的还是 ε-greedy 选的 next_action，两者策略一致，是on-policy。
 
 ## DQN(Off-policy)
+
 算法流程如下：
+
 ![dqn](https://i-blog.csdnimg.cn/direct/003b7d02f74d4fd9b7b95677b411aae1.png)
+
 python伪代码如下：
 ```python
 # DQN 算法
