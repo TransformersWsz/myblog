@@ -27,7 +27,8 @@ tags:
 
 算法流程如下：
 
-![correlation](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.8dxetj1f92.webp)
+![sarsa](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.9rjxxkigy3.webp)
+
 
 python伪代码如下：
 
@@ -69,7 +70,9 @@ def sarsa():
 
 算法流程如下：
 
-![dqn](https://i-blog.csdnimg.cn/direct/003b7d02f74d4fd9b7b95677b411aae1.png)
+
+
+![dqn](https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.491thfbbvt.webp)
 
 python伪代码如下：
 ```python
