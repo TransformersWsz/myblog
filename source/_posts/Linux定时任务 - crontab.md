@@ -130,7 +130,7 @@ python /root/hello.py >> test.txt
 ## 示例
 
 1. `* * * * * commad` -> 每一分钟执行一次command
-2. `3,15 8-11 */2 * * /etc/init.d/network restart` -> 每隔两天的上午8点到11店的第3和第15分钟执行 `/etc/init.d/network restart`
+2. `3,15 8-11 */2 * * /etc/init.d/network restart` -> 每隔两天的上午8点到11点的第3和第15分钟执行 `/etc/init.d/network restart`
 
 # 踩点
 
