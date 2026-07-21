@@ -22,7 +22,17 @@ $$
 
 计算过程非常直接，当$p$极大或者极小时，float32下会精确等于1或者0，$log(0)$就会导致`NaN/Inf`，尽管$\epsilon$会做兜底，但梯度信息已经严重失真。
 
+## `tf.nn.sigmoid_cross_entropy_with_logits`原理
 
-||`tf.nn.sigmoid_cross_entropy_with_logits`|`tf.losses.log_loss`|
-|:-:|:-:|:-:|
-|计算公式||$ylog(p)+(1-y)log(1-p)$|
+$$
+\begin{aligned}
+Loss &= -ylog(\frac{1}{1+e^{-x}})-(1-y)(log(1-\frac{1}{1+e^{-x}})) \\
+&= -xy + log(1+e^x) \\
+先验\ log(1+e^x) &= max(x,0)+log(1+e^{-|x|}) \\
+Loss &= max(x,0) - xy + log(1+e^{-|x|})
+\end{aligned}
+$$
+
+上述公式通过两个trick确保了数值计算的稳定：
+1. 留`1`法：$log(1+z)$保证最小值为0，而不是-inf
+2. max拆分：由于$e^x$也会导致值溢出，将其转换成max和$e^{-|x|}$，保证极值情况下$e^{-|x|}\approx0$
