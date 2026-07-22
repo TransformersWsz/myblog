@@ -13,7 +13,7 @@ tags:
 
 <!--more-->
 
-假设DNN模型输出的$loggits=x$，概率$p=\sigma(x)$，标签$label=y$
+假设DNN模型输出的$logits=x$，概率$p=\sigma(x)$，标签$label=y$
 
 ## `tf.losses.log_loss`原理
 $$
