@@ -14,7 +14,7 @@ GAE(Generalized Advantage Estimation)的推导核心：把优势函数写成一�
 
 ---
 
-## 优势函数
+## 1. 优势函数
 
 数学形式为：
 $$
@@ -27,7 +27,7 @@ $$
 它表示：
 > 在某个状态$s$下，采取某个动作$a$，比“这个状态下平均水平”好多少。
 
-## TD误差
+## 2. TD误差
 
 数学形式为：
 $$
@@ -41,30 +41,24 @@ $$
 > 当前价值估计$V(s_t)$与“一步之后的奖励 + 下一状态价值”之间的差异。
 
 
-## n-step 优势估计
+## 3. 第 $n$-step 优势估计
 
-先定义 $n$ 步回报：
+先定义第 $n$ 步回报：
 
 $$
 G_t^{(n)} = r_t + \gamma r_{t+1} + \cdots + \gamma^{n-1}r_{t+n-1} + \gamma^n V(s_{t+n})
 $$
 
-对应的 n-step 优势估计：
+对应的第 $n$-step 优势估计：
 
 $$
-A_t^{(n)} = G_t^{(n)} - V(s_t)
+\begin{aligned}
+    A_t^{(n)} &= G_t^{(n)} - V(s_t) \\
+    A_t^{(n)} &= r_t + \gamma r_{t+1} + \cdots + \gamma^{n-1}r_{t+n-1} + \gamma^n V(s_{t+n}) - V(s_t)
+\end{aligned}
 $$
 
-把它展开：
-
-$$
-A_t^{(n)}
-= r_t + \gamma r_{t+1} + \cdots + \gamma^{n-1}r_{t+n-1} + \gamma^n V(s_{t+n}) - V(s_t)
-$$
-
----
-
-# 5. 把 n-step 优势写成 TD 误差和
+## 4. 把第 $n$-step 优势写成 TD 误差和
 
 我们把几项加减凑出来：
 $$
@@ -94,160 +88,41 @@ $$
 
 这一步非常重要：
 
-> **n-step 优势 = 前 n 个 TD 误差的折扣和**
+> 第 $n$-step 优势 = 前 $n$ 个 TD 误差的折扣和
 
----
 
-# 6. GAE 的核心定义
-
-GAE 就是在所有 n-step 优势的基础上，再做一个指数加权平均：
+## 5. GAE 的核心定义
+GAE将这些不同步数的优势估计进行指数加权平均：
 
 $$
-\hat A_t^{GAE(\gamma,\lambda)} =
-(1-\lambda)\sum_{n=1}^{\infty}\lambda^{n-1} A_t^{(n)}
+\begin{aligned}
+
+A_t^{GAE} &= (1-\lambda)(A_t^{(1)} + \lambda A_t^{(2)} + \lambda^2 A_t^{(3)} + \cdots) \\
+
+&= (1-\lambda)(\delta_t + \lambda(\delta_t + \gamma\delta_{t+1}) + \lambda^2(\delta_t + \gamma\delta_{t+1} + \gamma^2\delta_{t+2}) + \cdots) \\
+
+&= (1-\lambda)(\delta_t(1+\lambda+\lambda^2+\cdots) + \gamma\delta_{t+1}(\lambda+\lambda^2+\lambda^3+\cdots) + \gamma^2\delta_{t+2}(\lambda^2+\lambda^3+\lambda^4+\cdots) + \cdots) \\
+
+&= (1-\lambda)\left(\delta_t\frac{1}{1-\lambda} + \gamma\delta_{t+1}\frac{\lambda}{1-\lambda} + \gamma^2\delta_{t+2}\frac{\lambda^2}{1-\lambda} + \cdots\right) \\
+
+&= \sum_{l=0}^{n-1}(\gamma\lambda)^l \delta_{t+l}
+
+\end{aligned}
 $$
 
-其中：
+这样就可以算出当前第 $t$ 步的平均优势，即可GAE。其中 $\lambda \in [0,1]$ 是在GAE中额外引入的一个超参数：
+- 当 $\lambda=0$，则 $A_t^{GAE} = \delta_t = r_t + \gamma V(s_{t+1}) - V(s_t)$，即是仅仅只看一步TD差分得到的优势。`方差小，偏差大`
+- 当 $\lambda=1$，则 $A_t^{GAE} = \sum_{l=0}^{n-1}\gamma^l \delta_{t+l} = \sum_{l=0}^{n-1}\gamma^l r_{t+l} + \gamma^{n-1} V(s_{t+n}) - V(s_t)$，则是看每一步TD差分得到优势的完全平均值。`偏差小，方差大`
 
-- \(\lambda \in [0,1]\)
-- \((1-\lambda)\lambda^{n-1}\) 是权重
-- \(n\) 越大，权重越小（如果 \(\lambda<1\)）
 
-这个定义的直觉是：
+___
 
-- \(n=1\)：偏向短期，方差小，偏差大
-- \(n\) 大：偏向长期，偏差小，方差大
-- 用 \(\lambda\) 把它们折中起来
+## 总结
 
----
+GAE的推导路线是：
 
-# 7. 把 GAE 进一步化成 TD 误差形式
-
-因为：
-
-$$
-A_t^{(n)}=\sum_{l=0}^{n-1}\gamma^l\delta_{t+l}
-$$
-
-代入 GAE 定义：
-
-$$
-\hat A_t^{GAE(\gamma,\lambda)}
-=
-(1-\lambda)\sum_{n=1}^{\infty}\lambda^{n-1}
-\sum_{l=0}^{n-1}\gamma^l\delta_{t+l}
-$$
-
-交换求和顺序后，可以化简为经典形式：
-
-$$
-\hat A_t^{GAE(\gamma,\lambda)}
-=
-\sum_{l=0}^{\infty}(\gamma\lambda)^l \delta_{t+l}
-$$
-
-这就是最常见的 GAE 公式。
-
----
-
-# 8. 最终公式
-
-所以 GAE 的标准表达式是：
-
-$$
-\boxed{
-\hat A_t^{GAE(\gamma,\lambda)}
-=
-\sum_{l=0}^{\infty}(\gamma\lambda)^l
-\left(r_{t+l}+\gamma V(s_{t+l+1})-V(s_{t+l})\right)
-}
-$$
-
-也可以写成：
-
-$$
-\boxed{
-\hat A_t^{GAE(\gamma,\lambda)}
-=
-\sum_{l=0}^{\infty}(\gamma\lambda)^l \delta_{t+l}
-}
-$$
-
-其中：
-
-$$
-\delta_t = r_t+\gamma V(s_{t+1})-V(s_t)
-$$
-
----
-
-# 9. 极端情况的理解
-
-GAE 之所以好，是因为它能退化到两个经典估计方式：
-
-## 当 \(\lambda = 0\) 时
-\[
-\hat A_t = \delta_t
-\]
-
-也就是**单步 TD 误差**。
-
-- 方差小
-- 偏差大
-
----
-
-## 当 \(\lambda = 1\) 时
-\[
-\hat A_t = \sum_{l=0}^{\infty}\gamma^l\delta_{t+l}
-\]
-
-这相当于接近**Monte Carlo 优势估计**。
-
-- 偏差小
-- 方差大
-
----
-
-所以 \(\lambda\) 的作用就是：
-
-> 在 TD 的低方差和 Monte Carlo 的低偏差之间做平衡。
-
----
-
-# 10. 为什么这适合 PPO？
-
-PPO 需要一个稳定的优势估计，否则策略更新会抖动很厉害。  
-GAE 的好处是：
-
-- 既利用了多步未来信息
-- 又不会像纯 Monte Carlo 那么噪声大
-- 在实践中效果非常稳定
-
-所以 PPO 基本上都会搭配 GAE 使用。
-
----
-
-# 11. 一句话总结推导思路
-
-GAE 的推导路线是：
-
-1. 从优势函数 \(A=Q-V\) 出发  
-2. 用 n-step 回报近似优势  
-3. 把 n-step 优势写成 TD 误差和  
-4. 再对所有 n-step 结果做指数加权平均  
-5. 得到最终形式：
-
-\[
-\hat A_t^{GAE}=\sum_{l=0}^{\infty}(\gamma\lambda)^l\delta_{t+l}
-\]
-
----
-
-如果你愿意，我下一步可以继续给你：
-
-1. **把 GAE 的推导写成更严格的数学推导版**
-2. **举一个具体数值例子手算 GAE**
-3. **解释为什么 \((1-\lambda)\sum \lambda^{n-1}A^{(n)}\) 会变成 \(\sum(\gamma\lambda)^l\delta_{t+l}\)**
-
-如果你想，我建议下一步看 **“带数字例子手算 GAE”**，会特别直观。
+1. 从优势函数的定义出发  
+2. 计算出第 $n$-step的优势
+3. 将第 $n$-step 优势函数转换成TD误差和
+4. 对每个step的优势函数做指数加权平均  
+5. 得到最终的GAE公式
