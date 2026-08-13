@@ -46,7 +46,6 @@ PPO的核心目标函数如下：
 $$
 \begin{aligned}
     L^{CLIP}(\theta) &= \mathbb{E}_t \left[ \min \left( r_t(\theta) \hat{A}_t, \text{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon) \hat{A}_t \right) \right] \\
-
     \theta^* &= \arg\max_{\theta} L^{CLIP}
 \end{aligned}
 

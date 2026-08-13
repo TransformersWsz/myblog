@@ -64,13 +64,9 @@ $$
 $$
 \begin{aligned}
     \delta_t &= r_t + \gamma V(s_{t+1}) - V(s_t) \\
-
     \delta_{t+1} &= r_{t+1} + \gamma V(s_{t+2}) - V(s_{t+1}) \\
-
     \delta_{t+2} &= r_{t+2} + \gamma V(s_{t+3}) - V(s_{t+2}) \\
-    
     &\dots \\
-
     \delta_{t+n-1} &= r_{t+n-1} + \gamma V(s_{t+n}) - V(s_{t+n-1})
 \end{aligned}
 $$
@@ -98,15 +94,10 @@ $$
 \begin{aligned}
 
 A_t^{GAE} &= (1-\lambda)(A_t^{(1)} + \lambda A_t^{(2)} + \lambda^2 A_t^{(3)} + \cdots) \\
-
 &= (1-\lambda)(\delta_t + \lambda(\delta_t + \gamma\delta_{t+1}) + \lambda^2(\delta_t + \gamma\delta_{t+1} + \gamma^2\delta_{t+2}) + \cdots) \\
-
 &= (1-\lambda)(\delta_t(1+\lambda+\lambda^2+\cdots) + \gamma\delta_{t+1}(\lambda+\lambda^2+\lambda^3+\cdots) + \gamma^2\delta_{t+2}(\lambda^2+\lambda^3+\lambda^4+\cdots) + \cdots) \\
-
 &= (1-\lambda)\left(\delta_t\frac{1}{1-\lambda} + \gamma\delta_{t+1}\frac{\lambda}{1-\lambda} + \gamma^2\delta_{t+2}\frac{\lambda^2}{1-\lambda} + \cdots\right) \\
-
 &= \sum_{l=0}^{n-1}(\gamma\lambda)^l \delta_{t+l}
-
 \end{aligned}
 $$
 
