@@ -12,7 +12,7 @@ tags:
 
 GAE(Generalized Advantage Estimation)的推导核心：把优势函数写成一系列TD误差的加权和，再用一个参数 $\lambda$ 去平衡偏差和方差。
 
----
+<!--more-->
 
 ## 1. 优势函数
 
