@@ -115,9 +115,8 @@ $$
 - 当 $\lambda=1$，则 $A_t^{GAE} = \sum_{l=0}^{n-1}\gamma^l \delta_{t+l} = \sum_{l=0}^{n-1}\gamma^l r_{t+l} + \gamma^{n-1} V(s_{t+n}) - V(s_t)$，则是看每一步TD差分得到优势的完全平均值。`偏差小，方差大`
 
 
-___
 
-## 总结
+# 总结
 
 GAE的推导路线是：
 
@@ -126,3 +125,8 @@ GAE的推导路线是：
 3. 将第 $n$-step 优势函数转换成TD误差和
 4. 对每个step的优势函数做指数加权平均  
 5. 得到最终的GAE公式
+
+___
+
+## 参考
+- [11.6 广义优势估计](https://hrl.boyuai.com/chapter/2/trpo%E7%AE%97%E6%B3%95#116-%E5%B9%BF%E4%B9%89%E4%BC%98%E5%8A%BF%E4%BC%B0%E8%AE%A1)
