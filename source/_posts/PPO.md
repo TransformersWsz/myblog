@@ -44,52 +44,28 @@ PPO是TRPO的完美平替，它用一种极其简单巧妙的方法，实现了�
 PPO的核心目标函数如下：
 
 $$
-L^{CLIP}(\theta) = \mathbb{E}_t \left[ \min \left( r_t(\theta) \hat{A}_t, \text{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon) \hat{A}_t \right) \right] \\
+\begin{aligned}
+    L^{CLIP}(\theta) &= \mathbb{E}_t \left[ \min \left( r_t(\theta) \hat{A}_t, \text{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon) \hat{A}_t \right) \right] \\
+
+    \theta^* &= \arg\max_{\theta} L^{CLIP}
+\end{aligned}
+
 $$
+
 
 - $r_t(\theta)$：概率比
   - 公式：$\frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_{old}}(a_t|s_t)}$
   - 含义：`新策略采取这个动作的概率`除以`旧策略采取这个动作的概率`
   - 如果 $r>1$，意味着新策略比旧策略更倾向于做这个动作
 - $\hat{A}_t$：优势函数
-  - 公式：
-  - 含义：评估该动作是否优于平均平
+  - 公式：$\sum_{l=0}^{\infty}(\gamma\lambda)^l \delta_{t+l}$
+  - 含义：评估该动作是否优于平均水平
+  - 如果 $\hat{A}_t>0$，意味着说明在状态 $s$ 下采取动作 $a$，比状态 $s$ 下的平均动作水平要好，值得鼓励；如果 $\hat{A}_t<0$，说明该动作拖后腿了，要惩罚它
+- $\text{clip}$：裁剪函数
+  - 公式：$\text{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon)$
+  - 含义：限制策略更新幅度，防止新旧策略差异过大，即“近端”的安全区域内
+  - 设定 $\epsilon=0.2$，如果 $r>1.2$，裁剪函数将其强制拉回$1.2$；如果$r<0.8$，将其拉回$0.8$，从而保证了策略更新的稳定性
 
-
-### 4.2 \( r_t(\theta) \) —— 概率比（Importance Sampling Ratio）
-这是理解PPO的**第一把钥匙**。
-
-\[
-r_t(\theta) = \frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_{old}}(a_t|s_t)}
-\]
-
--   **分子**：**新策略**（当前正在更新的网络）在状态 \( s \) 下采取动作 \( a \) 的概率。
--   **分母**：**旧策略**（采集这批数据时的网络）在状态 \( s \) 下采取动作 \( a \) 的概率。
-
-**白话解读**：如果 \( r=1.2 \)，意味着新策略比旧策略更倾向于做这个动作（概率增加了20%）。如果 \( r=0.8 \)，说明新策略不太喜欢做这个动作了。
-
-### 4.3 \( \hat{A}_t \) —— 优势函数（Advantage Function）
-这是评价“这个动作做得怎么样”的**裁判**。
-
--   如果 \( \hat{A}_t > 0 \)：说明在状态 \( s \) 下采取动作 \( a \)，比该状态下的平均水平**要好**（值得鼓励）。
--   如果 \( \hat{A}_t < 0 \)：说明这个动作拖后腿了，**要挨打**（抑制它）。
-
-（通常使用GAE（Generalized Advantage Estimation）来计算，但初学者可以暂且把它理解为“这步走得对不对”。）
-
-### 4.4 \( \text{clip} \) —— 剪切函数（钳制函数）
-这是理解PPO的**第二把钥匙**，也是算法名字里“近端（Proximal）”的物理实现。
-
-\[
-\text{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon)
-\]
-
--   白话：不管你的 \( r_t \) 算出来是多大或多小，我都**强行截断**它。
--   设定超参数 \( \epsilon = 0.2 \)（通常值）：
-    -   如果 \( r > 1.2 \)，我就把你强行按在 **1.2**。
-    -   如果 \( r < 0.8 \)，我就把你强行拉到 **0.8**。
-    -   如果 \( r \) 在 0.8 到 1.2 之间，原样保留。
-
-**这个剪切操作，就是在物理上防止新策略和旧策略差异过大。**
 
 ---
 
