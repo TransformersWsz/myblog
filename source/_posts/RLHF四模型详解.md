@@ -386,3 +386,11 @@ $$
 - **Reward + Reference**：提供终端偏好信号和 KL 约束，定义每步奖励
 
 四模型协作的最终产出，就是让 Actor 在“拿高分”和“不跑偏”之间找到平衡。
+
+___
+
+
+## 参考
+
+- [图解大模型RLHF系列之：人人都能看懂的PPO原理与源码解读](https://zhuanlan.zhihu.com/p/677607581)
+- [看完能和外婆解释的PPO, DPO, GRPO强化学习](https://zhuanlan.zhihu.com/p/1984387073625593089)
