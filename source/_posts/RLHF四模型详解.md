@@ -20,6 +20,8 @@ tags:
 <!--more-->
 
 
+![rlhf](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.lwhqpqe2b.webp)
+
 
 ## 一、四个模型分别是什么？
 
@@ -191,7 +193,7 @@ $$
 
 其中 $\epsilon$ 通常取 0.1 或 0.2。
 
-### 6.4 Actor 的 Loss
+### 6.3 Actor 的 Loss
 
 $$
 L^{actor} = -\frac{1}{n} \sum_{t=1}^{n} \min\left( L^{unclip}_t, L^{clip}_t \right)
@@ -199,7 +201,7 @@ $$
 
 前面加负号是因为我们要**最大化**这个目标，而优化器默认**最小化** loss。
 
-### 6.5 Clip 机制逐情况分析
+### 6.4 Clip 机制逐情况分析
 
 | 优势 | 概率变化 | clip 后行为 |
 |------|---------|-----------|
@@ -252,7 +254,6 @@ $$
 - $\lambda$：GAE 参数（通常 0.95）
 - $\beta$：KL 惩罚强度（通常 0.01~0.1）
 
----
 
 ## 九、各模型 Loss 一览表
 
@@ -263,7 +264,6 @@ $$
 | **Reference** | 无 loss（冻结） | $x, y_{<t}$ | 提供 KL 基准 |
 | **Reward** | 无 loss（冻结） | $x, y$ | 提供终端分数 |
 
----
 
 ## 十、协作关系图
 
@@ -294,7 +294,6 @@ prompt x
  PPO更新 Actor 和 Critic
 ```
 
----
 
 ## 十一、完整训练伪代码
 
