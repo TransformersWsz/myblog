@@ -2,8 +2,8 @@
 title: GRPO算法
 mathjax: true
 toc: true
-date: 2026-09-29 20:12:21
-updated: 2026-09-29 20:12:21
+date: 2026-10-01 20:12:21
+updated: 2026-10-01 20:12:21
 categories:
 - Reinforcement Learning
 tags:
