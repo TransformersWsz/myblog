@@ -388,6 +388,27 @@ $$
 
 ___
 
+## FAQ
+1. ref模型时刻约束actor模型的偏离步伐，那么actor的上限就是ref？
+
+KL 散度惩罚本质上是一个软约束，而不是硬约束。它并不会把 Actor 死死地“套牢”在 Reference 周围，而是通过一种**动态的经济杠杆**来平衡“探索”与“守旧”。
+
+
+在 RLHF 的 PPO 算法中，Actor 的目标是最大化总奖励。这个总奖励并不是只看 Reward Model（RM）的打分，而是由两部分组成的：
+
+$$R_{total} = R_{RM} - \beta \cdot D_{KL}(\pi_{Actor} || \pi_{Ref})$$
+
+这里的关键在于 $\beta$（KL 惩罚系数）：
+*   **$R_{RM}$ 是推力**：Reward Model 告诉 Actor “往这边走分更高”。
+*   **$\beta \cdot D_{KL}$ 是拉力**：Reference Model 告诉 Actor “别跑太远，回来”。
+
+**为什么不会套牢？**
+因为这是一个Trade-off的过程。如果 Actor 发现往某个方向偏离 Reference 模型，虽然付出了 KL 惩罚的代价（比如扣了 0.5 分），但 Reward Model 给的分数极高（比如加了 5 分），那么总收益依然是正的（+4.5 分）。在这种情况下，Actor **依然会毫不犹豫地更新参数，突破 Reference 的限制**。
+
+只有当 RM 给的奖励不足以覆盖 KL 惩罚时，Actor 才会被拉回来。
+
+___
+
 
 ## 参考
 
