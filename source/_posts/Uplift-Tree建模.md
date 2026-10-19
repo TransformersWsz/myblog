@@ -11,7 +11,7 @@ tags:
 - Tree
 ---
 
-决策树构建流程：
+叶子节点直接输出uplift值，决策树构建流程：
 
 <!--more-->
 
@@ -31,6 +31,11 @@ $$
 
 ### 3. 增益预测
 给定一用户，根据该用户的所有特征以及该特征下的所有取值，将其分配到某一个叶子节点，得到该用户的uplift值。
+
+### 示例
+
+![demo](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.8hh9z2wjod.webp)
+
 
 ___
 
