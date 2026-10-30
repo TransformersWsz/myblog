@@ -62,6 +62,8 @@ OneRec 是一个**Encoder-Decoder生成模型**：输入用户多尺度行为表
 
 **方案**：融合多模态特征以及协同过滤信号，用 **RQ-Kmeans** 生成由粗到细的层次化语义 ID。
 
+![tokenizer](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.2ffb78.png)
+
 #### 3.1.1 多模态表示
 
 **多模态表示**：每个视频输入 caption、tag、ASR、OCR、封面图、5 帧均匀采样帧，用 miniCPM-V-8B 处理，得到 $N_M = 1280$ 个 token 向量 $\mathbf{M} \in \mathbb{R}^{N_M \times d_t}$（$d_t = 512$）。再用 QFormer 以 $N_{\tilde{M}} = 4$ 个可学习 query token 压缩：
@@ -214,18 +216,9 @@ $$\mathrm{MoE}(\mathbf{x}) = \sum_{j=1}^{k}\mathrm{Gate}_j(\mathbf{x})\cdot \mat
 
 **NTP 训练损失**：
 
-$$\mathcal{L}_{\mathrm{NTP}} = -\sum_{j=0}^{L_t-1}\log P\left(s_m^{j+1}\mid \left[s_{\mathrm{BOS}},s_m^1,s_m^2,\dots ,s_m^j\right]\right)$$
-
-**模型规格表**：
-
-| 模型 | Layers | Hid. Dim | FFN Hid. Dim | Heads | Experts (Tot/Act) | MoE 位置 |
-|---|---|---|---|---|---|---|
-| OneRec-0.015B (Dense) | 4 | 128 | 256 | 4 | N/A | N/A |
-| OneRec-0.121B (Dense) | 8 | 1024 | 2048 | 8 | N/A | N/A |
-| OneRec-0.935B (MoE) | 8 | 1024 | 2048 | 8 | 24 / 2 | Decoder |
-| OneRec-2.633B (MoE) | 24 | 1024 | 2048 | 8 | 24 / 4 | Enc & Dec |
-
-> 注：Layers = #Encoder + #Decoder，两者层数相同。
+$$
+\mathcal{L}_{\mathrm{NTP}} = -\sum_{j=0}^{L_t-1}\log P\left(s_m^{j+1}\mid \left[s_{\mathrm{BOS}},s_m^1,s_m^2,\dots ,s_m^j\right]\right)
+$$
 
 
 ### 3.4 奖励系统与 ECPO 强化学习
