@@ -69,8 +69,8 @@ $$
 J_{\mathrm{GRPO}}=\frac{1}{G}\sum_{i=1}^{G}\frac{1}{|o_i|}\sum_{t=1}^{|o_i|}\min\Big(\rho_{i,t}\hat{A}_{i,t},\ \mathrm{clip}\big(\rho_{i,t},\,1-\epsilon,\,1+\epsilon\big)\hat{A}_{i,t}\Big)-\beta D_{\mathrm{KL}}\big(\pi_\theta\,\|\,\pi_{\mathrm{ref}}\big).
 $$
 
-- $\frac { \pi _ { \theta } ( o _ { i , t } | q , o _ { i , < t } ) } { \pi _ { \theta _ { o l d } } ( o _ { i , t } | q , o _ { i , < t } ) }$，==逐token计算==，新旧策略概率比，与PPO保持一致。
-- $\hat{A}_{i,t}=A_i$，==逐response计算==，优势函数定义在整条 response 上。若第 $i$ 条回答优于同组平均，它从第一个 token 到最后一个 token 都乘上同一个正优势；同一 response 内的不同 token 因而无法区分。
+- $\frac { \pi _ { \theta } ( o _ { i , t } | q , o _ { i , < t } ) } { \pi _ { \theta _ { o l d } } ( o _ { i , t } | q , o _ { i , < t } ) }$，`逐token计算`，新旧策略概率比，与PPO保持一致。
+- $\hat{A}_{i,t}=A_i$，`逐response计算`，优势函数定义在整条 response 上。若第 $i$ 条回答优于同组平均，它从第一个 token 到最后一个 token 都乘上同一个正优势；同一 response 内的不同 token 因而无法区分。
 
 #### 3. 与 PPO 的关键区别
 
