@@ -216,11 +216,18 @@ $$
 基于此，GBPO 对策略比率的约束改为**动态边界**：
 
 $$
-\pi'_{\theta_{old}}(o_i|u) = \begin{cases}
-\max(\pi_{\theta_{old}}, \text{sg}(\pi_\theta)), & A_i \geq 0 \\
-\max(\pi_{\theta_{old}}, 1 - \text{sg}(\pi_\theta)), & A_i < 0
-\end{cases}
+\begin{aligned}
+    \mathcal{J}_{GBPO}(\theta) &= -\mathbb{E}_{u\sim P(U),\{o_i\}_{i=1}^G\sim\pi_{\theta_{old}}} \left[ \frac{1}{G} \sum_{i=1}^G \frac{\pi_{\theta}(o_i|u)}{\pi'_{\theta_{old}}(o_i|u)} \cdot A_i \right], \\
+
+    \pi'_{\theta_{old}}(o_i|u) &= 
+    \begin{cases} 
+        \max(\pi_{\theta_{old}}, \text{sg}(\pi_{\theta})), & A_i \ge 0, \\ 
+        \max(\pi_{\theta_{old}}, 1 - \text{sg}(\pi_{\theta})), & A_i < 0. 
+    \end{cases}
+\end{aligned}
+
 $$
+
 
 对比传统 clip 方法（固定边界 $[1-\epsilon, 1+\epsilon]$），GBPO 的三个区别：
 
@@ -228,11 +235,8 @@ $$
 2. **负样本的边界是动态的**，依赖于当前 $\pi_\theta$ 而非固定常数
 3. **正样本保持与 GRPO/ECPO 一致**，不做额外约束
 
-### 4.3 为什么叫"Gradient-Bounded"？
 
-因为 GBPO 本质上是用 BCE 损失的梯度上界来约束 RL 梯度——BCE 梯度的稳定性（负样本概率越小时梯度越小）被借用过来约束 RL 策略更新的幅度，从而保证训练稳定性而不需要粗暴地 clip。
 
----
 
 ## 五、最终线上效果：V2 vs V1
 
