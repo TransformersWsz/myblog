@@ -225,6 +225,8 @@ $$
 
 预训练模型只拟合曝光 item 分布（来自传统系统），无法突破传统推荐天花板。因此引入基于奖励系统的偏好对齐，在生成 item 空间做 on-policy RL。
 
+![reward model](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.ba5eab.png)
+
 #### 3.4.1 偏好对齐：P-Score
 
 用神经网络学习个性化融合分 P-Score（基于 SIM 架构，多塔各学单目标，隐层 + user/item 表示进 MLP）：
