@@ -37,9 +37,13 @@ V1 使用标准的 Encoder-Decoder 架构：Encoder 负责把用户上下文编�
 
 可以看到，无论是 Encoder-Decoder 还是 Naive Decoder-Only，绝大部分计算都花在了 context encoding 上（>99%），而真正参与 loss 计算的 target decoding 仅占不到 1%。
 
+> ⚠️注意：V2分配给target的算力没有变化，只是占比提升了。
+
 ### 1.2 核心设计：Context Processor + Lazy Cross-Attention
 
 V2 的核心思想是：**上下文只需要编码一次，然后所有 decoder layer 共享这份编码**。
+
+![lazy decoder](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.718ef1.png)
 
 **Context Processor**：将用户多路特征（静态路径、短期路径、长期路径）通过线性层投影后，做一次 RMSNorm，然后生成 layer-specific 的 key-value pairs。
 
@@ -99,7 +103,6 @@ V2 把计算资源从"无意义的重复上下文编码"中彻底解放出来，
 
 Gkv=1 时 KV 大小从 94M 压缩到 7M（降低 13.4 倍），而 loss 不变。
 
----
 
 ## 二、训练数据组织：避免数据泄露
 
@@ -111,7 +114,6 @@ V2 重新审视了训练数据的组织方式，指出了 V1 可能存在的问�
 
 这个改动虽然不显眼，但对训练稳定性和泛化能力很重要。
 
----
 
 ## 三、RL 奖励信号：从 Proxy 到 Real
 
