@@ -19,6 +19,8 @@ OneRec-V1 虽然在线上取得了一定的收益，但面临两大瓶颈：
 
 <!--more-->
 
+![overview](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.9cda08.png)
+
 ## 一、Lazy Decoder-Only 架构
 
 ### 1.1 问题：Encoder-Decoder 的计算碎片化
