@@ -238,33 +238,8 @@ $$
 
 Table 8 展示了 OneRec-V2 相比 OneRec-V1 的线上 A/B 测试结果：
 
-**快手主 App：**
+![result](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.021b56.png)
 
-| 指标 | 提升 |
-|------|------|
-| App Stay Time | +0.467% |
-| LT7（7日留存） | +0.069% |
-| Watch Time | +1.367% |
-| Video View | +0.331% |
-| Like | +3.924% |
-| Follow | +4.730% |
-| Comment | +5.394% |
-| Collect | +2.112% |
-| Forward | +3.183% |
-
-**快手极速版：**
-
-| 指标 | 提升 |
-|------|------|
-| App Stay Time | +0.741% |
-| LT7 | +0.034% |
-| Watch Time | +0.762% |
-| Video View | +0.259% |
-| Like | +5.393% |
-| Follow | +5.627% |
-| Comment | +5.013% |
-| Collect | +3.202% |
-| Forward | +7.958% |
 
 所有指标全面超越 V1，且没有明显的跷跷板效应。
 
@@ -278,29 +253,10 @@ Table 8 展示了 OneRec-V2 相比 OneRec-V1 的线上 A/B 测试结果：
 
 这个结果很有意思：**去掉缓存后，模型更倾向于推荐"安全的"热门内容**，冷启视频曝光被严重挤压。这其实呼应了之前讨论中提到的问题——RL 训练依赖老系统样本时，模型会偏向"老系统验证过的内容分布"。V2 虽然引入了真实用户反馈信号，但冷启问题仍未完全解决。
 
----
+## 总结
+V2 的核心思路是"架构瘦身 + 奖励去代理化"——用 Lazy Decoder-Only 把计算效率拉到极致（全部花在 target decoding 上），用真实用户反馈信号替代纯代理奖励模型来引导 RL，同时用 GBPO 保证训练稳定性。最终在快手主 App 和极速版上相比 V1 获得了 App Stay Time +0.47%~0.74% 的额外提升，所有互动指标全面进步。但冷启视频曝光下降的问题仍然值得关注。
 
-## 六、Scaling Law 验证
+___
 
-V2 在 Lazy Decoder 架构上验证了从 0.1B 到 8B 的 scaling law：
-
-- Dense 模型：0.1B → 8B，loss 从 3.57 降到 3.19
-- 拟合公式：$L(N) = E + A/N^\alpha$，其中 $E=3.13$, $A=3660$, $\alpha=0.489$
-- **MoE 变体（4B 总参数，0.5B 激活）**：loss=3.22，优于 2B Dense（3.23），但计算量仅相当于 0.5B Dense
-- 这为工业部署提供了灵活的选择：计算受限选 MoE 小激活版，精度优先选 Dense 大模型
-
----
-
-## 七、总结：V2 相比 V1 的改进一览
-
-| 改进方向 | V1 | V2 | 效果 |
-|---------|-----|-----|------|
-| **架构** | Encoder-Decoder | Lazy Decoder-Only + GQA | FLOPs 降 15.7×，激活值降 14.2× |
-| **训练数据组织** | Naive Impression | User-Centric + New Impression Only | 避免数据泄露 |
-| **RL 奖励信号** | P-Score（代理奖励模型） | Duration-Aware Reward Shaping（真实用户反馈）+ 负样本 | 时长指标进一步提升 |
-| **RL 算法** | ECPO（Early Clipped GRPO） | GBPO（Gradient-Bounded Policy Optimization） | 训练更稳定，负样本梯度不丢失 |
-| **奖励策略** | 仅 Reward Model | Reward Model + User Feedback + Hybrid | Hybrid 最均衡 |
-| **Scaling** | 到 2.6B | 到 8B + MoE 4B(0.5B active) | MoE 性价比最优 |
-| **线上效果** | App Stay Time +0.54%~1.24% | vs V1: +0.467%~0.741%（额外增益） | 全指标提升 |
-
-**一句话总结**：V2 的核心思路是"架构瘦身 + 奖励去代理化"——用 Lazy Decoder-Only 把计算效率拉到极致（全部花在 target decoding 上），用真实用户反馈信号替代纯代理奖励模型来引导 RL，同时用 GBPO 保证训练稳定性。最终在快手主 App 和极速版上相比 V1 获得了 App Stay Time +0.47%~0.74% 的额外提升，所有互动指标全面进步。但冷启视频曝光下降的问题仍然值得关注。
+## 参考
+- [细读快手OneRec V2技术报告](https://zhuanlan.zhihu.com/p/1945765458063098684)
