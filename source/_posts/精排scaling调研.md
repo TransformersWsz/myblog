@@ -11,19 +11,6 @@ tags:
 - Transformer
 ---
 
-<!-- ## 非序列
-- wukong
-- rankmixer
-- tokenmixer
-- qblock
-
-## 序列
-- longer
-- onetrans
-- onetrans-v2
-- hyformer -->
-
-
 集中调研下Scaling在搜广推领域的进展。
 
 <!--more-->
