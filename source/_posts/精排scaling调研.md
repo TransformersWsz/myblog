@@ -95,6 +95,6 @@ $$
 #### 消融实验
 ![tokenmixer-ablation](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.af8217.png)
 
-可以看到`残差维度不匹配与语义错位`、``
+可以看到`残差维度不匹配与语义错位`导致性能下降最明显，说明其有效保留了输入信号，避免了初始信息的丢失。
 
 ### 序列特征交互Scaling
