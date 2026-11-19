@@ -29,6 +29,7 @@ tags:
 ![4.2](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.c0603c.png)
 *步骤3：编辑最大值*
 ![4.3](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.c22435.png)
+
 5. 效果展示
 ![5](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.245fb3.png)
 
