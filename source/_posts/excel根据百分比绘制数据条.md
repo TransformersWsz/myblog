@@ -19,8 +19,8 @@ tags:
 1. 将小数调整成百分比形式
 ![2](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.40369d.png)
 1. 调用 `条件格式 > 数据条`
-![3.1](https://i-blog.csdnimg.cn/direct/aaf6e4081d77451da683076d4fa0a81c.png)
-![3.2](https://i-blog.csdnimg.cn/direct/2fc3c90f7daa4e02b1e9c2b151985387.png)
+![3.1](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.73a4a9.png)
+![3.2](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.864b69.png)
 1. 校准基线：由于数据条默认以最大值为满格（上图的245%），需要调整`1.0`为基线
 
 *步骤1：管理规则*
