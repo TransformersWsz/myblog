@@ -24,11 +24,11 @@ tags:
 1. 校准基线：由于数据条默认以最大值为满格（上图的245%），需要调整`1.0`为基线
 
 *步骤1：管理规则*
-![4.1](https://i-blog.csdnimg.cn/direct/da4811a5a17c4282838eed8d76d9427b.png)
+![4.1](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.aa6591.png)
 *步骤2：编辑规则*
-![4.2](https://i-blog.csdnimg.cn/direct/e8c57df186484c7d962f131c61729c16.png)
+![4.2](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.c0603c.png)
 *步骤3：编辑最大值*
-![4.3](https://i-blog.csdnimg.cn/direct/3828c6950b324e328b905a25363757dc.png)
-5. 效果展示
+![4.3](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.c22435.png)
+1. 效果展示
 ![5](https://i-blog.csdnimg.cn/direct/b1bffa9c043846458f5401e78e8dbb28.png)
 
