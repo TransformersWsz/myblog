@@ -30,5 +30,5 @@ tags:
 *步骤3：编辑最大值*
 ![4.3](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.c22435.png)
 1. 效果展示
-![5](https://i-blog.csdnimg.cn/direct/b1bffa9c043846458f5401e78e8dbb28.png)
+![5](https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.245fb3.png)
 
